@@ -20,6 +20,13 @@ program
   .option("-y, --yes", "Skip prompts and use defaults")
   .option("-t, --template <template>", "Framework template (next, vite)")
   .option("--css <path>", "Path to global CSS file")
+  .option("--ui-library <library>", "Headless library (base-ui, radix)")
+  .option("--base-color <color>", "Base color (neutral, zinc, slate, stone, gray)")
+  .option(
+    "--accent <accent>",
+    "Accent color (default, blue, violet, green, orange, rose, amber, cyan)"
+  )
+  .option("--radius <radius>", "Border radius (default, compact, round)")
   .action(async (options) => {
     await initCommand(options)
   })
@@ -39,6 +46,11 @@ program
   .description("Build the registry JSON files")
   .option("-o, --output <dir>", "Output directory", "public/r")
   .option("-r, --registry <path>", "Registry index path", "registry.json")
+  .option(
+    "-l, --library <library>",
+    "Library variant to build (base-ui, radix, all)",
+    "all"
+  )
   .action(async (options) => {
     await buildCommand(options)
   })

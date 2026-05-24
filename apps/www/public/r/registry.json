@@ -1,0 +1,305 @@
+{
+  "$schema": "https://ui.elorm.xyz/schema/registry.json",
+  "name": "elorm/ui",
+  "homepage": "https://ui.elorm.xyz",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Utility functions for elorm/ui components."
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Displays a form input field.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Displays a form textarea.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A window overlaid on either the primary window or another dialog window.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Extends the Dialog component to display content that complements the main content.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user triggered by a button.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty State",
+      "description": "A block for displaying empty or no-results states.",
+      "categories": [
+        "blocks",
+        "feedback"
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:block",
+      "title": "Stat Card",
+      "description": "A dashboard stat card with optional trend indicator.",
+      "categories": [
+        "blocks",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page Header",
+      "description": "A page header block with title, description, actions, and breadcrumbs.",
+      "categories": [
+        "blocks",
+        "layout"
+      ]
+    },
+    {
+      "name": "theme-neutral",
+      "type": "registry:theme",
+      "title": "Neutral Theme",
+      "description": "Apply the neutral base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-zinc",
+      "type": "registry:theme",
+      "title": "Zinc Theme",
+      "description": "Apply the zinc base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-slate",
+      "type": "registry:theme",
+      "title": "Slate Theme",
+      "description": "Apply the slate base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-stone",
+      "type": "registry:theme",
+      "title": "Stone Theme",
+      "description": "Apply the stone base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-gray",
+      "type": "registry:theme",
+      "title": "Gray Theme",
+      "description": "Apply the gray base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-blue",
+      "type": "registry:theme",
+      "title": "Blue Accent",
+      "description": "Apply blue accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-violet",
+      "type": "registry:theme",
+      "title": "Violet Accent",
+      "description": "Apply violet accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-green",
+      "type": "registry:theme",
+      "title": "Green Accent",
+      "description": "Apply green accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-orange",
+      "type": "registry:theme",
+      "title": "Orange Accent",
+      "description": "Apply orange accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-rose",
+      "type": "registry:theme",
+      "title": "Rose Accent",
+      "description": "Apply rose accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-amber",
+      "type": "registry:theme",
+      "title": "Amber Accent",
+      "description": "Apply amber accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-cyan",
+      "type": "registry:theme",
+      "title": "Cyan Accent",
+      "description": "Apply cyan accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    }
+  ],
+  "libraries": [
+    "base-ui",
+    "radix"
+  ]
+}

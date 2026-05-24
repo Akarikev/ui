@@ -1,43 +1,120 @@
+"use client"
+
+import { useState } from "react"
 import { ButtonDemo } from "@/components/demos/button-demo"
+import { InputDemo } from "@/components/demos/input-demo"
+import { CardDemo } from "@/components/demos/card-demo"
+import { DialogDemo } from "@/components/demos/dialog-demo"
+import { CopyCommand } from "@/components/marketing/copy-command"
+import { cn } from "@/lib/utils"
+
+const previews = [
+  {
+    id: "button",
+    title: "Button",
+    description: "Displays a button or a component that looks like a button.",
+    command: "elorm add button",
+    Demo: ButtonDemo,
+  },
+  {
+    id: "input",
+    title: "Input",
+    description: "Displays a form input field or a component that looks like one.",
+    command: "elorm add input",
+    Demo: InputDemo,
+  },
+  {
+    id: "dialog",
+    title: "Dialog",
+    description: "A window overlaid on the primary window or another dialog.",
+    command: "elorm add dialog",
+    Demo: DialogDemo,
+  },
+  {
+    id: "card",
+    title: "Card",
+    description: "Displays a card with header, content, and footer.",
+    command: "elorm add card",
+    Demo: CardDemo,
+  },
+] as const
+
+type PreviewId = (typeof previews)[number]["id"]
 
 export function DocsPreview() {
+  const [active, setActive] = useState<PreviewId>("button")
+  const current = previews.find((p) => p.id === active) ?? previews[0]
+  const Demo = current.Demo
+
   return (
     <section className="relative mx-auto max-w-5xl px-6 pb-24">
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0f]/90 shadow-2xl shadow-indigo-500/10 backdrop-blur-sm">
-        <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
+      <div className="overflow-hidden rounded-xl border border-border bg-card/90 shadow-2xl shadow-primary/5 backdrop-blur-sm">
+        <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <div className="size-3 rounded-full bg-red-500/80" />
           <div className="size-3 rounded-full bg-yellow-500/80" />
           <div className="size-3 rounded-full bg-green-500/80" />
-          <span className="ml-2 text-xs text-white/30">ui.elorm.xyz/docs</span>
+          <span className="ml-2 font-mono text-xs text-muted-foreground">
+            ui.elorm.xyz/docs
+          </span>
         </div>
 
         <div className="flex min-h-[320px]">
-          <aside className="hidden w-48 shrink-0 border-r border-white/5 p-4 sm:block">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-white/30">
+          <aside className="hidden w-48 shrink-0 border-r border-border p-4 sm:block">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               Components
             </p>
             <ul className="flex flex-col gap-1 text-sm">
-              <li className="rounded-md bg-indigo-500/20 px-2 py-1.5 text-indigo-200">
-                Button
-              </li>
-              <li className="px-2 py-1.5 text-white/40">Input</li>
-              <li className="px-2 py-1.5 text-white/40">Dialog</li>
-              <li className="px-2 py-1.5 text-white/40">Card</li>
+              {previews.map((item) => (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onClick={() => setActive(item.id)}
+                    className={cn(
+                      "w-full rounded-md px-2 py-1.5 text-left transition-colors",
+                      active === item.id
+                        ? "bg-primary/15 text-primary"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                    )}
+                  >
+                    {item.title}
+                  </button>
+                </li>
+              ))}
             </ul>
           </aside>
 
           <div className="flex-1 p-6 sm:p-8">
-            <div className="mb-1 text-xs text-indigo-400/80">Components</div>
-            <h3 className="mb-2 text-xl font-semibold text-white">Button</h3>
-            <p className="mb-6 text-sm text-white/50">
-              Displays a button or a component that looks like a button.
-            </p>
-            <div className="rounded-lg border border-white/5 bg-white/[0.02] p-6">
-              <ButtonDemo />
+            <div className="mb-3 flex gap-2 overflow-x-auto sm:hidden">
+              {previews.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActive(item.id)}
+                  className={cn(
+                    "shrink-0 rounded-full px-3 py-1 text-xs transition-colors",
+                    active === item.id
+                      ? "bg-primary/15 text-primary"
+                      : "border border-border text-muted-foreground"
+                  )}
+                >
+                  {item.title}
+                </button>
+              ))}
             </div>
-            <code className="mt-4 block rounded-md bg-black/40 px-3 py-2 text-left text-xs text-indigo-300/80">
-              npx elorm add button
-            </code>
+
+            <div className="mb-1 text-xs text-primary/80">Components</div>
+            <h3 className="mb-2 text-xl font-semibold text-foreground">
+              {current.title}
+            </h3>
+            <p className="mb-6 text-sm text-muted-foreground">
+              {current.description}
+            </p>
+            <div className="rounded-lg border border-border bg-background/50 p-6">
+              <Demo />
+            </div>
+            <div className="mt-4">
+              <CopyCommand command={current.command} />
+            </div>
           </div>
         </div>
       </div>

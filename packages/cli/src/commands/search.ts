@@ -10,8 +10,10 @@ interface SearchOptions {
 export async function searchCommand(options: SearchOptions = {}) {
   const config = await getConfig(options.cwd)
   const registryUrl =
-    config?.registries["@elorm"]?.replace("{name}.json", "registry.json") ??
-    "https://ui.elorm.xyz/registry.json"
+    config?.registries["@elorm"]
+      ?.replace("{library}/", "")
+      .replace("{name}.json", "registry.json") ??
+    "https://ui.elorm.xyz/r/registry.json"
 
   try {
     const registry = await fetchRegistryIndex(registryUrl)

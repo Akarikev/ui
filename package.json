@@ -4,11 +4,13 @@
   "description": "elorm/ui — copy-paste React component library",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "build": "bun run --filter '@elorm/schema' build && bun run --filter 'elorm' build && bun run registry:build && bun run --filter 'www' build",
+    "build": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && bun run registry:build && bun run docs:generate && bun run --filter 'www' build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "registry:build": "bun run --filter 'elorm' build && bun packages/cli/bin/elorm.js build --output apps/www/public/r --registry registry.json",
+    "registry:build": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && bun packages/cli/bin/elorm.js build --output apps/www/public/r --registry registry.json",
+    "docs:generate": "bun scripts/generate-docs.ts",
+    "www:sync": "cp packages/registry/ui/*.tsx apps/www/components/ui/ && cp packages/registry/blocks/*.tsx apps/www/components/blocks/",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {

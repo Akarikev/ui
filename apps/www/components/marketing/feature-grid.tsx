@@ -9,15 +9,15 @@ const features = [
   },
   {
     icon: BoxIcon,
-    title: "Base UI primitives",
+    title: "Base UI or Radix",
     description:
-      "Built on accessible, unstyled React primitives from Base UI — modern and composable.",
+      "Choose your headless library at init — Base UI for modern primitives, Radix for ecosystem familiarity.",
   },
   {
     icon: PaletteIcon,
-    title: "Tailwind CSS v4",
+    title: "Theme presets",
     description:
-      "OKLCH design tokens, CSS-first config, and semantic color utilities out of the box.",
+      "OKLCH tokens with base colors, accent hues, and radius presets. Switch themes with the CLI.",
   },
   {
     icon: SparklesIcon,
@@ -29,13 +29,13 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section className="border-t border-white/5 bg-[#050508] px-6 py-24">
+    <section className="border-t border-border bg-background px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
             Everything you need to ship UI
           </h2>
-          <p className="mt-3 text-white/50">
+          <p className="mt-3 text-muted-foreground">
             A modern component system designed for developers who want control.
           </p>
         </div>
@@ -44,11 +44,13 @@ export function FeatureGrid() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-xl border border-white/5 bg-white/[0.02] p-6 transition-colors hover:border-indigo-500/20 hover:bg-indigo-500/[0.03]"
+              className="rounded-xl border border-border bg-card/50 p-6 transition-colors hover:border-primary/30 hover:bg-card"
             >
-              <feature.icon className="mb-4 size-5 text-indigo-400" />
-              <h3 className="mb-2 font-semibold text-white">{feature.title}</h3>
-              <p className="text-sm leading-relaxed text-white/50">
+              <feature.icon className="mb-4 size-5 text-primary" />
+              <h3 className="mb-2 font-semibold text-foreground">
+                {feature.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
                 {feature.description}
               </p>
             </div>

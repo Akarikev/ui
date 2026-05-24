@@ -3,6 +3,7 @@ import path from "node:path"
 import * as p from "@clack/prompts"
 import pc from "picocolors"
 import { getConfig, resolveRegistryUrl, fetchRegistryItem } from "../utils/index.js"
+import { getInstallCommands } from "@elorm/schema"
 
 interface DocsOptions {
   json?: boolean
@@ -22,12 +23,15 @@ export async function docsCommand(itemName: string, options: DocsOptions = {}) {
   try {
     const item = await fetchRegistryItem(url)
 
+    const installCommands = getInstallCommands(`elorm add ${item.name}`)
+
     const docs = {
       name: item.name,
       title: item.title,
       description: item.description,
       type: item.type,
-      install: `npx elorm add ${item.name}`,
+      install: installCommands.npm,
+      installCommands,
       dependencies: item.dependencies ?? [],
       registryDependencies: item.registryDependencies ?? [],
       files: item.files.map((f) => f.path),

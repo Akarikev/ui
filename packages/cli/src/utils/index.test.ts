@@ -47,12 +47,20 @@ import { Button } from "@/components/ui/button"`
 describe("resolveRegistryUrl", () => {
   it("resolves @elorm namespace items", () => {
     const url = resolveRegistryUrl("@elorm/button", DEFAULT_ELORM_CONFIG)
-    expect(url).toBe("https://ui.elorm.xyz/r/button.json")
+    expect(url).toBe("https://ui.elorm.xyz/r/base-ui/button.json")
   })
 
   it("resolves bare item names", () => {
     const url = resolveRegistryUrl("button", DEFAULT_ELORM_CONFIG)
-    expect(url).toBe("https://ui.elorm.xyz/r/button.json")
+    expect(url).toBe("https://ui.elorm.xyz/r/base-ui/button.json")
+  })
+
+  it("resolves radix library items", () => {
+    const url = resolveRegistryUrl("button", {
+      ...DEFAULT_ELORM_CONFIG,
+      uiLibrary: "radix",
+    })
+    expect(url).toBe("https://ui.elorm.xyz/r/radix/button.json")
   })
 })
 

@@ -5,9 +5,11 @@ description: "Displays a list of options for the user to pick from."
 
 ## Installation
 
-```bash
-npx elorm add select
-```
+<InstallCommand command="elorm add select" />
+
+## Preview
+
+<ComponentPreview component="select" />
 
 ## Usage
 
@@ -17,8 +19,34 @@ import { Select } from '@/components/ui/select'
 
 Displays a list of options for the user to pick from.
 
+## Examples
+
+### Default
+
+<Tabs>
+
+  <Tab title="Preview">
+
+    <ComponentPreview component="select" />
+
+  </Tab>
+
+  <Tab title="Code">
+
+    ```tsx
+<Select />
+    ```
+
+  </Tab>
+
+</Tabs>
 
 ## Usage notes
 
 Wrap options in SelectGroup. Always include SelectValue in SelectTrigger.
+
+
+## Composition
+
+Select, SelectTrigger, SelectContent, SelectItem
 

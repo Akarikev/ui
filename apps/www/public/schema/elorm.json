@@ -6,6 +6,11 @@
   "properties": {
     "$schema": { "type": "string" },
     "style": { "type": "string", "default": "default" },
+    "uiLibrary": {
+      "type": "string",
+      "enum": ["base-ui", "radix"],
+      "default": "base-ui"
+    },
     "rsc": { "type": "boolean", "default": true },
     "tsx": { "type": "boolean", "default": true },
     "tailwind": {
@@ -13,8 +18,12 @@
       "properties": {
         "config": { "type": "string" },
         "css": { "type": "string" },
-        "baseColor": { "type": "string" },
-        "cssVariables": { "type": "boolean" }
+        "baseColor": {
+          "type": "string",
+          "enum": ["neutral", "zinc", "slate", "stone", "gray"],
+          "default": "neutral"
+        },
+        "cssVariables": { "type": "boolean", "default": true }
       },
       "required": ["css"]
     },
@@ -32,12 +41,39 @@
     "iconLibrary": { "type": "string", "default": "lucide" },
     "registries": {
       "type": "object",
-      "additionalProperties": { "type": "string" }
+      "additionalProperties": { "type": "string" },
+      "default": {
+        "@elorm": "https://ui.elorm.xyz/r/{library}/{name}.json"
+      }
     },
     "framework": {
       "type": "string",
-      "enum": ["next", "vite", "react-router", "astro"]
+      "enum": ["next", "vite", "react-router", "astro"],
+      "default": "next"
     },
-    "theme": { "type": "string" }
+    "theme": {
+      "type": "object",
+      "properties": {
+        "accent": {
+          "type": "string",
+          "enum": [
+            "default",
+            "blue",
+            "violet",
+            "green",
+            "orange",
+            "rose",
+            "amber",
+            "cyan"
+          ],
+          "default": "default"
+        },
+        "radius": {
+          "type": "string",
+          "enum": ["default", "compact", "round"],
+          "default": "default"
+        }
+      }
+    }
   }
 }

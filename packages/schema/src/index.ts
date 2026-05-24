@@ -1,5 +1,8 @@
 import { z } from "zod"
 
+export const uiLibrarySchema = z.enum(["base-ui", "radix"])
+export type UiLibrary = z.infer<typeof uiLibrarySchema>
+
 export const registryItemTypeSchema = z.enum([
   "registry:ui",
   "registry:component",
@@ -64,15 +67,34 @@ export const registrySchema = z.object({
   items: z.array(registryItemSchema),
 })
 
+export const themeConfigSchema = z.object({
+  accent: z
+    .enum([
+      "default",
+      "blue",
+      "violet",
+      "green",
+      "orange",
+      "rose",
+      "amber",
+      "cyan",
+    ])
+    .default("default"),
+  radius: z.enum(["default", "compact", "round"]).default("default"),
+})
+
 export const elormConfigSchema = z.object({
   $schema: z.string().optional(),
   style: z.string().default("default"),
+  uiLibrary: uiLibrarySchema.default("base-ui"),
   rsc: z.boolean().default(true),
   tsx: z.boolean().default(true),
   tailwind: z.object({
     config: z.string().optional(),
     css: z.string(),
-    baseColor: z.string().default("neutral"),
+    baseColor: z
+      .enum(["neutral", "zinc", "slate", "stone", "gray"])
+      .default("neutral"),
     cssVariables: z.boolean().default(true),
   }),
   aliases: z.object({
@@ -86,10 +108,10 @@ export const elormConfigSchema = z.object({
   registries: z
     .record(z.string())
     .default({
-      "@elorm": "https://ui.elorm.xyz/r/{name}.json",
+      "@elorm": "https://ui.elorm.xyz/r/{library}/{name}.json",
     }),
   framework: z.enum(["next", "vite", "react-router", "astro"]).default("next"),
-  theme: z.string().default("elorm-default"),
+  theme: themeConfigSchema.default({ accent: "default", radius: "default" }),
 })
 
 export type RegistryItemType = z.infer<typeof registryItemTypeSchema>
@@ -97,10 +119,12 @@ export type RegistryFile = z.infer<typeof registryFileSchema>
 export type RegistryItemMeta = z.infer<typeof registryItemMetaSchema>
 export type RegistryItem = z.infer<typeof registryItemSchema>
 export type Registry = z.infer<typeof registrySchema>
+export type ThemeConfig = z.infer<typeof themeConfigSchema>
 export type ElormConfig = z.infer<typeof elormConfigSchema>
 
 export const DEFAULT_ELORM_CONFIG: ElormConfig = {
   style: "default",
+  uiLibrary: "base-ui",
   rsc: true,
   tsx: true,
   tailwind: {
@@ -117,8 +141,25 @@ export const DEFAULT_ELORM_CONFIG: ElormConfig = {
   },
   iconLibrary: "lucide",
   registries: {
-    "@elorm": "https://ui.elorm.xyz/r/{name}.json",
+    "@elorm": "https://ui.elorm.xyz/r/{library}/{name}.json",
   },
   framework: "next",
-  theme: "elorm-default",
+  theme: { accent: "default", radius: "default" },
+}
+
+export const PACKAGE_MANAGERS = ["npm", "pnpm", "yarn", "bun"] as const
+export type PackageManager = (typeof PACKAGE_MANAGERS)[number]
+
+export function getInstallCommands(
+  command: string,
+  pm?: PackageManager
+): Record<PackageManager, string> {
+  const cmds: Record<PackageManager, string> = {
+    npm: `npx ${command}`,
+    pnpm: `pnpm dlx ${command}`,
+    yarn: `yarn dlx ${command}`,
+    bun: `bunx ${command}`,
+  }
+  if (pm) return { [pm]: cmds[pm] } as Record<PackageManager, string>
+  return cmds
 }

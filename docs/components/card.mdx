@@ -5,9 +5,11 @@ description: "Displays a card with header, content, and footer."
 
 ## Installation
 
-```bash
-npx elorm add card
-```
+<InstallCommand command="elorm add card" />
+
+## Preview
+
+<ComponentPreview component="card" />
 
 ## Usage
 
@@ -17,6 +19,32 @@ import { Card } from '@/components/ui/card'
 
 Displays a card with header, content, and footer.
 
+## Examples
+
+### Basic
+
+<Tabs>
+
+  <Tab title="Preview">
+
+    <ComponentPreview component="card" />
+
+  </Tab>
+
+  <Tab title="Code">
+
+    ```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+</Card>
+    ```
+
+  </Tab>
+
+</Tabs>
 
 ## Usage notes
 

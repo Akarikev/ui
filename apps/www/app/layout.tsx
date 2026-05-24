@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { SiteProviders } from "@/components/marketing/site-providers"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "elorm/ui — Beautiful components you actually own",
   description:
-    "Copy-paste React component library built on Base UI and Tailwind CSS. Accessible primitives, OKLCH theming, AI-friendly CLI.",
+    "Copy-paste React component library with Base UI or Radix UI and Tailwind CSS. Accessible primitives, OKLCH theming, AI-friendly CLI.",
   metadataBase: new URL("https://ui.elorm.xyz"),
 }
 
@@ -25,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-[#050508] antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
       >
-        {children}
+        <SiteProviders>{children}</SiteProviders>
       </body>
     </html>
   )

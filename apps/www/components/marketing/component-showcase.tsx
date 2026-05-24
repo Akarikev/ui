@@ -14,20 +14,20 @@ const components = [
 
 export function ComponentShowcase() {
   return (
-    <section className="border-t border-white/5 px-6 py-24">
+    <section className="border-t border-border px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
               Component catalog
             </h2>
-            <p className="mt-2 text-white/50">
+            <p className="mt-2 text-muted-foreground">
               15 components and 3 blocks. Add any with one command.
             </p>
           </div>
           <Link
             href="/docs/components/button"
-            className="text-sm text-indigo-400 transition-colors hover:text-indigo-300"
+            className="text-sm text-primary transition-colors hover:text-primary/80"
           >
             View all docs →
           </Link>
@@ -38,13 +38,15 @@ export function ComponentShowcase() {
             <Link
               key={item.name}
               href={`/docs/components/${item.name}`}
-              className="group rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-indigo-500/30 hover:bg-indigo-500/[0.04]"
+              className="group rounded-xl border border-border bg-card/50 p-5 transition-all hover:border-primary/30 hover:bg-card"
             >
-              <h3 className="font-medium text-white group-hover:text-indigo-200">
+              <h3 className="font-medium text-foreground group-hover:text-primary">
                 {item.title}
               </h3>
-              <p className="mt-1 text-sm text-white/40">{item.description}</p>
-              <code className="mt-3 block text-xs text-white/25 group-hover:text-indigo-400/60">
+              <p className="mt-1 text-sm text-muted-foreground">
+                {item.description}
+              </p>
+              <code className="mt-3 block text-xs text-muted-foreground group-hover:text-primary/80">
                 npx elorm add {item.name}
               </code>
             </Link>

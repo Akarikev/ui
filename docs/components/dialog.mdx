@@ -5,9 +5,11 @@ description: "A window overlaid on either the primary window or another dialog w
 
 ## Installation
 
-```bash
-npx elorm add dialog
-```
+<InstallCommand command="elorm add dialog" />
+
+## Preview
+
+<ComponentPreview component="dialog" />
 
 ## Usage
 
@@ -17,6 +19,34 @@ import { Dialog } from '@/components/ui/dialog'
 
 A window overlaid on either the primary window or another dialog window.
 
+## Examples
+
+### Basic
+
+<Tabs>
+
+  <Tab title="Preview">
+
+    <ComponentPreview component="dialog" />
+
+  </Tab>
+
+  <Tab title="Code">
+
+    ```tsx
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Title</DialogTitle>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+    ```
+
+  </Tab>
+
+</Tabs>
 
 ## Usage notes
 

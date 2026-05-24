@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@elorm/schema": "workspace:*",
+    "@elorm/themes": "workspace:*",
     "@clack/prompts": "^0.11.0",
     "commander": "^14.0.0",
     "cosmiconfig": "^9.0.0",

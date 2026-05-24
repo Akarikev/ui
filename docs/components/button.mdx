@@ -5,9 +5,11 @@ description: "Displays a button or a component that looks like a button."
 
 ## Installation
 
-```bash
-npx elorm add button
-```
+<InstallCommand command="elorm add button" />
+
+## Preview
+
+<ComponentPreview component="button" />
 
 ## Usage
 
@@ -17,10 +19,56 @@ import { Button } from '@/components/ui/button'
 
 Displays a button or a component that looks like a button.
 
+## Examples
+
+### Default
+
+<Tabs>
+
+  <Tab title="Preview">
+
+    <ComponentPreview component="button" />
+
+  </Tab>
+
+  <Tab title="Code">
+
+    ```tsx
+<Button>Click me</Button>
+    ```
+
+  </Tab>
+
+</Tabs>
+
+### Outline
+
+<Tabs>
+
+  <Tab title="Preview">
+
+    <ComponentPreview component="button" />
+
+  </Tab>
+
+  <Tab title="Code">
+
+    ```tsx
+<Button variant="outline">Cancel</Button>
+    ```
+
+  </Tab>
+
+</Tabs>
 
 ## Usage notes
 
 Primary actions. Use variant=outline for secondary actions, variant=ghost for tertiary.
+
+
+## Composition
+
+DialogFooter, CardFooter
 
 
 ## Avoid
