@@ -10,7 +10,7 @@
     "test": "turbo run test",
     "registry:build": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && bun packages/cli/bin/elorm.js build --output apps/www/public/r --registry registry.json",
     "docs:generate": "bun scripts/generate-docs.ts",
-    "www:sync": "cp packages/registry/ui/*.tsx apps/www/components/ui/ && cp packages/registry/blocks/*.tsx apps/www/components/blocks/",
+    "www:sync": "cp packages/registry/ui/*.tsx apps/www/components/ui/ && cp packages/registry/blocks/*.tsx apps/www/components/blocks/ && cp packages/registry-radix/ui/*.tsx apps/www/components/ui-radix/",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
