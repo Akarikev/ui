@@ -11,7 +11,7 @@ export function SiteFooter() {
           </Link>
           . Open source on{" "}
           <a
-            href="https://github.com/Akarikev/elorm-ui"
+            href="https://github.com/Akarikev/ui"
             className="text-white/60 hover:text-white"
             target="_blank"
             rel="noopener noreferrer"

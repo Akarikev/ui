@@ -15,7 +15,7 @@
   "topbarLinks": [
     {
       "name": "GitHub",
-      "url": "https://github.com/Akarikev/elorm-ui"
+      "url": "https://github.com/Akarikev/ui"
     }
   ],
   "topbarCtaButton": {
@@ -69,6 +69,6 @@
     ]
   },
   "footerSocials": {
-    "github": "https://github.com/Akarikev/elorm-ui"
+    "github": "https://github.com/Akarikev/ui"
   }
 }

@@ -3,7 +3,7 @@ import Link from "next/link"
 const nav = [
   { label: "Docs", href: "/docs" },
   { label: "Components", href: "/docs/components/button" },
-  { label: "GitHub", href: "https://github.com/Akarikev/elorm-ui", external: true },
+  { label: "GitHub", href: "https://github.com/Akarikev/ui", external: true },
 ]
 
 export function SiteHeader() {
