@@ -30,6 +30,7 @@
           {
             "group": "Get Started",
             "pages": [
+              "index",
               "introduction",
               "get-started/installation",
               "get-started/theming",
@@ -70,5 +71,10 @@
   },
   "footerSocials": {
     "github": "https://github.com/Akarikev/ui"
+  },
+  "errors": {
+    "404": {
+      "redirect": true
+    }
   }
 }

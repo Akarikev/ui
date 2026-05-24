@@ -1,7 +1,7 @@
 import type { NextConfig } from "next"
 
 const mintlifyUrl =
-  process.env.MINTLIFY_DOCS_URL ?? "https://elorm-ui.mintlify.dev"
+  process.env.MINTLIFY_DOCS_URL ?? "https://elormui.mintlify.app"
 
 const nextConfig: NextConfig = {
   transpilePackages: [],
@@ -9,11 +9,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/docs",
-        destination: `${mintlifyUrl}/docs`,
+        destination: `${mintlifyUrl}/`,
       },
       {
         source: "/docs/:path*",
-        destination: `${mintlifyUrl}/docs/:path*`,
+        destination: `${mintlifyUrl}/:path*`,
       },
       {
         source: "/_mintlify/:path*",
