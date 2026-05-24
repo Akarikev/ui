@@ -1,0 +1,61 @@
+---
+title: Installation
+description: "Install and configure elorm/ui in your project."
+---
+
+## Prerequisites
+
+- Node.js 20.9+
+- A React project (Next.js or Vite recommended)
+- Tailwind CSS v4 configured
+
+## Initialize
+
+Run the init command in your project root:
+
+```bash
+npx elorm init
+```
+
+This creates:
+- `elorm.json` — project configuration
+- `lib/utils.ts` — `cn()` utility
+- Global CSS with OKLCH design tokens
+
+## Add components
+
+```bash
+npx elorm add button
+npx elorm add card dialog
+npx elorm add empty-state
+```
+
+Components are copied into your project at the paths defined in `elorm.json`.
+
+## Framework setup
+
+<Tabs>
+  <Tab title="Next.js">
+    elorm/ui works with the Next.js App Router. Client components include `"use client"` automatically.
+
+    ```bash
+    npx elorm init --template next
+    ```
+  </Tab>
+  <Tab title="Vite">
+    For Vite + React SPAs:
+
+    ```bash
+    npx elorm init --template vite
+    ```
+
+    Ensure your CSS entry imports Tailwind and the elorm token variables.
+  </Tab>
+</Tabs>
+
+## Verify installation
+
+```bash
+npx elorm search -q "button"
+npx elorm docs button --json
+```

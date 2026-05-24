@@ -1,0 +1,50 @@
+---
+title: CLI Reference
+description: "All elorm CLI commands."
+---
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `elorm init` | Initialize elorm/ui in your project |
+| `elorm add [items...]` | Add components to your project |
+| `elorm search -q "query"` | Search the registry |
+| `elorm docs <item> [--json]` | Show component docs (JSON for AI agents) |
+| `elorm diff <item>` | Compare local vs registry version |
+| `elorm build` | Build registry JSON (maintainers) |
+
+## Examples
+
+```bash
+# Initialize with defaults
+npx elorm init -y
+
+# Add multiple components
+npx elorm add button card dialog
+
+# AI-friendly docs output
+npx elorm docs button --json
+
+# Preview before overwriting
+npx elorm add button --dry-run
+npx elorm add button --overwrite
+```
+
+## Configuration
+
+The `elorm.json` file controls aliases, framework, and registry URLs:
+
+```json
+{
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "utils": "@/lib/utils",
+    "lib": "@/lib"
+  },
+  "registries": {
+    "@elorm": "https://ui.elorm.xyz/r/{name}.json"
+  }
+}
+```

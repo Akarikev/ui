@@ -1,0 +1,42 @@
+{
+  "name": "elorm",
+  "version": "0.1.0",
+  "description": "CLI for elorm/ui — copy-paste React component library",
+  "type": "module",
+  "bin": {
+    "elorm": "./bin/elorm.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "bin", "templates"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@elorm/schema": "workspace:*",
+    "@clack/prompts": "^0.11.0",
+    "commander": "^14.0.0",
+    "cosmiconfig": "^9.0.0",
+    "execa": "^9.6.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.3",
+    "picocolors": "^1.1.1",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.32",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "keywords": ["elorm", "ui", "components", "react", "tailwind", "cli"],
+  "license": "MIT"
+}

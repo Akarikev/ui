@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "elorm/ui configuration",
+  "description": "Configuration for elorm/ui projects",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "style": { "type": "string", "default": "default" },
+    "rsc": { "type": "boolean", "default": true },
+    "tsx": { "type": "boolean", "default": true },
+    "tailwind": {
+      "type": "object",
+      "properties": {
+        "config": { "type": "string" },
+        "css": { "type": "string" },
+        "baseColor": { "type": "string" },
+        "cssVariables": { "type": "boolean" }
+      },
+      "required": ["css"]
+    },
+    "aliases": {
+      "type": "object",
+      "properties": {
+        "components": { "type": "string" },
+        "utils": { "type": "string" },
+        "ui": { "type": "string" },
+        "lib": { "type": "string" },
+        "hooks": { "type": "string" }
+      },
+      "required": ["components", "utils", "ui", "lib"]
+    },
+    "iconLibrary": { "type": "string", "default": "lucide" },
+    "registries": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["next", "vite", "react-router", "astro"]
+    },
+    "theme": { "type": "string" }
+  }
+}

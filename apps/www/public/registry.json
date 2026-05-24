@@ -1,0 +1,193 @@
+{
+  "$schema": "https://ui.elorm.dev/schema/registry.json",
+  "name": "elorm/ui",
+  "homepage": "https://ui.elorm.dev",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Utility functions for elorm/ui components."
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Displays a form input field.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Displays a form textarea.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A window overlaid on either the primary window or another dialog window.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Extends the Dialog component to display content that complements the main content.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user triggered by a button.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty State",
+      "description": "A block for displaying empty or no-results states.",
+      "categories": [
+        "blocks",
+        "feedback"
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:block",
+      "title": "Stat Card",
+      "description": "A dashboard stat card with optional trend indicator.",
+      "categories": [
+        "blocks",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page Header",
+      "description": "A page header block with title, description, actions, and breadcrumbs.",
+      "categories": [
+        "blocks",
+        "layout"
+      ]
+    }
+  ]
+}

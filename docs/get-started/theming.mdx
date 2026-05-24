@@ -1,0 +1,33 @@
+---
+title: Theming
+description: "Customize elorm/ui design tokens and dark mode."
+---
+
+## CSS Variables
+
+elorm/ui uses OKLCH color tokens defined in your global CSS file. All components reference semantic tokens like `bg-primary`, `text-muted-foreground`, and `border-border`.
+
+```css
+:root {
+  --primary: oklch(0.205 0 0);
+  --background: oklch(1 0 0);
+  --radius: 0.625rem;
+}
+
+.dark {
+  --primary: oklch(0.922 0 0);
+  --background: oklch(0.145 0 0);
+}
+```
+
+## Dark mode
+
+Add the `dark` class to your `<html>` element to enable dark mode tokens. Components automatically use the correct semantic colors.
+
+## Customizing
+
+Edit the CSS variables in your global stylesheet. Components will pick up changes without modifying individual component files.
+
+<Note>
+  Always use semantic tokens in your own code too — avoid raw color utilities like `bg-blue-500`.
+</Note>

@@ -1,0 +1,321 @@
+{
+  "$schema": "https://ui.elorm.dev/schema/registry.json",
+  "name": "elorm/ui",
+  "homepage": "https://ui.elorm.dev",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Utility functions for elorm/ui components.",
+      "files": [
+        {
+          "path": "packages/registry/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "packages/registry/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Primary actions. Use variant=outline for secondary actions, variant=ghost for tertiary.",
+        "composition": ["DialogFooter", "CardFooter"],
+        "antiPatterns": ["Do not use raw bg-blue-500", "Do not nest buttons inside buttons"],
+        "examples": [
+          {
+            "title": "Default",
+            "code": "<Button>Click me</Button>"
+          },
+          {
+            "title": "Outline",
+            "code": "<Button variant=\"outline\">Cancel</Button>"
+          }
+        ]
+      }
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Displays a form input field.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use with Label for accessible form fields.",
+        "antiPatterns": ["Do not use without a label or aria-label"]
+      }
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Displays a form textarea.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap options in SelectGroup. Always include SelectValue in SelectTrigger.",
+        "composition": ["Select", "SelectTrigger", "SelectContent", "SelectItem"]
+      }
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A window overlaid on either the primary window or another dialog window.",
+      "categories": ["ui", "overlay"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Always include DialogTitle for accessibility. Use DialogDescription for context.",
+        "antiPatterns": ["Do not omit DialogTitle", "Do not nest dialogs"]
+      }
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Extends the Dialog component to display content that complements the main content.",
+      "categories": ["ui", "overlay"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "lucide-react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "packages/registry/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user triggered by a button.",
+      "categories": ["ui", "overlay"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element.",
+      "categories": ["ui", "overlay"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap app in TooltipProvider. Keep tooltip text concise."
+      }
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "categories": ["ui", "layout"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use full composition: CardHeader, CardTitle, CardDescription, CardContent, CardFooter.",
+        "antiPatterns": ["Do not dump all content into CardContent without header"]
+      }
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "categories": ["ui", "data-display"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "packages/registry/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "categories": ["ui", "layout"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "categories": ["ui", "feedback"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty State",
+      "description": "A block for displaying empty or no-results states.",
+      "categories": ["blocks", "feedback"],
+      "registryDependencies": ["utils", "button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/blocks/empty-state.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "usage": "Use when lists, tables, or search results are empty. Provide a clear action when possible."
+      }
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:block",
+      "title": "Stat Card",
+      "description": "A dashboard stat card with optional trend indicator.",
+      "categories": ["blocks", "dashboard"],
+      "registryDependencies": ["utils", "card"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/blocks/stat-card.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page Header",
+      "description": "A page header block with title, description, actions, and breadcrumbs.",
+      "categories": ["blocks", "layout"],
+      "registryDependencies": ["utils", "separator"],
+      "files": [
+        {
+          "path": "packages/registry/blocks/page-header.tsx",
+          "type": "registry:block"
+        }
+      ]
+    }
+  ]
+}

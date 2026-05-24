@@ -1,0 +1,22 @@
+{
+  "name": "elorm-ui",
+  "private": true,
+  "description": "elorm/ui — copy-paste React component library",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "build": "bun run --filter '@elorm/schema' build && bun run --filter 'elorm' build && bun run registry:build && bun run --filter 'www' build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "registry:build": "bun run --filter 'elorm' build && bun packages/cli/bin/elorm.js build --output apps/www/public/r --registry registry.json",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "bun@1.2.18",
+  "engines": {
+    "node": ">=20"
+  }
+}

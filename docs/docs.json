@@ -1,0 +1,74 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "elorm/ui",
+  "theme": "mint",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#6366F1",
+    "light": "#818CF8",
+    "dark": "#4F46E5"
+  },
+  "topbarLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Akarikev/elorm-ui"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://ui.elorm.xyz"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "get-started/installation",
+              "get-started/theming",
+              "get-started/cli"
+            ]
+          },
+          {
+            "group": "Components",
+            "pages": [
+              "components/button",
+              "components/input",
+              "components/textarea",
+              "components/label",
+              "components/checkbox",
+              "components/switch",
+              "components/select",
+              "components/dialog",
+              "components/sheet",
+              "components/dropdown-menu",
+              "components/tooltip",
+              "components/card",
+              "components/badge",
+              "components/separator",
+              "components/skeleton"
+            ]
+          },
+          {
+            "group": "Blocks",
+            "pages": [
+              "components/empty-state",
+              "components/stat-card",
+              "components/page-header"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "github": "https://github.com/Akarikev/elorm-ui"
+  }
+}
