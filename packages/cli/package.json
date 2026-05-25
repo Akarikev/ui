@@ -1,10 +1,10 @@
 {
   "name": "elorm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for elorm/ui — copy-paste React component library",
   "type": "module",
   "bin": {
-    "elorm": "./bin/elorm.js"
+    "elorm": "dist/index.js"
   },
   "exports": {
     ".": {
@@ -12,10 +12,13 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "bin"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build:deps": "npm run build --prefix ../schema && npm run build --prefix ../themes",
-    "build": "tsup",
+    "build": "tsup && chmod +x dist/index.js",
     "prepublishOnly": "npm run build:deps && npm run build",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",

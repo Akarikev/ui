@@ -8,7 +8,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "registry:build": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && bun packages/cli/bin/elorm.js build --output apps/www/public/r --registry registry.json",
+    "registry:build": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && node packages/cli/dist/index.js build --output apps/www/public/r --registry registry.json",
     "docs:generate": "bun scripts/generate-docs.ts",
     "publish:cli": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && cd packages/cli && npm publish --access public",
     "publish:cli:dry-run": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && cd packages/cli && npm pack --dry-run",
