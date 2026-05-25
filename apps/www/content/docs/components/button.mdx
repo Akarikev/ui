@@ -3,19 +3,7 @@ title: Button
 description: "Displays a button or a component that looks like a button."
 ---
 
-<ComponentPreviewTabs component="button" code="import { Button } from '@/components/ui/button'
-
-export function ButtonDemo() {
-  return (
-    <Button>Click me</Button>
-  )
-}" radixCode="import { Button } from '@/components/ui/button'
-
-export function ButtonDemo() {
-  return (
-    <Button variant=&quot;secondary&quot;>Click me</Button>
-  )
-}" />
+<ComponentPreviewTabs component="button" />
 
 ## Installation
 
@@ -23,7 +11,7 @@ export function ButtonDemo() {
 
 ## Usage
 
-<LibraryCodeBlock baseCode="import { Button } from '@/components/ui/button'" radixCode="import { Button } from '@/components/ui/button'" language="tsx" />
+<LibraryCodeBlock component="button" />
 
 Displays a button or a component that looks like a button.
 
@@ -39,37 +27,33 @@ Button
 
 ## Examples
 
-### Default
+### Secondary
 
-<ComponentPreviewTabs component="button" code="import { Button } from '@/components/ui/button'
-
-export function ButtonDemo() {
-  return (
-    <Button>Click me</Button>
-  )
-}" radixCode="import { Button } from '@/components/ui/button'
-
-export function ButtonDemo() {
-  return (
-    <Button variant=&quot;secondary&quot;>Click me</Button>
-  )
-}" />
+<ComponentPreviewTabs component="button" example="secondary" />
 
 ### Outline
 
-<ComponentPreviewTabs component="button" code="import { Button } from '@/components/ui/button'
+<ComponentPreviewTabs component="button" example="outline" />
 
-export function ButtonDemo() {
-  return (
-    <Button variant=&quot;outline&quot;>Cancel</Button>
-  )
-}" radixCode="import { Button } from '@/components/ui/button'
+### Ghost
 
-export function ButtonDemo() {
-  return (
-    <Button variant=&quot;secondary&quot;>Click me</Button>
-  )
-}" />
+<ComponentPreviewTabs component="button" example="ghost" />
+
+### Destructive
+
+<ComponentPreviewTabs component="button" example="destructive" />
+
+### Link
+
+<ComponentPreviewTabs component="button" example="link" />
+
+### Soft
+
+<ComponentPreviewTabs component="button" example="soft" />
+
+### Soft Outline
+
+<ComponentPreviewTabs component="button" example="soft-outline" />
 
 ## Avoid
 

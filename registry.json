@@ -51,12 +51,32 @@
         "antiPatterns": ["Do not use raw bg-blue-500", "Do not nest buttons inside buttons"],
         "examples": [
           {
-            "title": "Default",
-            "code": "<Button>Click me</Button>"
+            "title": "Secondary",
+            "code": "<Button variant=\"secondary\">Secondary</Button>"
           },
           {
             "title": "Outline",
-            "code": "<Button variant=\"outline\">Cancel</Button>"
+            "code": "<Button variant=\"outline\">Outline</Button>"
+          },
+          {
+            "title": "Ghost",
+            "code": "<Button variant=\"ghost\">Ghost</Button>"
+          },
+          {
+            "title": "Destructive",
+            "code": "<Button variant=\"destructive\">Destructive</Button>"
+          },
+          {
+            "title": "Link",
+            "code": "<Button variant=\"link\">Link</Button>"
+          },
+          {
+            "title": "Soft",
+            "code": "<Button variant=\"soft\" size=\"soft\">Request a demo</Button>"
+          },
+          {
+            "title": "Soft Outline",
+            "code": "<Button variant=\"soft-outline\" size=\"soft\">Join waitlist</Button>"
           }
         ]
       }
@@ -281,6 +301,29 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "social-links",
+      "type": "registry:ui",
+      "title": "Social Links",
+      "description": "A row of monochrome social media icon links.",
+      "categories": ["ui", "navigation"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "files": [
+        {
+          "path": "packages/registry/ui/social-links.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pass an array of platform + href pairs. Supports github, x, mastodon, bluesky, reddit, and discord.",
+        "examples": [
+          {
+            "title": "Default",
+            "code": "<SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />"
+          }
+        ]
+      }
     },
     {
       "name": "separator",

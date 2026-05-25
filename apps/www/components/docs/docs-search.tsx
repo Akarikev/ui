@@ -10,12 +10,14 @@ interface SearchResult {
   url: string
   content?: string
   type: string
+  breadcrumbs?: string[]
 }
 
 export function DocsSearch() {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult[]>([])
+  const [loading, setLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -37,20 +39,31 @@ export function DocsSearch() {
   useEffect(() => {
     if (!query.trim()) {
       setResults([])
+      setLoading(false)
       return
     }
 
     const controller = new AbortController()
+    setLoading(true)
+
     const timeout = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
-          signal: controller.signal,
-        })
-        if (!res.ok) return
+        const res = await fetch(
+          `/api/search?query=${encodeURIComponent(query)}`,
+          { signal: controller.signal }
+        )
+        if (!res.ok) {
+          setResults([])
+          return
+        }
         const data = (await res.json()) as SearchResult[]
         setResults(data)
       } catch {
         /* ignore abort */
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false)
+        }
       }
     }, 200)
 
@@ -95,7 +108,12 @@ export function DocsSearch() {
                 />
               </div>
               <ul className="max-h-72 overflow-y-auto p-2">
-                {results.length === 0 && query ? (
+                {loading ? (
+                  <li className="px-3 py-6 text-center text-sm text-muted-foreground">
+                    Searching...
+                  </li>
+                ) : null}
+                {!loading && results.length === 0 && query ? (
                   <li className="px-3 py-6 text-center text-sm text-muted-foreground">
                     No results found.
                   </li>
@@ -109,9 +127,21 @@ export function DocsSearch() {
                         "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent"
                       )}
                     >
-                      <span className="font-medium text-foreground">
-                        {result.content ?? result.url}
-                      </span>
+                      {result.content ? (
+                        <span
+                          className="font-medium text-foreground [&_mark]:rounded-sm [&_mark]:bg-primary/20 [&_mark]:px-0.5 [&_mark]:text-foreground"
+                          dangerouslySetInnerHTML={{ __html: result.content }}
+                        />
+                      ) : (
+                        <span className="font-medium text-foreground">
+                          {result.url}
+                        </span>
+                      )}
+                      {result.breadcrumbs?.length ? (
+                        <span className="mt-0.5 block text-xs text-muted-foreground">
+                          {result.breadcrumbs.join(" / ")}
+                        </span>
+                      ) : null}
                     </Link>
                   </li>
                 ))}

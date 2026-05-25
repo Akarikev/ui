@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/marketing/site-footer"
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="dark relative isolate bg-neutral-950">
+      <div className="relative isolate bg-background">
         <SiteHeader transparent overlay />
         <Hero />
         <DocsPreview />

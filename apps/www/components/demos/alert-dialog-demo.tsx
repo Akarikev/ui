@@ -1,9 +1,9 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
+  AlertDialogClose,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -11,12 +11,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
 
 export function AlertDialogDemo() {
   return (
     <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="destructive">Delete account</Button>} />
+      <AlertDialogTrigger render={<Button variant="destructive">Open alert dialog</Button>} />
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -25,8 +24,8 @@ export function AlertDialogDemo() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
+          <AlertDialogClose render={<Button>Continue</Button>} />
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

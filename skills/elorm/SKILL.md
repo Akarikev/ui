@@ -90,3 +90,4 @@ npx elorm build
 3. Get docs: `npx elorm docs <component> --json`
 4. Add components: `npx elorm add <component>`
 5. Review added files for correct imports matching project aliases
+

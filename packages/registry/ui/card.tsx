@@ -1,14 +1,15 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { transitionBase } from "@/lib/ui-styles"
+import { softShadow, surfaceSoft, transitionBase } from "@/lib/ui-styles"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "rounded-xl bg-card text-card-foreground shadow-sm ring-1 ring-border/50",
+        "rounded-2xl bg-card text-card-foreground ring-1 ring-border/30",
+        softShadow,
         transitionBase,
         className
       )}

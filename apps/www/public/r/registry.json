@@ -146,6 +146,16 @@
       ]
     },
     {
+      "name": "social-links",
+      "type": "registry:ui",
+      "title": "Social Links",
+      "description": "A row of monochrome social media icon links.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",

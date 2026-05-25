@@ -62,7 +62,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.04);
   --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.04);
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.06);
@@ -163,8 +163,10 @@
 }
 
 .not-prose pre,
-.not-prose .shiki {
+.not-prose .shiki,
+.not-prose .shiki code {
   @apply overflow-x-auto border border-border/50 bg-muted/30 px-5 py-4 text-sm leading-relaxed;
+  white-space: pre;
 }
 
 .docs-prose .shiki,
@@ -205,6 +207,11 @@
 
 [data-line-numbers] {
   counter-reset: line;
+}
+
+[data-line-numbers] [data-line] {
+  display: block;
+  min-width: fit-content;
 }
 
 [data-line-numbers] [data-line]::before {

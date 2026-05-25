@@ -3,16 +3,19 @@
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog"
 
 export function DialogDemo() {
   return (
-    <Dialog defaultOpen>
+    <Dialog>
+      <DialogTrigger render={<Button>Open dialog</Button>} />
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
@@ -21,8 +24,8 @@ export function DialogDemo() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
-          <Button>Save</Button>
+          <DialogClose render={<Button variant="outline">Cancel</Button>} />
+          <DialogClose render={<Button>Save</Button>} />
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -8,6 +8,7 @@ import type { MDXComponents } from "mdx/types"
 import { cn } from "@/lib/utils"
 import { CodeBlockCommand } from "@/components/docs/code-block-command"
 import { ComponentPreviewTabs } from "@/components/docs/component-preview-tabs"
+import { FrameworkSetup } from "@/components/docs/framework-tabs"
 import { CopyButton } from "@/components/docs/copy-button"
 import { InstallCommand } from "@/components/docs/install-command"
 import { LibraryCodeBlock } from "@/components/docs/library-code-block"
@@ -237,6 +238,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       )
     },
     ComponentPreviewTabs,
+    FrameworkSetup,
     LibraryCodeBlock,
     InstallCommand,
     CodeBlockCommand,

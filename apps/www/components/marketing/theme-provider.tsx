@@ -31,7 +31,7 @@ const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 const DEFAULT_THEME: ThemeState = {
   baseColor: "neutral",
-  accent: "violet",
+  accent: "mono",
   mode: "dark",
 }
 

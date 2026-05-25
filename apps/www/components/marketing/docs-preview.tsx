@@ -48,7 +48,7 @@ export function DocsPreview() {
 
   return (
     <section className="relative z-20 mx-auto -mt-40 max-w-5xl px-6 pb-24 md:-mt-48">
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-neutral-900/70 shadow-2xl shadow-black/30 backdrop-blur-xl">
+      <div className="overflow-hidden rounded-xl border border-border bg-card/95 shadow-2xl shadow-black/10 backdrop-blur-xl">
         <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <div className="size-3 rounded-full bg-red-500/80" />
           <div className="size-3 rounded-full bg-yellow-500/80" />
@@ -109,7 +109,7 @@ export function DocsPreview() {
             <p className="mb-6 text-sm text-muted-foreground">
               {current.description}
             </p>
-            <div className="rounded-lg border border-border bg-background/50 p-6">
+            <div className="rounded-lg border border-border bg-background p-6 text-foreground">
               <Demo />
             </div>
             <div className="mt-4">

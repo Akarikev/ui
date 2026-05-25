@@ -37,6 +37,7 @@ import { PageHeaderDemo } from "@/components/demos/page-header-demo"
 import { LoginFormDemo } from "@/components/demos/login-form-demo"
 import { SettingsSectionDemo } from "@/components/demos/settings-section-demo"
 import { DataTableDemo } from "@/components/demos/data-table-demo"
+import { SocialLinksDemo } from "@/components/demos/social-links-demo"
 
 const demos: Record<
   string,
@@ -66,6 +67,7 @@ const demos: Record<
   collapsible: { base: CollapsibleDemo },
   card: { base: CardDemo },
   badge: { base: BadgeDemo },
+  "social-links": { base: SocialLinksDemo },
   alert: { base: AlertDemo },
   avatar: { base: AvatarDemo },
   progress: { base: ProgressDemo },

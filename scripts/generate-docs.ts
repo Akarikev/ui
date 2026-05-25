@@ -12,6 +12,16 @@ const DOCS_COMPONENTS_DIR = path.join(
   ROOT,
   "apps/www/content/docs/components"
 )
+const DOCS_EXAMPLE_CODE_PATH = path.join(
+  ROOT,
+  "apps/www/lib/docs-example-code.ts"
+)
+const DEMOS_DIR = path.join(ROOT, "apps/www/components/demos")
+
+interface DocsCodeEntry {
+  base: string
+  radix: string
+}
 
 interface RegistryExample {
   title: string
@@ -52,6 +62,7 @@ const DOC_COMPONENTS = new Set([
   "tooltip",
   "card",
   "badge",
+  "social-links",
   "separator",
   "skeleton",
   "field",
@@ -186,7 +197,7 @@ function defaultImportCode(name: string, importPath: string, importName: string)
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '${importPath}'`,
+} from "${importPath}"`,
     table: `import {
   Table,
   TableBody,
@@ -194,7 +205,7 @@ function defaultImportCode(name: string, importPath: string, importName: string)
   TableHead,
   TableHeader,
   TableRow,
-} from '${importPath}'`,
+} from "${importPath}"`,
     dialog: `import {
   Dialog,
   DialogContent,
@@ -203,28 +214,28 @@ function defaultImportCode(name: string, importPath: string, importName: string)
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '${importPath}'`,
+} from "${importPath}"`,
     sheet: `import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '${importPath}'`,
+} from "${importPath}"`,
     "dropdown-menu": `import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '${importPath}'`,
+} from "${importPath}"`,
     tooltip: `import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '${importPath}'`,
+} from "${importPath}"`,
   }
 
-  return map[name] ?? `import { ${importName} } from '${importPath}'`
+  return map[name] ?? `import { ${importName} } from "${importPath}"`
 }
 
 function radixImportCode(name: string, importPath: string, importName: string): string {
@@ -236,6 +247,10 @@ function radixImportCode(name: string, importPath: string, importName: string): 
     "dropdown-menu": `${base}\n\n// Radix preset: generated via \`elorm init --ui-library radix\``,
   }
   return overrides[name] ?? base
+}
+
+function exampleSlug(title: string): string {
+  return title.toLowerCase().replace(/\s+/g, "-")
 }
 
 function radixVariantCode(name: string, baseCode: string): string {
@@ -255,7 +270,6 @@ function radixVariantCode(name: string, baseCode: string): string {
     </SelectGroup>
   </SelectContent>
 </Select>`,
-    button: "<Button variant=\"secondary\">Click me</Button>",
   }
   return map[name] ?? baseCode
 }
@@ -377,8 +391,21 @@ function mergeExamples(primary: RegistryExample[], fallback: RegistryExample[]) 
   return Array.from(byTitle.values())
 }
 
-function escapeAttr(value: string): string {
-  return value.replace(/\\/g, "\\\\").replace(/"/g, "&quot;")
+async function readFileIfExists(filePath: string): Promise<string | null> {
+  try {
+    return await fs.readFile(filePath, "utf-8")
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      return null
+    }
+
+    throw error
+  }
 }
 
 function compositionTree(title: string, parts: string[]): string {
@@ -386,37 +413,10 @@ function compositionTree(title: string, parts: string[]): string {
   return ["```text", ...lines, "```"].join("\n")
 }
 
-function generateMdx(item: RegistryItem): string {
+function generateMdx(item: RegistryItem, examples: RegistryExample[]): string {
   const title = item.title ?? pascalCase(item.name)
   const description =
     item.description ?? `Documentation for the ${title} component.`
-  const importName = getImportName(item.name)
-  const importPath =
-    item.type === "registry:block"
-      ? `@/components/blocks/${item.name}`
-      : `@/components/ui/${item.name}`
-
-  const fallback = DOC_COMPONENTS.has(item.name)
-    ? fallbackExamples(item.name, importName)
-    : []
-  const examples = mergeExamples(item.meta?.examples ?? [], fallback)
-
-  const heroCode = examples[0]?.code ?? defaultExampleCode(item.name, importName)
-  const heroRadixCode = radixVariantCode(item.name, heroCode)
-  const baseImportCode = defaultImportCode(item.name, importPath, importName)
-  const radixImport = radixImportCode(item.name, importPath, importName)
-  const heroDisplayCode = completeExampleCode(
-    item.name,
-    importName,
-    baseImportCode,
-    heroCode
-  )
-  const heroRadixDisplayCode = completeExampleCode(
-    item.name,
-    importName,
-    radixImport,
-    heroRadixCode
-  )
 
   const lines: string[] = [
     "---",
@@ -424,7 +424,7 @@ function generateMdx(item: RegistryItem): string {
     `description: "${description.replace(/"/g, '\\"')}"`,
     "---",
     "",
-    `<ComponentPreviewTabs component="${item.name}" code="${escapeAttr(heroDisplayCode)}" radixCode="${escapeAttr(heroRadixDisplayCode)}" />`,
+    `<ComponentPreviewTabs component="${item.name}" />`,
     "",
     "## Installation",
     "",
@@ -432,7 +432,7 @@ function generateMdx(item: RegistryItem): string {
     "",
     "## Usage",
     "",
-    `<LibraryCodeBlock baseCode="${escapeAttr(baseImportCode)}" radixCode="${escapeAttr(radixImport)}" language="tsx" />`,
+    `<LibraryCodeBlock component="${item.name}" />`,
     "",
     description,
     "",
@@ -458,16 +458,7 @@ function generateMdx(item: RegistryItem): string {
         lines.push(example.description, "")
       }
       lines.push(
-        `<ComponentPreviewTabs component="${item.name}" code="${escapeAttr(
-          completeExampleCode(item.name, importName, baseImportCode, example.code)
-        )}" radixCode="${escapeAttr(
-          completeExampleCode(
-            item.name,
-            importName,
-            radixImport,
-            radixVariantCode(item.name, example.code)
-          )
-        )}" />`,
+        `<ComponentPreviewTabs component="${item.name}" example="${exampleSlug(example.title)}" />`,
         ""
       )
     }
@@ -484,22 +475,178 @@ function generateMdx(item: RegistryItem): string {
   return lines.join("\n")
 }
 
+function buildItemDocsCode(
+  item: RegistryItem,
+  demoCode: string | null,
+  radixDemoCode: string | null,
+  examples: RegistryExample[]
+): {
+  hero?: DocsCodeEntry
+  examples: Record<string, DocsCodeEntry>
+  imports: DocsCodeEntry
+} {
+  const importName = getImportName(item.name)
+  const importPath =
+    item.type === "registry:block"
+      ? `@/components/blocks/${item.name}`
+      : `@/components/ui/${item.name}`
+
+  const heroCode = examples[0]?.code ?? defaultExampleCode(item.name, importName)
+  const heroRadixCode = radixVariantCode(item.name, heroCode)
+  const baseImportCode = defaultImportCode(item.name, importPath, importName)
+  const radixImport = radixImportCode(item.name, importPath, importName)
+  const heroDisplayCode =
+    demoCode ??
+    completeExampleCode(
+      item.name,
+      importName,
+      baseImportCode,
+      heroCode
+    )
+  const heroRadixDisplayCode =
+    radixDemoCode ??
+    demoCode ??
+    completeExampleCode(
+      item.name,
+      importName,
+      radixImport,
+      heroRadixCode
+    )
+
+  const exampleEntries: Record<string, DocsCodeEntry> = {}
+  for (const example of examples) {
+    const exampleRadixSnippet =
+      item.name === "select"
+        ? radixVariantCode(item.name, example.code)
+        : example.code
+
+    exampleEntries[exampleSlug(example.title)] = {
+      base: completeExampleCode(
+        item.name,
+        importName,
+        baseImportCode,
+        example.code
+      ),
+      radix: completeExampleCode(
+        item.name,
+        importName,
+        radixImport,
+        exampleRadixSnippet
+      ),
+    }
+  }
+
+  return {
+    hero: demoCode
+      ? undefined
+      : {
+          base: heroDisplayCode,
+          radix: heroRadixDisplayCode,
+        },
+    examples: exampleEntries,
+    imports: {
+      base: baseImportCode,
+      radix: radixImport,
+    },
+  }
+}
+
+function serializeDocsCodeMap(map: Record<string, DocsCodeEntry>): string {
+  return Object.entries(map)
+    .map(
+      ([key, value]) => `  ${JSON.stringify(key)}: {
+    base: ${JSON.stringify(value.base)},
+    radix: ${JSON.stringify(value.radix)},
+  }`
+    )
+    .join(",\n")
+}
+
+async function writeDocsExampleCodeFile(
+  importCode: Record<string, DocsCodeEntry>,
+  heroCode: Record<string, DocsCodeEntry>,
+  exampleCode: Record<string, Record<string, DocsCodeEntry>>
+) {
+  const exampleBlocks = Object.entries(exampleCode)
+    .map(([component, examples]) => {
+      const serialized = serializeDocsCodeMap(examples)
+      return `  ${JSON.stringify(component)}: {
+${serialized}
+  }`
+    })
+    .join(",\n")
+
+  const contents = `// Auto-generated by scripts/generate-docs.ts — do not edit manually.
+
+export type DocsCodeEntry = {
+  base: string
+  radix: string
+}
+
+export const docsImportCode: Record<string, DocsCodeEntry> = {
+${serializeDocsCodeMap(importCode)}
+}
+
+export const docsHeroCode: Record<string, DocsCodeEntry> = {
+${serializeDocsCodeMap(heroCode)}
+}
+
+export const docsExampleCode: Record<string, Record<string, DocsCodeEntry>> = {
+${exampleBlocks}
+}
+`
+
+  await fs.writeFile(DOCS_EXAMPLE_CODE_PATH, contents)
+}
+
 async function main() {
   const raw = await fs.readFile(REGISTRY_PATH, "utf-8")
   const registry = JSON.parse(raw) as Registry
 
   await fs.mkdir(DOCS_COMPONENTS_DIR, { recursive: true })
 
+  const importCode: Record<string, DocsCodeEntry> = {}
+  const heroCode: Record<string, DocsCodeEntry> = {}
+  const exampleCode: Record<string, Record<string, DocsCodeEntry>> = {}
+
   let count = 0
   for (const item of registry.items) {
     if (item.type === "registry:lib") continue
     if (!DOC_COMPONENTS.has(item.name)) continue
 
-    const mdx = generateMdx(item)
+    const importName = getImportName(item.name)
+    const fallback = DOC_COMPONENTS.has(item.name)
+      ? fallbackExamples(item.name, importName)
+      : []
+    const demoPath = path.join(DEMOS_DIR, `${item.name}-demo.tsx`)
+    const radixDemoPath = path.join(DEMOS_DIR, `${item.name}-demo-radix.tsx`)
+    const demoCode = await readFileIfExists(demoPath)
+    const radixDemoCode = await readFileIfExists(radixDemoPath)
+    const examples = demoCode
+      ? item.meta?.examples ?? []
+      : mergeExamples(item.meta?.examples ?? [], fallback)
+
+    const docsCode = buildItemDocsCode(
+      item,
+      demoCode,
+      radixDemoCode,
+      examples
+    )
+    importCode[item.name] = docsCode.imports
+    if (docsCode.hero) {
+      heroCode[item.name] = docsCode.hero
+    }
+    if (Object.keys(docsCode.examples).length) {
+      exampleCode[item.name] = docsCode.examples
+    }
+
+    const mdx = generateMdx(item, examples)
     const outPath = path.join(DOCS_COMPONENTS_DIR, `${item.name}.mdx`)
     await fs.writeFile(outPath, mdx)
     count++
   }
+
+  await writeDocsExampleCodeFile(importCode, heroCode, exampleCode)
 
   console.log(
     `Generated ${count} component docs in apps/www/content/docs/components/`

@@ -2,7 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { transitionBase } from "@/lib/ui-styles"
+import { surfaceSoft, transitionBase } from "@/lib/ui-styles"
 
 const badgeVariants = cva(
   cn(
@@ -19,6 +19,7 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-white hover:bg-destructive/80",
         outline: "border-border/60 text-foreground",
+        soft: cn(surfaceSoft, "border text-foreground hover:bg-muted/50"),
         success:
           "border-transparent bg-success text-success-foreground hover:bg-success/80",
         warning:

@@ -16,7 +16,7 @@ export async function HighlightedCode({
         <CopyButton value={code} />
       </div>
       <div
-        className="[&_pre]:my-0 [&_pre]:overflow-x-auto [&_pre]:bg-transparent [&_pre]:px-5 [&_pre]:py-4 [&_pre]:text-sm [&_pre]:leading-relaxed [&_pre]:shadow-none"
+        className="[&_pre]:my-0 [&_pre]:overflow-x-auto [&_pre]:whitespace-pre [&_pre]:bg-transparent [&_pre]:px-5 [&_pre]:py-4 [&_pre]:text-sm [&_pre]:leading-relaxed [&_pre]:shadow-none [&_code]:whitespace-pre"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

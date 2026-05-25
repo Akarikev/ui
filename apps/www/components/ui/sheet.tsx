@@ -6,7 +6,7 @@ import { XIcon } from "lucide-react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { focusRing, overlayBackdrop } from "@/lib/ui-styles"
+import { focusRing, overlayBackdrop, softRadius, softShadow } from "@/lib/ui-styles"
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />
@@ -38,16 +38,19 @@ function SheetOverlay({
 }
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-background p-6 shadow-lg ring-1 ring-border/10 transition ease-in-out data-[open]:animate-in data-[closed]:animate-out data-[closed]:duration-300 data-[open]:duration-500",
+  cn(
+    "fixed z-50 gap-4 bg-background p-6 ring-1 ring-border/30 transition ease-in-out data-[open]:animate-in data-[closed]:animate-out data-[closed]:duration-300 data-[open]:duration-500",
+    softShadow
+  ),
   {
     variants: {
       side: {
-        top: "inset-x-0 top-0 border-b data-[closed]:slide-out-to-top data-[open]:slide-in-from-top",
+        top: "inset-x-0 top-0 rounded-b-2xl border-b data-[closed]:slide-out-to-top data-[open]:slide-in-from-top",
         bottom:
-          "inset-x-0 bottom-0 border-t data-[closed]:slide-out-to-bottom data-[open]:slide-in-from-bottom",
-        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[closed]:slide-out-to-left data-[open]:slide-in-from-left sm:max-w-sm",
+          "inset-x-0 bottom-0 rounded-t-2xl border-t data-[closed]:slide-out-to-bottom data-[open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 rounded-r-2xl border-r data-[closed]:slide-out-to-left data-[open]:slide-in-from-left sm:max-w-sm",
         right:
-          "inset-y-0 right-0 h-full w-3/4 border-l data-[closed]:slide-out-to-right data-[open]:slide-in-from-right sm:max-w-sm",
+          "inset-y-0 right-0 h-full w-3/4 rounded-l-2xl border-l data-[closed]:slide-out-to-right data-[open]:slide-in-from-right sm:max-w-sm",
       },
     },
     defaultVariants: {
@@ -73,7 +76,8 @@ function SheetContent({
         {children}
         <SheetPrimitive.Close
           className={cn(
-            "absolute right-4 top-4 rounded-lg p-1 opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100",
+            softRadius,
+            "absolute right-4 top-4 p-1 opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100",
             focusRing
           )}
         >

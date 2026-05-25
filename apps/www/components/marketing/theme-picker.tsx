@@ -84,7 +84,11 @@ export function ThemePicker({ ghost = false }: { ghost?: boolean }) {
         <div
           role="dialog"
           aria-label="Theme settings"
-          className="absolute right-0 top-full z-50 mt-2 w-72 overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-xl"
+          className={cn(
+            "z-50 overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-xl",
+            "fixed inset-x-4 top-[4.25rem] max-h-[calc(100dvh-5.5rem)] overflow-y-auto",
+            "md:absolute md:inset-x-auto md:right-0 md:top-full md:mt-2 md:max-h-none md:w-72 md:overflow-hidden"
+          )}
         >
           <div className="border-b border-border px-4 py-3">
             <p className="text-sm font-medium text-foreground">

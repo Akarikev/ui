@@ -2,9 +2,10 @@
 
 import * as React from "react"
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
+import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { focusRing, overlayBackdrop } from "@/lib/ui-styles"
+import { focusRing, overlayBackdrop, softRadius, softShadow } from "@/lib/ui-styles"
 import { buttonVariants } from "@/components/ui/button"
 
 function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
@@ -25,6 +26,14 @@ function AlertDialogPortal({ ...props }: AlertDialogPrimitive.Portal.Props) {
   )
 }
 
+function AlertDialogClose({
+  ...props
+}: AlertDialogPrimitive.Close.Props) {
+  return (
+    <AlertDialogPrimitive.Close data-slot="alert-dialog-close" {...props} />
+  )
+}
+
 function AlertDialogOverlay({
   className,
   ...props
@@ -40,6 +49,7 @@ function AlertDialogOverlay({
 
 function AlertDialogContent({
   className,
+  children,
   ...props
 }: AlertDialogPrimitive.Popup.Props) {
   return (
@@ -48,11 +58,24 @@ function AlertDialogContent({
       <AlertDialogPrimitive.Popup
         data-slot="alert-dialog-content"
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border bg-background p-6 shadow-lg ring-1 ring-border/10 duration-200 data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 sm:rounded-2xl",
+          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border bg-background p-6 ring-1 ring-border/30 duration-200 data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95",
+          softShadow,
           className
         )}
         {...props}
-      />
+      >
+        {children}
+        <AlertDialogPrimitive.Close
+          className={cn(
+            softRadius,
+            "absolute right-4 top-4 p-1 opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100",
+            focusRing
+          )}
+        >
+          <XIcon className="size-4" />
+          <span className="sr-only">Close</span>
+        </AlertDialogPrimitive.Close>
+      </AlertDialogPrimitive.Popup>
     </AlertDialogPortal>
   )
 }
@@ -109,9 +132,9 @@ function AlertDialogDescription({
 function AlertDialogAction({
   className,
   ...props
-}: React.ComponentProps<"button">) {
+}: AlertDialogPrimitive.Close.Props) {
   return (
-    <button
+    <AlertDialogPrimitive.Close
       data-slot="alert-dialog-action"
       className={cn(buttonVariants(), className)}
       {...props}
@@ -122,9 +145,9 @@ function AlertDialogAction({
 function AlertDialogCancel({
   className,
   ...props
-}: React.ComponentProps<"button">) {
+}: AlertDialogPrimitive.Close.Props) {
   return (
-    <button
+    <AlertDialogPrimitive.Close
       data-slot="alert-dialog-cancel"
       className={cn(buttonVariants({ variant: "outline" }), className)}
       {...props}
@@ -135,6 +158,7 @@ function AlertDialogCancel({
 export {
   AlertDialog,
   AlertDialogTrigger,
+  AlertDialogClose,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogFooter,

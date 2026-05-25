@@ -14,10 +14,12 @@ function SidebarLink({
   href,
   name,
   depth = 0,
+  onNavigate,
 }: {
   href: string
   name: PageTree.Node["name"]
   depth?: number
+  onNavigate?: () => void
 }) {
   const pathname = usePathname()
   const active = pathname === href || pathname === `${href}/`
@@ -26,6 +28,7 @@ function SidebarLink({
   return (
     <Link
       href={href}
+      onClick={onNavigate}
       className={cn(
         "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
         depth > 0 && "pl-4",
@@ -43,9 +46,11 @@ function SidebarLink({
 function SidebarFolder({
   folder,
   depth = 0,
+  onNavigate,
 }: {
   folder: PageTree.Folder
   depth?: number
+  onNavigate?: () => void
 }) {
   return (
     <div>
@@ -54,11 +59,17 @@ function SidebarFolder({
           href={folder.index.url}
           name={folder.index.name}
           depth={depth}
+          onNavigate={onNavigate}
         />
       ) : null}
       <div className="flex flex-col gap-0.5">
         {folder.children.map((child, i) => (
-          <SidebarNode key={i} item={child} depth={depth + 1} />
+          <SidebarNode
+            key={i}
+            item={child}
+            depth={depth + 1}
+            onNavigate={onNavigate}
+          />
         ))}
       </div>
     </div>
@@ -68,9 +79,11 @@ function SidebarFolder({
 function SidebarNode({
   item,
   depth = 0,
+  onNavigate,
 }: {
   item: PageTree.Node
   depth?: number
+  onNavigate?: () => void
 }) {
   if (item.type === "separator") {
     return (
@@ -80,23 +93,50 @@ function SidebarNode({
     )
   }
   if (item.type === "folder") {
-    return <SidebarFolder folder={item} depth={depth} />
+    return (
+      <SidebarFolder folder={item} depth={depth} onNavigate={onNavigate} />
+    )
   }
-  return <SidebarLink href={item.url} name={item.name} depth={depth} />
+  return (
+    <SidebarLink
+      href={item.url}
+      name={item.name}
+      depth={depth}
+      onNavigate={onNavigate}
+    />
+  )
+}
+
+export function DocsSidebarNav({
+  tree,
+  onNavigate,
+  showHeading = true,
+}: {
+  tree: PageTree.Root
+  onNavigate?: () => void
+  showHeading?: boolean
+}) {
+  return (
+    <>
+      {showHeading ? (
+        <p className="mb-3 px-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Sections
+        </p>
+      ) : null}
+      <div className="flex flex-col gap-0.5">
+        {tree.children.map((item, i) => (
+          <SidebarNode key={i} item={item} onNavigate={onNavigate} />
+        ))}
+      </div>
+    </>
+  )
 }
 
 export function DocsSidebar({ tree }: { tree: PageTree.Root }) {
   return (
     <aside className="hidden w-56 shrink-0 lg:block">
       <nav className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8 pr-4">
-        <p className="mb-3 px-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-          Sections
-        </p>
-        <div className="flex flex-col gap-0.5">
-          {tree.children.map((item, i) => (
-            <SidebarNode key={i} item={item} />
-          ))}
-        </div>
+        <DocsSidebarNav tree={tree} />
       </nav>
     </aside>
   )
