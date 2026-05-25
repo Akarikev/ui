@@ -23,7 +23,6 @@ export async function getConfig(cwd = process.cwd()): Promise<ElormConfig | null
   })
   const result = await explorer.search(cwd)
   if (!result?.config) {
-    console.error(`[DEBUG] Config search failed. CWD: ${cwd}`)
     return null
   }
   return elormConfigSchema.parse(result.config)

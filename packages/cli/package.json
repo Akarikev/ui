@@ -12,16 +12,16 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "bin", "templates"],
+  "files": ["dist", "bin"],
   "scripts": {
+    "build:deps": "npm run build --prefix ../schema && npm run build --prefix ../themes",
     "build": "tsup",
+    "prepublishOnly": "npm run build:deps && npm run build",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
-    "@elorm/schema": "workspace:*",
-    "@elorm/themes": "workspace:*",
     "@clack/prompts": "^0.11.0",
     "commander": "^14.0.0",
     "cosmiconfig": "^9.0.0",
@@ -32,12 +32,39 @@
     "zod": "^3.25.67"
   },
   "devDependencies": {
+    "@elorm/schema": "workspace:*",
+    "@elorm/themes": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.15.32",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
   },
-  "keywords": ["elorm", "ui", "components", "react", "tailwind", "cli"],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akarikev/ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://ui.elorm.xyz",
+  "bugs": {
+    "url": "https://github.com/Akarikev/ui/issues"
+  },
+  "keywords": [
+    "elorm",
+    "ui",
+    "components",
+    "react",
+    "tailwind",
+    "cli",
+    "shadcn",
+    "base-ui",
+    "radix"
+  ],
   "license": "MIT"
 }

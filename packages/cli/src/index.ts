@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createRequire } from "node:module"
 import { Command } from "commander"
 import pc from "picocolors"
 import { initCommand } from "./commands/init.js"
@@ -7,12 +8,14 @@ import { buildCommand } from "./commands/build.js"
 import { searchCommand } from "./commands/search.js"
 import { docsCommand, diffCommand } from "./commands/docs.js"
 
+const { version } = createRequire(import.meta.url)("../package.json")
+
 const program = new Command()
 
 program
   .name("elorm")
   .description(`${pc.bold("elorm/ui")} — copy-paste React component library CLI`)
-  .version("0.1.0")
+  .version(version)
 
 program
   .command("init")
