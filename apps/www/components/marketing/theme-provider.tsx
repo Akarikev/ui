@@ -7,11 +7,13 @@ import {
   useState,
   type ReactNode,
 } from "react"
+import { usePathname } from "next/navigation"
 import {
   applyThemeToElement,
   type AccentColor,
   type BaseColor,
 } from "@elorm/themes"
+import { applyMarketingLightOverrides } from "@/lib/marketing-light-theme"
 
 export type ThemeMode = "light" | "dark"
 
@@ -37,6 +39,8 @@ const DEFAULT_THEME: ThemeState = {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<ThemeState>(DEFAULT_THEME)
+  const pathname = usePathname()
+  const isMarketingHome = pathname === "/"
 
   useEffect(() => {
     const root = document.documentElement
@@ -50,7 +54,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       { baseColor: theme.baseColor, accent: theme.accent },
       theme.mode
     )
-  }, [theme])
+    if (theme.mode === "light" && isMarketingHome) {
+      applyMarketingLightOverrides(root)
+    }
+  }, [theme, isMarketingHome])
 
   const value: ThemeContextValue = {
     ...theme,

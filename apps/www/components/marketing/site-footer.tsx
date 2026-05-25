@@ -7,13 +7,18 @@ export function SiteFooter() {
         <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-muted-foreground">
             Built by{" "}
-            <Link href="/" className="text-foreground/80 hover:text-foreground">
-              elorm/ui
-            </Link>
-            . Open source on{" "}
+            <a
+              href="https://x.com/elorm_elom"
+              className="text-foreground/80 hover:text-foreground underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              elorm
+            </a>{" "}
+            from 🇬🇭. Open source on{" "}
             <a
               href="https://github.com/Akarikev/ui"
-              className="text-foreground/80 hover:text-foreground"
+              className="text-foreground/80 hover:text-foreground underline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -23,7 +28,7 @@ export function SiteFooter() {
           </p>
           <Link
             href="/docs"
-            className="text-sm text-muted-foreground hover:text-foreground"
+            className="text-sm text-muted-foreground hover:text-foreground underline"
           >
             Docs
           </Link>

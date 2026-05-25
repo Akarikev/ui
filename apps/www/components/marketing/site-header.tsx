@@ -25,8 +25,8 @@ export function SiteHeader({
   overlay?: boolean
 }) {
   const linkClass = transparent
-    ? "font-semibold text-white/80 drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] transition-colors hover:text-white"
-    : "font-semibold text-muted-foreground transition-colors hover:text-foreground"
+    ? "font-semibold text-white/80 drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] transition-colors hover:text-white hover:underline"
+    : "font-semibold text-muted-foreground transition-colors hover:text-foreground hover:underline"
 
   const logoTextClass = transparent
     ? "text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
