@@ -18,16 +18,18 @@ Read these before changing components, docs, or the CLI.
 
 This is a **Turborepo monorepo** managed with **Bun**. Node **20+** is required.
 
-| Path | Purpose |
-| --- | --- |
-| `apps/www/` | Next.js marketing site, Fumadocs docs at `/docs`, registry hosting at `/public/r/` |
-| `packages/cli/` | `elorm` npm package (CLI) |
-| `packages/schema/` | Zod schemas for `elorm.json` and registry types |
-| `packages/themes/` | Theme presets and CSS generation |
-| `packages/registry/` | Base UI component source |
-| `packages/registry-radix/` | Radix UI primitive source (headless layer only) |
-| `registry.json` | Root registry index |
-| `scripts/generate-docs.ts` | Generates component MDX and demo code maps |
+
+| Path                       | Purpose                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------- |
+| `apps/www/`                | Next.js marketing site, Fumadocs docs at `/docs`, registry hosting at `/public/r/` |
+| `packages/cli/`            | `elorm` npm package (CLI)                                                          |
+| `packages/schema/`         | Zod schemas for `elorm.json` and registry types                                    |
+| `packages/themes/`         | Theme presets and CSS generation                                                   |
+| `packages/registry/`       | Base UI component source                                                           |
+| `packages/registry-radix/` | Radix UI primitive source (headless layer only)                                    |
+| `registry.json`            | Root registry index                                                                |
+| `scripts/generate-docs.ts` | Generates component MDX and demo code maps                                         |
+
 
 **Dual registries:** styled components are shared; only headless primitives differ between Base UI and Radix. When you change a primitive-backed component, update both registries if applicable.
 
