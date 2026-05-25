@@ -52,7 +52,7 @@ npx elorm init -y \
 
 ## Registry
 
-Components are fetched from the public registry at [ui.elorm.xyz/r](https://ui.elorm.xyz/r).
+Components are fetched from the public registry at [ui.elorm.xyz/r/registry.json](https://ui.elorm.xyz/r/registry.json).
 
 ## Documentation
 
