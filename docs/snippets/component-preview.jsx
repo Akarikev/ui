@@ -1,10 +1,17 @@
+function previewOrigin() {
+  if (typeof window !== "undefined") {
+    return window.location.origin
+  }
+  return "https://ui.elorm.xyz"
+}
+
 export const ComponentPreview = ({
   component = "button",
   theme = "neutral",
   accent = "default",
   mode = "dark",
 }) => {
-  const src = `https://ui.elorm.xyz/preview/${component}?theme=${theme}&accent=${accent}&mode=${mode}`
+  const src = `${previewOrigin()}/preview/${component}?theme=${theme}&accent=${accent}&mode=${mode}`
 
   return (
     <Frame>
@@ -20,22 +27,5 @@ export const ComponentPreview = ({
         }}
       />
     </Frame>
-  )
-}
-
-export const ExampleTabs = ({ title, code, component, preview }) => {
-  const previewComponent = preview ?? component
-
-  return (
-    <Tabs>
-      <Tab title="Preview">
-        <ComponentPreview component={previewComponent} />
-      </Tab>
-      <Tab title="Code">
-        ```tsx
-        {code}
-        ```
-      </Tab>
-    </Tabs>
   )
 }

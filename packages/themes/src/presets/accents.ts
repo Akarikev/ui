@@ -1,6 +1,10 @@
 import type { AccentColor, ThemeTokens } from "../types.js"
+import { getBasePalette } from "./base-colors.js"
 
-const accentHues: Record<Exclude<AccentColor, "default">, number> = {
+const accentHues: Record<
+  Exclude<AccentColor, "default" | "mono">,
+  number
+> = {
   blue: 252,
   violet: 280,
   green: 145,
@@ -12,6 +16,7 @@ const accentHues: Record<Exclude<AccentColor, "default">, number> = {
 
 export const ACCENT_COLORS = [
   "default",
+  "mono",
   "blue",
   "violet",
   "green",
@@ -21,12 +26,39 @@ export const ACCENT_COLORS = [
   "cyan",
 ] as const
 
+const monoCharts = {
+  light: {
+    "chart-1": "oklch(0.45 0 0)",
+    "chart-2": "oklch(0.55 0 0)",
+    "chart-3": "oklch(0.65 0 0)",
+  },
+  dark: {
+    "chart-1": "oklch(0.55 0 0)",
+    "chart-2": "oklch(0.65 0 0)",
+    "chart-3": "oklch(0.75 0 0)",
+  },
+} as const
+
 export function applyAccent(
   tokens: ThemeTokens,
   accent: AccentColor,
   mode: "light" | "dark"
 ): ThemeTokens {
   if (accent === "default") return { ...tokens }
+
+  if (accent === "mono") {
+    if (Object.keys(tokens).length > 0) {
+      return { ...tokens }
+    }
+
+    const neutral = getBasePalette("neutral")[mode]
+    return {
+      primary: neutral.primary,
+      "primary-foreground": neutral["primary-foreground"],
+      ring: neutral.ring,
+      ...monoCharts[mode],
+    }
+  }
 
   const hue = accentHues[accent]
   const result = { ...tokens }
@@ -58,3 +90,6 @@ export function getAccentCssVars(accent: AccentColor): {
   const dark = applyAccent({}, accent, "dark")
   return { light, dark }
 }
+
+export const MONO_ACCENT_SWATCH =
+  "linear-gradient(135deg, #737373 50%, #71717a 50%)"

@@ -1,0 +1,85 @@
+---
+title: Installation
+description: "Install and configure elorm/ui in your project."
+---
+
+<Callout type="success" title="Recommended">
+  Run `elorm init` in your project root to scaffold configuration, tokens, and utilities automatically.
+</Callout>
+
+## Prerequisites
+
+- Node.js 20.9+
+- A React project (Next.js or Vite recommended)
+- Tailwind CSS v4 configured
+
+## Initialize
+
+Run the init command in your project root:
+
+<InstallCommand command="elorm init" />
+
+This creates:
+
+- `elorm.json` — project configuration (framework, UI library, theme)
+- `lib/utils.ts` — `cn()` utility
+- Global CSS with OKLCH design tokens
+
+During init you'll choose:
+
+- **Framework** — Next.js or Vite
+- **UI library** — Base UI or Radix UI
+- **Base color** — neutral, zinc, slate, stone, or gray
+- **Accent color** — blue, violet, green, orange, rose, and more
+- **Border radius** — default, compact, or round
+
+## Add components
+
+<InstallCommand command="elorm add button" />
+
+```bash
+# Add multiple at once
+elorm add card dialog
+elorm add empty-state
+```
+
+Components are copied into your project at the paths defined in `elorm.json`.
+
+## Choosing a UI library
+
+elorm/ui supports two headless primitive libraries. Your choice is stored in `elorm.json` as `uiLibrary`:
+
+| Library | Best for |
+|---------|----------|
+| **Base UI** | Modern unstyled primitives, smaller surface area |
+| **Radix UI** | Battle-tested ecosystem, familiar API |
+
+Non-primitive components (input, card, badge, blocks) are shared between both libraries. Only headless primitives differ.
+
+```bash
+# Non-interactive init with Radix
+elorm init -y --ui-library radix --base-color zinc --accent blue
+```
+
+## Framework setup
+
+<Tabs items={['Next.js', 'Vite']}>
+  <Tab>
+    elorm/ui works with the Next.js App Router. Client components include `"use client"` automatically.
+
+    <InstallCommand command="elorm init --template next" />
+  </Tab>
+  <Tab>
+    For Vite + React SPAs:
+
+    <InstallCommand command="elorm init --template vite" />
+
+    Ensure your CSS entry imports Tailwind and the elorm token variables.
+  </Tab>
+</Tabs>
+
+## Verify installation
+
+<InstallCommand command="elorm search -q button" />
+
+<InstallCommand command="elorm docs button --json" />

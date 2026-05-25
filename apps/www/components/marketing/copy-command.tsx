@@ -11,7 +11,14 @@ const MANAGERS = [
   { id: "bun", label: "bun", prefix: "bunx" },
 ] as const
 
-export function CopyCommand({ command }: { command: string }) {
+export function CopyCommand({
+  command,
+  variant = "default",
+}: {
+  command: string
+  variant?: "default" | "hero"
+}) {
+  const isHero = variant === "hero"
   const [copied, setCopied] = useState(false)
   const [manager, setManager] = useState<(typeof MANAGERS)[number]["id"]>("npm")
 
@@ -35,8 +42,12 @@ export function CopyCommand({ command }: { command: string }) {
             className={cn(
               "rounded-md px-2 py-1 text-xs transition-colors",
               manager === m.id
-                ? "bg-primary/20 text-primary"
-                : "text-muted-foreground hover:text-foreground"
+                ? isHero
+                  ? "bg-white/20 font-medium text-white"
+                  : "bg-primary/20 font-medium text-primary"
+                : isHero
+                  ? "text-white/70 hover:text-white"
+                  : "text-foreground/70 hover:text-foreground"
             )}
           >
             {m.label}
@@ -46,10 +57,22 @@ export function CopyCommand({ command }: { command: string }) {
       <button
         type="button"
         onClick={copy}
-        className="group flex w-full items-center gap-3 rounded-full border border-border bg-card/50 px-5 py-3 text-left backdrop-blur-md transition-colors hover:bg-card"
+        className={cn(
+          "group flex w-full items-center gap-3 rounded-full border px-5 py-3 text-left shadow-sm transition-colors",
+          isHero
+            ? "border-white/20 bg-black/35 text-white backdrop-blur-md hover:bg-black/45"
+            : "border-border bg-background/90 hover:bg-background"
+        )}
       >
-        <code className="flex-1 text-sm text-foreground">{fullCommand}</code>
-        <span className="text-muted-foreground transition-colors group-hover:text-foreground">
+        <code className={cn("flex-1 text-sm", isHero ? "text-white" : "text-foreground")}>
+          {fullCommand}
+        </code>
+        <span
+          className={cn(
+            "transition-colors group-hover:text-foreground",
+            isHero ? "text-white/70 group-hover:text-white" : "text-muted-foreground"
+          )}
+        >
           {copied ? (
             <CheckIcon className="size-4 text-emerald-500" />
           ) : (

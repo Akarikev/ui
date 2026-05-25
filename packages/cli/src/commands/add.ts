@@ -19,6 +19,8 @@ interface AddOptions {
   cwd?: string
   overwrite?: boolean
   dryRun?: boolean
+  library?: "base-ui" | "radix"
+  interactive?: boolean
 }
 
 export async function addCommand(
@@ -30,12 +32,59 @@ export async function addCommand(
 
   if (!config) {
     p.log.error(
-      `No elorm.json found. Run ${pc.cyan("npx elorm init")} first.`
+      `No elorm.json found. Run ${pc.cyan("bunx elorm init")} or ${pc.cyan("npx elorm init")} first.`
     )
     process.exit(1)
   }
 
-  const projectConfig: ElormConfig = config
+  let projectConfig: ElormConfig = config
+
+  // Interactive library selection
+  if (options.interactive && !options.library) {
+    const choice = await p.select({
+      message: "Which UI library would you like to use?",
+      options: [
+        {
+          value: "base-ui",
+          label: "Base UI",
+          hint: "Modern, lightweight primitives from MUI",
+        },
+        {
+          value: "radix",
+          label: "Radix UI",
+          hint: "Battle-tested, accessible components",
+        },
+        {
+          value: "config",
+          label: `Use config default (${config.uiLibrary})`,
+          hint: "From elorm.json",
+        },
+      ],
+    })
+
+    if (p.isCancel(choice)) {
+      p.cancel("Operation cancelled.")
+      process.exit(0)
+    }
+
+    if (choice !== "config") {
+      projectConfig = { ...config, uiLibrary: choice as "base-ui" | "radix" }
+      p.log.info(`Using ${pc.cyan(choice)}`)
+    } else {
+      p.log.info(`Using ${pc.cyan(config.uiLibrary)} from config`)
+    }
+  }
+  // Allow library override via CLI flag
+  else if (options.library) {
+    if (options.library !== "base-ui" && options.library !== "radix") {
+      p.log.error(`Invalid library: ${options.library}. Must be 'base-ui' or 'radix'.`)
+      process.exit(1)
+    }
+    projectConfig = { ...config, uiLibrary: options.library }
+    p.log.info(`Using ${pc.cyan(options.library)} (override)`)
+  } else {
+    p.log.info(`Using ${pc.cyan(config.uiLibrary)} from config`)
+  }
 
   if (items.length === 0) {
     p.log.error("Please specify at least one component to add.")

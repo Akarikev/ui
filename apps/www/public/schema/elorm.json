@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "$schema": { "type": "string" },
-    "style": { "type": "string", "default": "default" },
+    "style": { "type": "string", "enum": ["elorm"], "default": "elorm" },
     "uiLibrary": {
       "type": "string",
       "enum": ["base-ui", "radix"],
@@ -58,6 +58,7 @@
           "type": "string",
           "enum": [
             "default",
+            "mono",
             "blue",
             "violet",
             "green",

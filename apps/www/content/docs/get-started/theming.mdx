@@ -1,0 +1,184 @@
+---
+title: Theming
+description: "Customize elorm/ui design tokens, color presets, and dark mode."
+---
+
+
+## CSS Variables
+
+elorm/ui uses OKLCH color tokens defined in your global CSS file. All components reference semantic tokens like `bg-primary`, `text-muted-foreground`, and `border-border`.
+
+During `elorm init`, you choose a **base color**, **accent**, and **radius**. These are written to `elorm.json` and applied to your CSS scaffold automatically.
+
+```tsx
+<div className="bg-background text-foreground" />
+<div className="bg-primary text-primary-foreground" />
+```
+
+## Token convention
+
+We use semantic background and foreground pairs. The base token controls the surface color; the `-foreground` token controls text and icons on that surface.
+
+Given:
+
+```css
+--primary: oklch(0.45 0.18 252);
+--primary-foreground: oklch(0.985 0 0);
+```
+
+This component uses `var(--primary)` for background and `var(--primary-foreground)` for text:
+
+```tsx
+<div className="bg-primary text-primary-foreground">Hello</div>
+```
+
+## Theme tokens
+
+| Token | What it controls | Used by |
+|-------|------------------|---------|
+| `background` / `foreground` | Default app background and text | Page shell, sections |
+| `card` / `card-foreground` | Elevated surfaces | Card, dashboard panels |
+| `popover` / `popover-foreground` | Floating surfaces | Dialog, dropdown, select |
+| `primary` / `primary-foreground` | High-emphasis actions | Button default, active states |
+| `secondary` / `secondary-foreground` | Lower-emphasis actions | Secondary buttons, badges |
+| `muted` / `muted-foreground` | Subtle surfaces and text | Descriptions, placeholders |
+| `accent` / `accent-foreground` | Hover and focus surfaces | Ghost buttons, menu highlights |
+| `destructive` | Destructive actions | Destructive buttons, errors |
+| `border` | Default borders | Cards, menus, separators |
+| `input` | Form control borders | Input, textarea, select |
+| `ring` | Focus rings | All focusable controls |
+| `chart-1` … `chart-5` | Chart palette | Dashboard charts |
+| `radius` | Base corner radius | Cards, inputs, buttons |
+
+## Radius scale
+
+`--radius` is the base radius token. A scale is derived from it:
+
+```css
+@theme inline {
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+```
+
+Init radius presets:
+
+| Preset | Value |
+|--------|-------|
+| default | `0.625rem` |
+| compact | `0.375rem` |
+| round | `0.75rem` |
+
+## Base colors
+
+Available base colors: **neutral**, **zinc**, **slate**, **stone**, **gray**.
+
+Apply a preset after init:
+
+<InstallCommand command="elorm add theme-zinc" />
+
+<InstallCommand command="elorm add theme-slate" />
+
+## Accent colors
+
+Available accents: **default**, **mono**, **blue**, **violet**, **green**, **orange**, **rose**, **amber**, **cyan**.
+
+**Mono** keeps buttons and focus rings achromatic — pair it with the **neutral** or **zinc** base to compare both palettes side by side on the site theme picker.
+
+Accents update `--primary`, `--ring`, and chart tokens:
+
+<InstallCommand command="elorm add theme-accent-mono" />
+
+<InstallCommand command="elorm add theme-accent-blue" />
+
+<InstallCommand command="elorm add theme-accent-violet" />
+
+## Dark mode
+
+Add the `dark` class to your `<html>` element to enable dark mode tokens. Components automatically use the correct semantic colors.
+
+```tsx
+<html className="dark">
+```
+
+## Customizing tokens
+
+Edit CSS variables in your global stylesheet. Components pick up changes without modifying individual files.
+
+To add a custom token, define it under `:root` and `.dark`, then expose it via `@theme inline`:
+
+```css
+:root {
+  --warning: oklch(0.84 0.16 84);
+  --warning-foreground: oklch(0.28 0.07 46);
+}
+
+.dark {
+  --warning: oklch(0.41 0.11 46);
+  --warning-foreground: oklch(0.99 0.02 95);
+}
+
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+}
+```
+
+```tsx
+<div className="bg-warning text-warning-foreground" />
+```
+
+<Callout type="info">
+  Always use semantic tokens in your own code — avoid raw color utilities like `bg-blue-500`.
+</Callout>
+
+## Default theme scaffold
+
+The following is the neutral default theme. Copy and adjust as needed:
+
+```css
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  /* ... remaining tokens */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  /* ... remaining tokens */
+}
+```
+
+Run `elorm init` to generate a complete scaffold tailored to your chosen base color and accent.

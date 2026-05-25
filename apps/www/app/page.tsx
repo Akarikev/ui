@@ -9,14 +9,14 @@ import { SiteFooter } from "@/components/marketing/site-footer"
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
-      <main>
+      <div className="dark relative isolate bg-neutral-950">
+        <SiteHeader transparent overlay />
         <Hero />
         <DocsPreview />
-        <LibraryCompare />
-        <FeatureGrid />
-        <ComponentShowcase />
-      </main>
+      </div>
+      <LibraryCompare />
+      <FeatureGrid />
+      <ComponentShowcase />
       <SiteFooter />
     </div>
   )

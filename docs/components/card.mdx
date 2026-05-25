@@ -3,6 +3,9 @@ title: Card
 description: "Displays a card with header, content, and footer."
 ---
 
+import { InstallCommand } from "/snippets/install-command.jsx"
+import { ComponentPreview } from "/snippets/component-preview.jsx"
+
 ## Installation
 
 <InstallCommand command="elorm add card" />
@@ -25,24 +28,25 @@ Displays a card with header, content, and footer.
 
 <Tabs>
 
-  <Tab title="Preview">
+<Tab title="Preview">
 
-    <ComponentPreview component="card" />
+<ComponentPreview component="card" />
 
-  </Tab>
+</Tab>
 
-  <Tab title="Code">
+<Tab title="Code">
 
-    ```tsx
+
+```tsx
 <Card>
   <CardHeader>
     <CardTitle>Title</CardTitle>
   </CardHeader>
   <CardContent>Content</CardContent>
 </Card>
-    ```
+```
 
-  </Tab>
+</Tab>
 
 </Tabs>
 

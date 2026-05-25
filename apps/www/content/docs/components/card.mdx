@@ -1,0 +1,96 @@
+---
+title: Card
+description: "Displays a card with header, content, and footer."
+---
+
+<ComponentPreviewTabs component="card" code="import { Card } from '@/components/ui/card'
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+      <CardContent>Content</CardContent>
+    </Card>
+  )
+}" radixCode="import { Card } from '@/components/ui/card'
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+      <CardContent>Content</CardContent>
+    </Card>
+  )
+}" />
+
+## Installation
+
+<InstallCommand command="elorm add card" />
+
+## Usage
+
+<LibraryCodeBlock baseCode="import { Card } from '@/components/ui/card'" radixCode="import { Card } from '@/components/ui/card'" language="tsx" />
+
+Displays a card with header, content, and footer.
+
+Use full composition: CardHeader, CardTitle, CardDescription, CardContent, CardFooter.
+
+## Examples
+
+### Basic
+
+<ComponentPreviewTabs component="card" code="import { Card } from '@/components/ui/card'
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+      <CardContent>Content</CardContent>
+    </Card>
+  )
+}" radixCode="import { Card } from '@/components/ui/card'
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+      <CardContent>Content</CardContent>
+    </Card>
+  )
+}" />
+
+### Default
+
+<ComponentPreviewTabs component="card" code="import { Card } from '@/components/ui/card'
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+    </Card>
+  )
+}" radixCode="import { Card } from '@/components/ui/card'
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+    </Card>
+  )
+}" />
+
+## Avoid
+
+- Do not dump all content into CardContent without header

@@ -1,6 +1,6 @@
 "use client"
 
-import { ACCENT_COLORS, BASE_COLORS } from "@elorm/themes"
+import { ACCENT_COLORS, BASE_COLORS, MONO_ACCENT_SWATCH } from "@elorm/themes"
 import { cn } from "@/lib/utils"
 import { useTheme } from "./theme-provider"
 
@@ -12,6 +12,10 @@ const accentSwatches: Record<string, string> = {
   rose: "#f43f5e",
   amber: "#f59e0b",
   cyan: "#06b6d4",
+}
+
+const accentLabels: Partial<Record<string, string>> = {
+  mono: "Mono (neutral / zinc)",
 }
 
 interface ThemePanelProps {
@@ -60,8 +64,8 @@ export function ThemePanel({ className }: ThemePanelProps) {
             <button
               key={color}
               type="button"
-              title={color}
-              aria-label={`${color} accent`}
+              title={accentLabels[color] ?? color}
+              aria-label={accentLabels[color] ?? `${color} accent`}
               aria-pressed={accent === color}
               onClick={() => setAccent(color)}
               className={cn(
@@ -70,10 +74,19 @@ export function ThemePanel({ className }: ThemePanelProps) {
                   ? "border-primary ring-2 ring-primary/30"
                   : "border-border"
               )}
-              style={{ backgroundColor: accentSwatches[color] }}
+              style={
+                color === "mono"
+                  ? { background: MONO_ACCENT_SWATCH }
+                  : { backgroundColor: accentSwatches[color] }
+              }
             />
           ))}
         </div>
+        {accent === "mono" && (
+          <p className="mt-2 text-xs text-muted-foreground">
+            Switch the Neutral or Zinc base above to compare both palettes.
+          </p>
+        )}
       </div>
 
       <div>

@@ -1,0 +1,179 @@
+---
+title: Dialog
+description: "A window overlaid on either the primary window or another dialog window."
+---
+
+<ComponentPreviewTabs component="dialog" code="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Title</DialogTitle>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
+}" radixCode="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+// Radix preset: generated via `elorm init --ui-library radix`
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Title</DialogTitle>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
+}" />
+
+## Installation
+
+<InstallCommand command="elorm add dialog" />
+
+## Usage
+
+<LibraryCodeBlock baseCode="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'" radixCode="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+// Radix preset: generated via `elorm init --ui-library radix`" language="tsx" />
+
+A window overlaid on either the primary window or another dialog window.
+
+Always include DialogTitle for accessibility. Use DialogDescription for context.
+
+## Examples
+
+### Basic
+
+<ComponentPreviewTabs component="dialog" code="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Title</DialogTitle>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
+}" radixCode="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+// Radix preset: generated via `elorm init --ui-library radix`
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Title</DialogTitle>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
+}" />
+
+### Default
+
+<ComponentPreviewTabs component="dialog" code="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogTitle>Title</DialogTitle>
+      </DialogContent>
+    </Dialog>
+  )
+}" radixCode="import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+// Radix preset: generated via `elorm init --ui-library radix`
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogTitle>Title</DialogTitle>
+      </DialogContent>
+    </Dialog>
+  )
+}" />
+
+## Avoid
+
+- Do not omit DialogTitle
+- Do not nest dialogs

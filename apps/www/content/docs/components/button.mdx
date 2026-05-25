@@ -1,0 +1,77 @@
+---
+title: Button
+description: "Displays a button or a component that looks like a button."
+---
+
+<ComponentPreviewTabs component="button" code="import { Button } from '@/components/ui/button'
+
+export function ButtonDemo() {
+  return (
+    <Button>Click me</Button>
+  )
+}" radixCode="import { Button } from '@/components/ui/button'
+
+export function ButtonDemo() {
+  return (
+    <Button variant=&quot;secondary&quot;>Click me</Button>
+  )
+}" />
+
+## Installation
+
+<InstallCommand command="elorm add button" />
+
+## Usage
+
+<LibraryCodeBlock baseCode="import { Button } from '@/components/ui/button'" radixCode="import { Button } from '@/components/ui/button'" language="tsx" />
+
+Displays a button or a component that looks like a button.
+
+Primary actions. Use variant=outline for secondary actions, variant=ghost for tertiary.
+
+## Composition
+
+```text
+Button
+├── DialogFooter
+├── CardFooter
+```
+
+## Examples
+
+### Default
+
+<ComponentPreviewTabs component="button" code="import { Button } from '@/components/ui/button'
+
+export function ButtonDemo() {
+  return (
+    <Button>Click me</Button>
+  )
+}" radixCode="import { Button } from '@/components/ui/button'
+
+export function ButtonDemo() {
+  return (
+    <Button variant=&quot;secondary&quot;>Click me</Button>
+  )
+}" />
+
+### Outline
+
+<ComponentPreviewTabs component="button" code="import { Button } from '@/components/ui/button'
+
+export function ButtonDemo() {
+  return (
+    <Button variant=&quot;outline&quot;>Cancel</Button>
+  )
+}" radixCode="import { Button } from '@/components/ui/button'
+
+export function ButtonDemo() {
+  return (
+    <Button variant=&quot;secondary&quot;>Click me</Button>
+  )
+}" />
+
+## Avoid
+
+- Do not use raw bg-blue-500
+- Do not nest buttons inside buttons

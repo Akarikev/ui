@@ -24,14 +24,17 @@ npx elorm add empty-state
 
 ## Documentation
 
-Visit [ui.elorm.xyz](https://ui.elorm.xyz) for the marketing site and [ui.elorm.xyz/docs](https://ui.elorm.xyz/docs) for documentation.
+Docs are built into the Next.js app at `/docs` using [Fumadocs](https://fumadocs.dev). Content lives in `apps/www/content/docs/`.
 
-## Mintlify Docs Setup
+Visit [ui.elorm.xyz/docs](https://ui.elorm.xyz/docs) for documentation.
 
-1. Create a project at [dashboard.mintlify.com](https://dashboard.mintlify.com)
-2. Connect this repo with docs path `/docs`
-3. Enable **Host at `/docs`** in Mintlify custom domain settings
-4. Set `MINTLIFY_DOCS_URL` in Vercel to your Mintlify subdomain (see `apps/www/.env.example`)
+```bash
+# Run the site (marketing + docs)
+bun run --filter 'www' dev
+
+# Regenerate component docs from registry.json
+bun run docs:generate
+```
 
 ## CLI Commands
 

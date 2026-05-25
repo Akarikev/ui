@@ -3,6 +3,9 @@ title: Skeleton
 description: "Use to show a placeholder while content is loading."
 ---
 
+import { InstallCommand } from "/snippets/install-command.jsx"
+import { ComponentPreview } from "/snippets/component-preview.jsx"
+
 ## Installation
 
 <InstallCommand command="elorm add skeleton" />
@@ -25,18 +28,19 @@ Use to show a placeholder while content is loading.
 
 <Tabs>
 
-  <Tab title="Preview">
+<Tab title="Preview">
 
-    <ComponentPreview component="skeleton" />
+<ComponentPreview component="skeleton" />
 
-  </Tab>
+</Tab>
 
-  <Tab title="Code">
+<Tab title="Code">
 
-    ```tsx
+
+```tsx
 <Skeleton className="h-4 w-full" />
-    ```
+```
 
-  </Tab>
+</Tab>
 
 </Tabs>

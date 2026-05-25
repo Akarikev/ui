@@ -1,0 +1,76 @@
+---
+title: CLI Reference
+description: "All elorm CLI commands."
+---
+
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `elorm init` | Initialize elorm/ui in your project |
+| `elorm add [items...]` | Add components to your project |
+| `elorm search -q "query"` | Search the registry |
+| `elorm docs <item> [--json]` | Show component docs (JSON for AI agents) |
+| `elorm diff <item>` | Compare local vs registry version |
+| `elorm build` | Build registry JSON (maintainers) |
+
+## Init flags
+
+| Flag | Description |
+|------|-------------|
+| `-y, --yes` | Skip prompts, use defaults |
+| `-t, --template <next\|vite>` | Framework template |
+| `--css <path>` | Global CSS file path |
+| `--ui-library <base-ui\|radix>` | Headless primitive library |
+| `--base-color <color>` | Base color preset |
+| `--accent <accent>` | Accent color |
+| `--radius <default\|compact\|round>` | Border radius |
+
+## Examples
+
+<InstallCommand command="elorm init -y" />
+
+<InstallCommand command="elorm init -y --ui-library radix --base-color zinc --accent blue" />
+
+<InstallCommand command="elorm add button card dialog" />
+
+<InstallCommand command="elorm docs button --json" />
+
+```bash
+# Preview before overwriting
+elorm add button --dry-run
+elorm add button --overwrite
+
+# Add a theme preset
+elorm add theme-zinc
+elorm add theme-accent-violet
+```
+
+## Configuration
+
+The `elorm.json` file controls aliases, framework, UI library, theme, and registry URLs:
+
+```json
+{
+  "uiLibrary": "base-ui",
+  "tailwind": {
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "theme": {
+    "accent": "default",
+    "radius": "default"
+  },
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "utils": "@/lib/utils",
+    "lib": "@/lib"
+  },
+  "registries": {
+    "@elorm": "https://ui.elorm.xyz/r/{library}/{name}.json"
+  }
+}
+```

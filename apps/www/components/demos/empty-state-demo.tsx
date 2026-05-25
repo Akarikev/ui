@@ -1,3 +1,5 @@
+"use client"
+
 import { EmptyState } from "@/components/blocks/empty-state"
 
 export function EmptyStateDemo() {

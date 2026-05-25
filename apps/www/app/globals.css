@@ -3,6 +3,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-shimmer: shimmer 2s infinite;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -26,6 +29,15 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -35,8 +47,28 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--accordion-panel-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--accordion-panel-height); }
+  to { height: 0; }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
 :root {
   --radius: 0.625rem;
+  --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px oklch(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.08);
+  --transition-fast: 100ms;
+  --transition-base: 150ms;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -60,14 +92,27 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+  --surface-1: var(--background);
+  --surface-2: var(--card);
+  --surface-3: var(--popover);
+  --success: oklch(0.627 0.194 149.214);
+  --success-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.769 0.188 70.08);
+  --warning-foreground: oklch(0.205 0 0);
+  --info: oklch(0.546 0.245 262.881);
+  --info-foreground: oklch(0.985 0 0);
 }
 
 .dark {
+  --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3), 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 6px oklch(0 0 0 / 0.35);
+  --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.4);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.235 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
@@ -86,6 +131,15 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+  --surface-1: var(--background);
+  --surface-2: var(--card);
+  --surface-3: var(--popover);
+  --success: oklch(0.696 0.17 162.48);
+  --success-foreground: oklch(0.145 0 0);
+  --warning: oklch(0.828 0.189 84.429);
+  --warning-foreground: oklch(0.145 0 0);
+  --info: oklch(0.623 0.214 259.815);
+  --info-foreground: oklch(0.985 0 0);
 }
 
 @layer base {
@@ -98,4 +152,63 @@
   code, pre, kbd {
     @apply font-mono;
   }
+}
+
+.docs-prose {
+  @apply text-foreground;
+}
+
+.docs-prose pre:not(.not-prose *) {
+  @apply my-0 overflow-x-auto border-0 bg-transparent p-0;
+}
+
+.not-prose pre,
+.not-prose .shiki {
+  @apply overflow-x-auto border border-border/50 bg-muted/30 px-5 py-4 text-sm leading-relaxed;
+}
+
+.docs-prose .shiki,
+.docs-prose .shiki span,
+.not-prose .shiki,
+.not-prose .shiki span {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.docs-prose .shiki,
+.docs-prose .shiki span,
+.not-prose .shiki,
+.not-prose .shiki span {
+  color: var(--foreground) !important;
+}
+
+.dark .docs-prose .shiki,
+.dark .docs-prose .shiki span,
+.dark .not-prose .shiki,
+.dark .not-prose .shiki span {
+  color: var(--foreground) !important;
+  opacity: 0.95;
+}
+
+.docs-prose :where(:not(.not-prose, .not-prose *)) code:not(pre code) {
+  @apply rounded border border-border bg-muted/50 px-1.5 py-0.5 text-sm;
+}
+
+:root:not([data-ui-library="radix"]) .ui-radix-only {
+  display: none !important;
+}
+
+:root[data-ui-library="radix"] .ui-base-only {
+  display: none !important;
+}
+
+[data-line-numbers] {
+  counter-reset: line;
+}
+
+[data-line-numbers] [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  @apply mr-4 inline-block w-4 text-right text-muted-foreground;
 }

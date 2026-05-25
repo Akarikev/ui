@@ -24,7 +24,7 @@ program
   .option("--base-color <color>", "Base color (neutral, zinc, slate, stone, gray)")
   .option(
     "--accent <accent>",
-    "Accent color (default, blue, violet, green, orange, rose, amber, cyan)"
+    "Accent color (default, mono, blue, violet, green, orange, rose, amber, cyan)"
   )
   .option("--radius <radius>", "Border radius (default, compact, round)")
   .action(async (options) => {
@@ -37,6 +37,8 @@ program
   .argument("[items...]", "Component names to add")
   .option("-o, --overwrite", "Overwrite existing files")
   .option("--dry-run", "Preview changes without writing")
+  .option("-l, --library <library>", "UI library (base-ui, radix) - overrides config")
+  .option("-i, --interactive", "Choose UI library interactively")
   .action(async (items: string[], options) => {
     await addCommand(items, options)
   })

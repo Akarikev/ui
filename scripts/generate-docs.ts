@@ -8,11 +8,15 @@ import path from "node:path"
 
 const ROOT = path.resolve(import.meta.dirname, "..")
 const REGISTRY_PATH = path.join(ROOT, "registry.json")
-const DOCS_COMPONENTS_DIR = path.join(ROOT, "docs/components")
+const DOCS_COMPONENTS_DIR = path.join(
+  ROOT,
+  "apps/www/content/docs/components"
+)
 
 interface RegistryExample {
   title: string
   code: string
+  description?: string
 }
 
 interface RegistryMeta {
@@ -50,9 +54,28 @@ const DOC_COMPONENTS = new Set([
   "badge",
   "separator",
   "skeleton",
+  "field",
+  "input-group",
+  "spinner",
+  "radio-group",
+  "toggle-group",
+  "tabs",
+  "alert",
+  "avatar",
+  "popover",
+  "alert-dialog",
+  "progress",
+  "table",
+  "pagination",
+  "breadcrumb",
+  "accordion",
+  "collapsible",
   "empty-state",
   "stat-card",
   "page-header",
+  "login-form",
+  "settings-section",
+  "data-table",
 ])
 
 function pascalCase(name: string): string {
@@ -68,6 +91,13 @@ function getImportName(name: string): string {
     "empty-state": "EmptyState",
     "stat-card": "StatCard",
     "page-header": "PageHeader",
+    "input-group": "InputGroup",
+    "radio-group": "RadioGroup",
+    "toggle-group": "ToggleGroup",
+    "alert-dialog": "AlertDialog",
+    "login-form": "LoginForm",
+    "settings-section": "SettingsSection",
+    "data-table": "DataTable",
   }
   return map[name] ?? pascalCase(name)
 }
@@ -76,15 +106,284 @@ function defaultExampleCode(name: string, importName: string): string {
   const defaults: Record<string, string> = {
     button: "<Button>Click me</Button>",
     input: '<Input type="email" placeholder="Email" />',
+    textarea: '<Textarea placeholder="Write your message..." />',
+    label: '<Label htmlFor="email">Email</Label>',
     checkbox: "<Checkbox />",
     switch: "<Switch />",
+    select: `<Select>
+  <SelectTrigger className="w-full max-w-48">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="blueberry">Blueberry</SelectItem>
+      <SelectItem value="grapes">Grapes</SelectItem>
+      <SelectItem value="pineapple">Pineapple</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>`,
     card: "<Card><CardHeader><CardTitle>Title</CardTitle></CardHeader></Card>",
     dialog:
       "<Dialog><DialogTrigger>Open</DialogTrigger><DialogContent><DialogTitle>Title</DialogTitle></DialogContent></Dialog>",
-    badge: '<Badge>New</Badge>',
+    sheet:
+      "<Sheet><SheetTrigger>Open</SheetTrigger><SheetContent><SheetHeader><SheetTitle>Title</SheetTitle></SheetHeader></SheetContent></Sheet>",
+    "dropdown-menu":
+      "<DropdownMenu><DropdownMenuTrigger>Open</DropdownMenuTrigger><DropdownMenuContent><DropdownMenuItem>Profile</DropdownMenuItem></DropdownMenuContent></DropdownMenu>",
+    tooltip:
+      "<Tooltip><TooltipTrigger>Hover me</TooltipTrigger><TooltipContent>Helpful tip</TooltipContent></Tooltip>",
+    badge: "<Badge>New</Badge>",
+    separator:
+      '<div><p className="text-sm">Top content</p><Separator className="my-4" /><p className="text-sm">Bottom content</p></div>',
     skeleton: '<Skeleton className="h-4 w-full" />',
+    "empty-state":
+      '<EmptyState title="No results found" description="Try adjusting your search." />',
+    "stat-card":
+      '<StatCard title="Revenue" value="$12,420" description="+12% from last month" trend={{ value: "+12%", positive: true }} />',
+    "page-header":
+      '<PageHeader title="Dashboard" description="Monitor your metrics and team activity." />',
+    table: `<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Role</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">Alice Chen</TableCell>
+      <TableCell>Active</TableCell>
+      <TableCell>Admin</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">Bob Smith</TableCell>
+      <TableCell>Pending</TableCell>
+      <TableCell>Editor</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>`,
+    "data-table": `<DataTable
+  rows={[
+    { id: "1", name: "Alice Chen", email: "alice@example.com", status: "Active" },
+    { id: "2", name: "Bob Smith", email: "bob@example.com", status: "Pending" },
+    { id: "3", name: "Carol Lee", email: "carol@example.com", status: "Active" },
+  ]}
+/>`,
   }
   return defaults[name] ?? `<${importName} />`
+}
+
+function defaultImportCode(name: string, importPath: string, importName: string): string {
+  const map: Record<string, string> = {
+    select: `import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '${importPath}'`,
+    table: `import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '${importPath}'`,
+    dialog: `import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '${importPath}'`,
+    sheet: `import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '${importPath}'`,
+    "dropdown-menu": `import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '${importPath}'`,
+    tooltip: `import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '${importPath}'`,
+  }
+
+  return map[name] ?? `import { ${importName} } from '${importPath}'`
+}
+
+function radixImportCode(name: string, importPath: string, importName: string): string {
+  const base = defaultImportCode(name, importPath, importName)
+  const overrides: Record<string, string> = {
+    select: `${base}\n\n// Radix preset: generated via \`elorm init --ui-library radix\``,
+    dialog: `${base}\n\n// Radix preset: generated via \`elorm init --ui-library radix\``,
+    sheet: `${base}\n\n// Radix preset: generated via \`elorm init --ui-library radix\``,
+    "dropdown-menu": `${base}\n\n// Radix preset: generated via \`elorm init --ui-library radix\``,
+  }
+  return overrides[name] ?? base
+}
+
+function radixVariantCode(name: string, baseCode: string): string {
+  const map: Record<string, string> = {
+    select: `<Select>
+  <SelectTrigger className="w-full max-w-48">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="blueberry">Blueberry</SelectItem>
+      <SelectItem value="grapes">Grapes</SelectItem>
+      <SelectItem value="pineapple">Pineapple</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>`,
+    button: "<Button variant=\"secondary\">Click me</Button>",
+  }
+  return map[name] ?? baseCode
+}
+
+function formatJsxSnippet(code: string): string {
+  const trimmed = code.trim()
+  if (trimmed.includes("\n") || !trimmed.includes("><")) {
+    return trimmed
+  }
+
+  let depth = 0
+  return trimmed
+    .replace(/></g, ">\n<")
+    .split("\n")
+    .map((line) => {
+      const current = line.trim()
+      if (current.startsWith("</")) {
+        depth = Math.max(depth - 1, 0)
+      }
+
+      const formatted = `${"  ".repeat(depth)}${current}`
+      const isOpeningTag =
+        /^<[A-Z][^/!>]*>$/.test(current) && !current.startsWith("</")
+
+      if (isOpeningTag) {
+        depth += 1
+      }
+
+      return formatted
+    })
+    .join("\n")
+}
+
+function indentCode(code: string, spaces = 4): string {
+  const padding = " ".repeat(spaces)
+  return code
+    .split("\n")
+    .map((line) => (line.length ? `${padding}${line}` : line))
+    .join("\n")
+}
+
+function demoComponentName(name: string, importName: string): string {
+  return `${importName || pascalCase(name)}Demo`
+}
+
+function completeExampleCode(
+  name: string,
+  importName: string,
+  importCode: string,
+  exampleCode: string
+): string {
+  if (exampleCode.trimStart().startsWith("import ")) {
+    return exampleCode
+  }
+
+  const formattedExample = formatJsxSnippet(exampleCode)
+
+  return `${importCode}
+
+export function ${demoComponentName(name, importName)}() {
+  return (
+${indentCode(formattedExample)}
+  )
+}`
+}
+
+function fallbackExamples(name: string, importName: string): RegistryExample[] {
+  const defaults: Record<string, RegistryExample[]> = {
+    button: [
+      { title: "Default", code: "<Button>Click me</Button>" },
+      {
+        title: "Outline",
+        description: 'Use `variant="outline"` for secondary actions.',
+        code: '<Button variant="outline">Cancel</Button>',
+      },
+    ],
+    input: [
+      { title: "Default", code: '<Input type="email" placeholder="name@example.com" />' },
+      {
+        title: "Disabled",
+        code: '<Input type="text" disabled value="Disabled input" />',
+      },
+    ],
+    textarea: [
+      { title: "Default", code: '<Textarea placeholder="Write your message..." />' },
+      { title: "With rows", code: '<Textarea rows={6} placeholder="Tell us more..." />' },
+    ],
+    select: [
+      { title: "Default", code: defaultExampleCode("select", importName) },
+      {
+        title: "Compact",
+        code: `<Select>
+  <SelectTrigger className="w-[140px]">
+    <SelectValue placeholder="Size" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="sm">Small</SelectItem>
+    <SelectItem value="md">Medium</SelectItem>
+  </SelectContent>
+</Select>`,
+      },
+    ],
+  }
+
+  return defaults[name] ?? [{ title: "Default", code: defaultExampleCode(name, importName) }]
+}
+
+function mergeExamples(primary: RegistryExample[], fallback: RegistryExample[]) {
+  const byTitle = new Map<string, RegistryExample>()
+  for (const example of primary) {
+    byTitle.set(example.title.toLowerCase(), example)
+  }
+  for (const example of fallback) {
+    const key = example.title.toLowerCase()
+    if (!byTitle.has(key)) {
+      byTitle.set(key, example)
+    }
+  }
+  return Array.from(byTitle.values())
+}
+
+function escapeAttr(value: string): string {
+  return value.replace(/\\/g, "\\\\").replace(/"/g, "&quot;")
+}
+
+function compositionTree(title: string, parts: string[]): string {
+  const lines = [title, ...parts.map((part) => `├── ${part}`)]
+  return ["```text", ...lines, "```"].join("\n")
 }
 
 function generateMdx(item: RegistryItem): string {
@@ -97,66 +396,81 @@ function generateMdx(item: RegistryItem): string {
       ? `@/components/blocks/${item.name}`
       : `@/components/ui/${item.name}`
 
+  const fallback = DOC_COMPONENTS.has(item.name)
+    ? fallbackExamples(item.name, importName)
+    : []
+  const examples = mergeExamples(item.meta?.examples ?? [], fallback)
+
+  const heroCode = examples[0]?.code ?? defaultExampleCode(item.name, importName)
+  const heroRadixCode = radixVariantCode(item.name, heroCode)
+  const baseImportCode = defaultImportCode(item.name, importPath, importName)
+  const radixImport = radixImportCode(item.name, importPath, importName)
+  const heroDisplayCode = completeExampleCode(
+    item.name,
+    importName,
+    baseImportCode,
+    heroCode
+  )
+  const heroRadixDisplayCode = completeExampleCode(
+    item.name,
+    importName,
+    radixImport,
+    heroRadixCode
+  )
+
   const lines: string[] = [
     "---",
     `title: ${title}`,
     `description: "${description.replace(/"/g, '\\"')}"`,
     "---",
     "",
+    `<ComponentPreviewTabs component="${item.name}" code="${escapeAttr(heroDisplayCode)}" radixCode="${escapeAttr(heroRadixDisplayCode)}" />`,
+    "",
     "## Installation",
     "",
     `<InstallCommand command="elorm add ${item.name}" />`,
     "",
-    "## Preview",
-    "",
-    `<ComponentPreview component="${item.name}" />`,
-    "",
     "## Usage",
     "",
-    "```tsx",
-    `import { ${importName} } from '${importPath}'`,
-    "```",
+    `<LibraryCodeBlock baseCode="${escapeAttr(baseImportCode)}" radixCode="${escapeAttr(radixImport)}" language="tsx" />`,
     "",
     description,
     "",
   ]
 
-  const examples =
-    item.meta?.examples ??
-    (DOC_COMPONENTS.has(item.name)
-      ? [
-          {
-            title: "Default",
-            code: defaultExampleCode(item.name, importName),
-          },
-        ]
-      : [])
+  if (item.meta?.usage) {
+    lines.push(item.meta.usage, "")
+  }
+
+  if (item.meta?.composition?.length) {
+    lines.push("## Composition", "")
+    lines.push(
+      compositionTree(title, item.meta.composition),
+      ""
+    )
+  }
 
   if (examples.length) {
     lines.push("## Examples", "")
     for (const example of examples) {
       lines.push(`### ${example.title}`, "")
-      lines.push("<Tabs>", "")
-      lines.push('  <Tab title="Preview">', "")
-      lines.push(`    <ComponentPreview component="${item.name}" />`, "")
-      lines.push("  </Tab>", "")
-      lines.push('  <Tab title="Code">', "")
-      lines.push("    ```tsx", example.code, "    ```", "")
-      lines.push("  </Tab>", "")
-      lines.push("</Tabs>", "")
+      if (example.description) {
+        lines.push(example.description, "")
+      }
+      lines.push(
+        `<ComponentPreviewTabs component="${item.name}" code="${escapeAttr(
+          completeExampleCode(item.name, importName, baseImportCode, example.code)
+        )}" radixCode="${escapeAttr(
+          completeExampleCode(
+            item.name,
+            importName,
+            radixImport,
+            radixVariantCode(item.name, example.code)
+          )
+        )}" />`,
+        ""
+      )
     }
-  }
-
-  if (item.meta?.usage) {
-    lines.push("## Usage notes", "")
-    lines.push(item.meta.usage, "")
-    lines.push("")
-  }
-
-  if (item.meta?.composition?.length) {
-    lines.push("## Composition", "")
-    lines.push(item.meta.composition.join(", "), "")
-    lines.push("")
   }
 
   if (item.meta?.antiPatterns?.length) {
@@ -187,7 +501,9 @@ async function main() {
     count++
   }
 
-  console.log(`Generated ${count} component docs in docs/components/`)
+  console.log(
+    `Generated ${count} component docs in apps/www/content/docs/components/`
+  )
 }
 
 main().catch((error) => {

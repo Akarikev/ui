@@ -80,10 +80,6 @@
   "footerSocials": {
     "github": "https://github.com/Akarikev/ui"
   },
-  "snippets": {
-    "install-command": "./snippets/install-command.jsx",
-    "component-preview": "./snippets/component-preview.jsx"
-  },
   "errors": {
     "404": {
       "redirect": true

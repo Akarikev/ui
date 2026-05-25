@@ -1,6 +1,7 @@
 export type BaseColor = "neutral" | "zinc" | "slate" | "stone" | "gray"
 export type AccentColor =
   | "default"
+  | "mono"
   | "blue"
   | "violet"
   | "green"

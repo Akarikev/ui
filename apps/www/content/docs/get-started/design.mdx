@@ -1,0 +1,83 @@
+---
+title: Design
+description: Elorm visual language, tokens, spacing, and composition patterns.
+---
+
+# Design
+
+elorm/ui uses a refined minimal aesthetic — calm surfaces, precise typography, and subtle motion. Components are built on Base UI or Radix primitives with a shared **Elorm** style layer.
+
+## Principles
+
+- **Layered surfaces** — `background` → `card` → `popover` with increasing elevation
+- **Quiet borders, loud focus** — subtle defaults; ring + border shift on focus
+- **Micro-motion** — 150ms transitions; press scale on buttons
+- **Semantic colors only** — never raw Tailwind color utilities
+
+## Tokens
+
+| Token | Purpose |
+|-------|---------|
+| `--surface-1/2/3` | Elevation scale (background, card, popover) |
+| `--success/warning/info` | Status feedback colors |
+| `--shadow-xs/sm/md/lg` | Consistent elevation shadows |
+| `--radius` | Base radius; scales to sm/md/lg/xl/2xl |
+
+Extended tokens ship with `@elorm/themes` and apply via CSS variables in your global stylesheet.
+
+## Spacing
+
+Use `gap-*` for layout — not `space-y-*` or `space-x-*`:
+
+```tsx
+<div className="flex flex-col gap-4">
+  <Field>...</Field>
+  <Field>...</Field>
+</div>
+```
+
+## Icons in buttons
+
+Pass icons with `data-icon` for consistent sizing:
+
+```tsx
+<Button>
+  <SearchIcon data-icon="inline-start" />
+  Search
+</Button>
+```
+
+## Loading buttons
+
+Compose `Spinner` with `disabled` — no built-in loading prop:
+
+```tsx
+<Button disabled>
+  <Spinner data-icon="inline-start" />
+  Saving...
+</Button>
+```
+
+## Forms
+
+Use `FieldGroup` + `Field` instead of raw divs:
+
+```tsx
+<FieldGroup>
+  <Field data-invalid>
+    <FieldLabel htmlFor="email">Email</FieldLabel>
+    <Input id="email" aria-invalid />
+    <FieldError>Invalid email address.</FieldError>
+  </Field>
+</FieldGroup>
+```
+
+## Validation
+
+- `data-invalid` on `Field`
+- `aria-invalid` on the control
+- `FieldError` for error message text
+
+## Style config
+
+Set `"style": "elorm"` in `elorm.json` (default). Future presets (`elorm-compact`, `elorm-soft`) will extend this field.

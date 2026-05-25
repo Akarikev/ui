@@ -47,8 +47,8 @@ export function DocsPreview() {
   const Demo = current.Demo
 
   return (
-    <section className="relative mx-auto max-w-5xl px-6 pb-24">
-      <div className="overflow-hidden rounded-xl border border-border bg-card/90 shadow-2xl shadow-primary/5 backdrop-blur-sm">
+    <section className="relative z-20 mx-auto -mt-40 max-w-5xl px-6 pb-24 md:-mt-48">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-neutral-900/70 shadow-2xl shadow-black/30 backdrop-blur-xl">
         <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <div className="size-3 rounded-full bg-red-500/80" />
           <div className="size-3 rounded-full bg-yellow-500/80" />

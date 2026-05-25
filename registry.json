@@ -18,12 +18,26 @@
       "dependencies": ["clsx", "tailwind-merge"]
     },
     {
+      "name": "ui-styles",
+      "type": "registry:lib",
+      "title": "UI Styles",
+      "description": "Shared Elorm style utilities for consistent component styling.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "packages/registry/lib/ui-styles.ts",
+          "type": "registry:lib",
+          "target": "lib/ui-styles.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
       "description": "Displays a button or a component that looks like a button.",
       "categories": ["ui", "forms"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
@@ -53,7 +67,7 @@
       "title": "Input",
       "description": "Displays a form input field.",
       "categories": ["ui", "forms"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "files": [
         {
           "path": "packages/registry/ui/input.tsx",
@@ -77,7 +91,7 @@
       "title": "Textarea",
       "description": "Displays a form textarea.",
       "categories": ["ui", "forms"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "files": [
         {
           "path": "packages/registry/ui/textarea.tsx",
@@ -105,7 +119,7 @@
       "title": "Checkbox",
       "description": "A control that allows the user to toggle between checked and not checked.",
       "categories": ["ui", "forms"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
@@ -120,7 +134,7 @@
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
       "categories": ["ui", "forms"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react"],
       "files": [
         {
@@ -135,7 +149,7 @@
       "title": "Select",
       "description": "Displays a list of options for the user to pick from.",
       "categories": ["ui", "forms"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
@@ -145,7 +159,15 @@
       ],
       "meta": {
         "usage": "Wrap options in SelectGroup. Always include SelectValue in SelectTrigger.",
-        "composition": ["Select", "SelectTrigger", "SelectContent", "SelectItem"]
+        "composition": [
+          "Select",
+          "SelectTrigger",
+          "SelectValue",
+          "SelectContent",
+          "SelectGroup",
+          "SelectLabel",
+          "SelectItem"
+        ]
       }
     },
     {
@@ -154,7 +176,7 @@
       "title": "Dialog",
       "description": "A window overlaid on either the primary window or another dialog window.",
       "categories": ["ui", "overlay"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
@@ -179,7 +201,7 @@
       "title": "Sheet",
       "description": "Extends the Dialog component to display content that complements the main content.",
       "categories": ["ui", "overlay"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react", "lucide-react", "class-variance-authority"],
       "files": [
         {
@@ -194,7 +216,7 @@
       "title": "Dropdown Menu",
       "description": "Displays a menu to the user triggered by a button.",
       "categories": ["ui", "overlay"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
@@ -209,7 +231,7 @@
       "title": "Tooltip",
       "description": "A popup that displays information related to an element.",
       "categories": ["ui", "overlay"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react"],
       "files": [
         {
@@ -227,7 +249,7 @@
       "title": "Card",
       "description": "Displays a card with header, content, and footer.",
       "categories": ["ui", "layout"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "files": [
         {
           "path": "packages/registry/ui/card.tsx",
@@ -251,7 +273,7 @@
       "title": "Badge",
       "description": "Displays a badge or a component that looks like a badge.",
       "categories": ["ui", "data-display"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["class-variance-authority"],
       "files": [
         {
@@ -312,7 +334,7 @@
       "title": "Stat Card",
       "description": "A dashboard stat card with optional trend indicator.",
       "categories": ["blocks", "dashboard"],
-      "registryDependencies": ["utils", "card"],
+      "registryDependencies": ["utils", "card", "badge"],
       "dependencies": ["lucide-react"],
       "files": [
         {
@@ -327,13 +349,198 @@
       "title": "Page Header",
       "description": "A page header block with title, description, actions, and breadcrumbs.",
       "categories": ["blocks", "layout"],
-      "registryDependencies": ["utils", "separator"],
+      "registryDependencies": ["utils", "separator", "breadcrumb"],
       "files": [
         {
           "path": "packages/registry/blocks/page-header.tsx",
           "type": "registry:block"
         }
       ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Composable form field layout with label, description, and error.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils", "label"],
+      "files": [{ "path": "packages/registry/ui/field.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Group inputs with addons for search bars and compound fields.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "packages/registry/ui/input-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Loading indicator for buttons and async states.",
+      "categories": ["ui", "feedback"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["lucide-react"],
+      "files": [{ "path": "packages/registry/ui/spinner.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A set of checkable buttons where only one can be checked.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "packages/registry/ui/radio-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A set of two-state buttons that can be toggled on or off.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "packages/registry/ui/toggle-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A set of layered sections of content displayed one at a time.",
+      "categories": ["ui", "navigation"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "packages/registry/ui/tabs.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Displays a callout for user attention.",
+      "categories": ["ui", "feedback"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "files": [{ "path": "packages/registry/ui/alert.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "categories": ["ui", "data-display"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "packages/registry/ui/avatar.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "categories": ["ui", "overlay"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "packages/registry/ui/popover.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A modal dialog that interrupts the user with important content.",
+      "categories": ["ui", "overlay"],
+      "registryDependencies": ["utils", "ui-styles", "button"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [{ "path": "packages/registry/ui/alert-dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task.",
+      "categories": ["ui", "feedback"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "packages/registry/ui/progress.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A responsive table component.",
+      "categories": ["ui", "data-display"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "packages/registry/ui/table.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Pagination with page navigation, next and previous links.",
+      "categories": ["ui", "navigation"],
+      "registryDependencies": ["utils", "button"],
+      "dependencies": ["lucide-react", "class-variance-authority"],
+      "files": [{ "path": "packages/registry/ui/pagination.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "categories": ["ui", "navigation"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["lucide-react"],
+      "files": [{ "path": "packages/registry/ui/breadcrumb.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "A vertically stacked set of interactive headings.",
+      "categories": ["ui", "layout"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [{ "path": "packages/registry/ui/accordion.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "An interactive component which expands/collapses a panel.",
+      "categories": ["ui", "layout"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [{ "path": "packages/registry/ui/collapsible.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "login-form",
+      "type": "registry:block",
+      "title": "Login Form",
+      "description": "A sign-in form block with email and password fields.",
+      "categories": ["blocks", "authentication"],
+      "registryDependencies": ["utils", "button", "card", "field", "input"],
+      "files": [{ "path": "packages/registry/blocks/login-form.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "settings-section",
+      "type": "registry:block",
+      "title": "Settings Section",
+      "description": "A settings page block with tabs and toggle switches.",
+      "categories": ["blocks", "settings"],
+      "registryDependencies": ["utils", "card", "field", "switch", "tabs"],
+      "files": [{ "path": "packages/registry/blocks/settings-section.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "A searchable data table with pagination.",
+      "categories": ["blocks", "dashboard"],
+      "registryDependencies": ["utils", "badge", "input-group", "pagination", "table"],
+      "dependencies": ["lucide-react"],
+      "files": [{ "path": "packages/registry/blocks/data-table.tsx", "type": "registry:block" }]
     }
   ]
 }

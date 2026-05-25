@@ -10,6 +10,12 @@
       "description": "Utility functions for elorm/ui components."
     },
     {
+      "name": "ui-styles",
+      "type": "registry:lib",
+      "title": "UI Styles",
+      "description": "Shared Elorm style utilities for consistent component styling."
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -190,6 +196,196 @@
       ]
     },
     {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Composable form field layout with label, description, and error.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Group inputs with addons for search bars and compound fields.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Loading indicator for buttons and async states.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A set of checkable buttons where only one can be checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A set of two-state buttons that can be toggled on or off.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A set of layered sections of content displayed one at a time.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Displays a callout for user attention.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A modal dialog that interrupts the user with important content.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A responsive table component.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Pagination with page navigation, next and previous links.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "A vertically stacked set of interactive headings.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "An interactive component which expands/collapses a panel.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "login-form",
+      "type": "registry:block",
+      "title": "Login Form",
+      "description": "A sign-in form block with email and password fields.",
+      "categories": [
+        "blocks",
+        "authentication"
+      ]
+    },
+    {
+      "name": "settings-section",
+      "type": "registry:block",
+      "title": "Settings Section",
+      "description": "A settings page block with tabs and toggle switches.",
+      "categories": [
+        "blocks",
+        "settings"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "A searchable data table with pagination.",
+      "categories": [
+        "blocks",
+        "dashboard"
+      ]
+    },
+    {
       "name": "theme-neutral",
       "type": "registry:theme",
       "title": "Neutral Theme",
@@ -230,6 +426,15 @@
       "type": "registry:theme",
       "title": "Gray Theme",
       "description": "Apply the gray base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-mono",
+      "type": "registry:theme",
+      "title": "Mono Accent",
+      "description": "Apply mono accent colors to primary, ring, and chart tokens.",
       "categories": [
         "themes"
       ]

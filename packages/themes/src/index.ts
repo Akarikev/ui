@@ -8,6 +8,7 @@ import type {
 } from "./types.js"
 import { getBasePalette } from "./presets/base-colors.js"
 import { applyAccent } from "./presets/accents.js"
+import { mergeExtendedTokens, STATIC_CSS_TOKENS, STATIC_CSS_TOKENS_DARK } from "./presets/extended-tokens.js"
 
 const RADIUS_VALUES: Record<RadiusPreset, string> = {
   default: "0.625rem",
@@ -70,6 +71,15 @@ export function generateCssTemplate(options: GenerateCssOptions = {}): string {
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -79,10 +89,12 @@ export function generateCssTemplate(options: GenerateCssOptions = {}): string {
 
 :root {
   --radius: ${theme.radius};
+${STATIC_CSS_TOKENS}
 ${formatVarsBlock(theme.light)}
 }
 
 .dark {
+${STATIC_CSS_TOKENS_DARK}
 ${formatVarsBlock(theme.dark)}
 }
 

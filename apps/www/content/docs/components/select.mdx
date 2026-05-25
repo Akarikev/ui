@@ -1,0 +1,227 @@
+---
+title: Select
+description: "Displays a list of options for the user to pick from."
+---
+
+<ComponentPreviewTabs component="select" code="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger className=&quot;w-full max-w-48&quot;>
+        <SelectValue placeholder=&quot;Select a fruit&quot; />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value=&quot;apple&quot;>Apple</SelectItem>
+          <SelectItem value=&quot;banana&quot;>Banana</SelectItem>
+          <SelectItem value=&quot;blueberry&quot;>Blueberry</SelectItem>
+          <SelectItem value=&quot;grapes&quot;>Grapes</SelectItem>
+          <SelectItem value=&quot;pineapple&quot;>Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}" radixCode="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+// Radix preset: generated via `elorm init --ui-library radix`
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger className=&quot;w-full max-w-48&quot;>
+        <SelectValue placeholder=&quot;Select a fruit&quot; />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value=&quot;apple&quot;>Apple</SelectItem>
+          <SelectItem value=&quot;banana&quot;>Banana</SelectItem>
+          <SelectItem value=&quot;blueberry&quot;>Blueberry</SelectItem>
+          <SelectItem value=&quot;grapes&quot;>Grapes</SelectItem>
+          <SelectItem value=&quot;pineapple&quot;>Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}" />
+
+## Installation
+
+<InstallCommand command="elorm add select" />
+
+## Usage
+
+<LibraryCodeBlock baseCode="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'" radixCode="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+// Radix preset: generated via `elorm init --ui-library radix`" language="tsx" />
+
+Displays a list of options for the user to pick from.
+
+Wrap options in SelectGroup. Always include SelectValue in SelectTrigger.
+
+## Composition
+
+```text
+Select
+├── Select
+├── SelectTrigger
+├── SelectValue
+├── SelectContent
+├── SelectGroup
+├── SelectLabel
+├── SelectItem
+```
+
+## Examples
+
+### Default
+
+<ComponentPreviewTabs component="select" code="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger className=&quot;w-full max-w-48&quot;>
+        <SelectValue placeholder=&quot;Select a fruit&quot; />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value=&quot;apple&quot;>Apple</SelectItem>
+          <SelectItem value=&quot;banana&quot;>Banana</SelectItem>
+          <SelectItem value=&quot;blueberry&quot;>Blueberry</SelectItem>
+          <SelectItem value=&quot;grapes&quot;>Grapes</SelectItem>
+          <SelectItem value=&quot;pineapple&quot;>Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}" radixCode="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+// Radix preset: generated via `elorm init --ui-library radix`
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger className=&quot;w-full max-w-48&quot;>
+        <SelectValue placeholder=&quot;Select a fruit&quot; />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value=&quot;apple&quot;>Apple</SelectItem>
+          <SelectItem value=&quot;banana&quot;>Banana</SelectItem>
+          <SelectItem value=&quot;blueberry&quot;>Blueberry</SelectItem>
+          <SelectItem value=&quot;grapes&quot;>Grapes</SelectItem>
+          <SelectItem value=&quot;pineapple&quot;>Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}" />
+
+### Compact
+
+<ComponentPreviewTabs component="select" code="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger className=&quot;w-[140px]&quot;>
+        <SelectValue placeholder=&quot;Size&quot; />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value=&quot;sm&quot;>Small</SelectItem>
+        <SelectItem value=&quot;md&quot;>Medium</SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}" radixCode="import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+// Radix preset: generated via `elorm init --ui-library radix`
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger className=&quot;w-full max-w-48&quot;>
+        <SelectValue placeholder=&quot;Select a fruit&quot; />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value=&quot;apple&quot;>Apple</SelectItem>
+          <SelectItem value=&quot;banana&quot;>Banana</SelectItem>
+          <SelectItem value=&quot;blueberry&quot;>Blueberry</SelectItem>
+          <SelectItem value=&quot;grapes&quot;>Grapes</SelectItem>
+          <SelectItem value=&quot;pineapple&quot;>Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}" />

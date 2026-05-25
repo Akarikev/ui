@@ -1,0 +1,68 @@
+---
+title: Input
+description: "Displays a form input field."
+---
+
+<ComponentPreviewTabs component="input" code="import { Input } from '@/components/ui/input'
+
+export function InputDemo() {
+  return (
+    <Input type=&quot;email&quot; placeholder=&quot;Email&quot; />
+  )
+}" radixCode="import { Input } from '@/components/ui/input'
+
+export function InputDemo() {
+  return (
+    <Input type=&quot;email&quot; placeholder=&quot;Email&quot; />
+  )
+}" />
+
+## Installation
+
+<InstallCommand command="elorm add input" />
+
+## Usage
+
+<LibraryCodeBlock baseCode="import { Input } from '@/components/ui/input'" radixCode="import { Input } from '@/components/ui/input'" language="tsx" />
+
+Displays a form input field.
+
+Use with Label for accessible form fields.
+
+## Examples
+
+### Default
+
+<ComponentPreviewTabs component="input" code="import { Input } from '@/components/ui/input'
+
+export function InputDemo() {
+  return (
+    <Input type=&quot;email&quot; placeholder=&quot;Email&quot; />
+  )
+}" radixCode="import { Input } from '@/components/ui/input'
+
+export function InputDemo() {
+  return (
+    <Input type=&quot;email&quot; placeholder=&quot;Email&quot; />
+  )
+}" />
+
+### Disabled
+
+<ComponentPreviewTabs component="input" code="import { Input } from '@/components/ui/input'
+
+export function InputDemo() {
+  return (
+    <Input type=&quot;text&quot; disabled value=&quot;Disabled input&quot; />
+  )
+}" radixCode="import { Input } from '@/components/ui/input'
+
+export function InputDemo() {
+  return (
+    <Input type=&quot;text&quot; disabled value=&quot;Disabled input&quot; />
+  )
+}" />
+
+## Avoid
+
+- Do not use without a label or aria-label

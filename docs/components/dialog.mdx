@@ -3,6 +3,9 @@ title: Dialog
 description: "A window overlaid on either the primary window or another dialog window."
 ---
 
+import { InstallCommand } from "/snippets/install-command.jsx"
+import { ComponentPreview } from "/snippets/component-preview.jsx"
+
 ## Installation
 
 <InstallCommand command="elorm add dialog" />
@@ -25,15 +28,16 @@ A window overlaid on either the primary window or another dialog window.
 
 <Tabs>
 
-  <Tab title="Preview">
+<Tab title="Preview">
 
-    <ComponentPreview component="dialog" />
+<ComponentPreview component="dialog" />
 
-  </Tab>
+</Tab>
 
-  <Tab title="Code">
+<Tab title="Code">
 
-    ```tsx
+
+```tsx
 <Dialog>
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
@@ -42,9 +46,9 @@ A window overlaid on either the primary window or another dialog window.
     </DialogHeader>
   </DialogContent>
 </Dialog>
-    ```
+```
 
-  </Tab>
+</Tab>
 
 </Tabs>
 

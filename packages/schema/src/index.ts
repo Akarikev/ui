@@ -71,6 +71,7 @@ export const themeConfigSchema = z.object({
   accent: z
     .enum([
       "default",
+      "mono",
       "blue",
       "violet",
       "green",
@@ -80,12 +81,14 @@ export const themeConfigSchema = z.object({
       "cyan",
     ])
     .default("default"),
-  radius: z.enum(["default", "compact", "round"]).default("default"),
+  radius: z.string().default("0.5"),
 })
+
+export const styleSchema = z.enum(["elorm"]).default("elorm")
 
 export const elormConfigSchema = z.object({
   $schema: z.string().optional(),
-  style: z.string().default("default"),
+  style: styleSchema,
   uiLibrary: uiLibrarySchema.default("base-ui"),
   rsc: z.boolean().default(true),
   tsx: z.boolean().default(true),
@@ -123,7 +126,7 @@ export type ThemeConfig = z.infer<typeof themeConfigSchema>
 export type ElormConfig = z.infer<typeof elormConfigSchema>
 
 export const DEFAULT_ELORM_CONFIG: ElormConfig = {
-  style: "default",
+  style: "elorm",
   uiLibrary: "base-ui",
   rsc: true,
   tsx: true,
@@ -144,7 +147,7 @@ export const DEFAULT_ELORM_CONFIG: ElormConfig = {
     "@elorm": "https://ui.elorm.xyz/r/{library}/{name}.json",
   },
   framework: "next",
-  theme: { accent: "default", radius: "default" },
+  theme: { accent: "default", radius: "0.5" },
 }
 
 export const PACKAGE_MANAGERS = ["npm", "pnpm", "yarn", "bun"] as const

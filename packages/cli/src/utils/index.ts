@@ -12,9 +12,20 @@ import {
 const CONFIG_NAME = "elorm"
 
 export async function getConfig(cwd = process.cwd()): Promise<ElormConfig | null> {
-  const explorer = cosmiconfig(CONFIG_NAME)
+  const explorer = cosmiconfig(CONFIG_NAME, {
+    searchPlaces: [
+      "elorm.json",
+      ".elormrc",
+      ".elormrc.json",
+      "elorm.config.js",
+      "package.json",
+    ],
+  })
   const result = await explorer.search(cwd)
-  if (!result?.config) return null
+  if (!result?.config) {
+    console.error(`[DEBUG] Config search failed. CWD: ${cwd}`)
+    return null
+  }
   return elormConfigSchema.parse(result.config)
 }
 
