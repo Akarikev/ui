@@ -21,5 +21,5 @@ export interface ThemePreset {
 export interface GenerateCssOptions {
   baseColor?: BaseColor
   accent?: AccentColor
-  radius?: RadiusPreset
+  radius?: RadiusPreset | string
 }

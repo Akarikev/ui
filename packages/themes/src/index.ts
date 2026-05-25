@@ -18,12 +18,26 @@ const RADIUS_VALUES: Record<RadiusPreset, string> = {
 
 export const RADIUS_PRESETS = Object.keys(RADIUS_VALUES) as RadiusPreset[]
 
+function resolveRadius(radius?: RadiusPreset | string): string {
+  if (!radius) return RADIUS_VALUES.default
+
+  if (radius in RADIUS_VALUES) {
+    return RADIUS_VALUES[radius as RadiusPreset]
+  }
+
+  if (/^\d+(\.\d+)?$/.test(radius)) {
+    return `${radius}rem`
+  }
+
+  return radius
+}
+
 export function getThemeTokens(options: GenerateCssOptions = {}): ThemePreset & {
   radius: string
 } {
   const baseColor = options.baseColor ?? "neutral"
   const accent = options.accent ?? "default"
-  const radius = RADIUS_VALUES[options.radius ?? "default"]
+  const radius = resolveRadius(options.radius)
 
   const base = getBasePalette(baseColor)
 
