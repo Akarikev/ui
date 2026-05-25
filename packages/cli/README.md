@@ -1,6 +1,19 @@
-# elorm
+<p align="center">
+  <a href="https://ui.elorm.xyz">
+    <img src="https://raw.githubusercontent.com/Akarikev/ui/main/.github/icon.png" width="56" height="56" alt="elorm/ui logo" />
+  </a>
+</p>
 
-CLI for [elorm/ui](https://ui.elorm.xyz) — a copy-paste React component library built on Base UI or Radix UI and Tailwind CSS v4.
+<h1 align="center">elorm</h1>
+
+<p align="center">
+  CLI for <a href="https://ui.elorm.xyz">elorm/ui</a> — copy-paste React components on Base UI or Radix UI and Tailwind CSS v4.
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/elorm"><img src="https://img.shields.io/npm/v/elorm?style=flat-square&color=000&logo=npm&logoColor=white" alt="npm version" /></a>
+  <a href="https://ui.elorm.xyz/docs"><img src="https://img.shields.io/badge/docs-ui.elorm.xyz-000?style=flat-square" alt="Docs" /></a>
+</p>
 
 ## Install
 
@@ -18,12 +31,8 @@ elorm init
 ## Quick start
 
 ```bash
-# Initialize in your project
 npx elorm init
-
-# Add components
-npx elorm add button
-npx elorm add card dialog
+npx elorm add button card dialog
 npx elorm add login-form
 ```
 
@@ -52,7 +61,7 @@ npx elorm init -y \
 
 ## Registry
 
-Components are fetched from the public registry at [ui.elorm.xyz/r/registry.json](https://ui.elorm.xyz/r/registry.json).
+Components are fetched from [ui.elorm.xyz/r/registry.json](https://ui.elorm.xyz/r/registry.json).
 
 ## Documentation
 

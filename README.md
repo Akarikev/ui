@@ -1,16 +1,34 @@
-# elorm/ui
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/icon.svg" />
+    <source media="(prefers-color-scheme: light)" srcset=".github/icon-light.svg" />
+    <img src=".github/icon.png" width="72" height="72" alt="elorm/ui logo" />
+  </picture>
+</p>
 
-Beautiful, copy-paste React components built on [Base UI](https://base-ui.com) or [Radix UI](https://radix-ui.com) and [Tailwind CSS v4](https://tailwindcss.com). You add components to your project with the CLI — you own every line of code.
+<h1 align="center">elorm/ui</h1>
 
-**Website & docs:** [ui.elorm.xyz](https://ui.elorm.xyz) · **CLI on npm:** [`elorm`](https://www.npmjs.com/package/elorm)
+<p align="center">
+  Beautiful, copy-paste React components built on Base UI or Radix UI and Tailwind CSS v4.
+  <br />
+  Add components to your project with the CLI — you own every line of code.
+</p>
 
-## Why elorm/ui
+<p align="center">
+  <a href="https://ui.elorm.xyz"><img src="https://img.shields.io/badge/docs-ui.elorm.xyz-000?style=for-the-badge" alt="Docs" /></a>
+  <a href="https://www.npmjs.com/package/elorm"><img src="https://img.shields.io/npm/v/elorm?style=for-the-badge&color=000&logo=npm&logoColor=white" alt="npm version" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-000?style=for-the-badge" alt="License" /></a>
+</p>
 
-- **Copy-paste, not a black-box dependency** — customize freely in your codebase
-- **Base UI or Radix** — pick your headless library at init
-- **Tailwind v4 + OKLCH tokens** — theme presets for base color, accent, and radius
-- **32 components + 6 blocks** — forms, overlays, data display, and ready-made page sections
-- **AI-friendly CLI** — `elorm docs button --json` for structured metadata
+<p align="center">
+  <a href="https://ui.elorm.xyz">Website</a>
+  ·
+  <a href="https://ui.elorm.xyz/docs">Documentation</a>
+  ·
+  <a href="https://www.npmjs.com/package/elorm">npm</a>
+  ·
+  <a href="./CONTRIBUTING.md">Contributing</a>
+</p>
 
 ## Quick start
 
@@ -27,9 +45,15 @@ npx elorm init -y --template next --ui-library base-ui --base-color neutral --ac
 
 Read the full guide at [ui.elorm.xyz/docs/get-started/installation](https://ui.elorm.xyz/docs/get-started/installation).
 
-## Documentation
+## Why elorm/ui
 
-User-facing docs live on the site, not in this repo's README.
+- **Copy-paste, not a black-box dependency** — customize freely in your codebase
+- **Base UI or Radix** — pick your headless library at init
+- **Tailwind v4 + OKLCH tokens** — theme presets for base color, accent, and radius
+- **32 components + 6 blocks** — forms, overlays, data display, and ready-made page sections
+- **AI-friendly CLI** — `elorm docs button --json` for structured metadata
+
+## Documentation
 
 | Topic | Link |
 | --- | --- |
