@@ -12,6 +12,7 @@ import { getMDXComponents } from "@/components/docs/mdx-components"
 import { DocsToc } from "@/components/docs/docs-toc"
 import { DocsLibrarySwitcher } from "@/components/docs/docs-library-switcher"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { renderInlineLinks, stripInlineLinks } from "@/components/docs/render-inline-links"
 
 const DOCS_ROOT = path.join(/* turbopackIgnore: true */ process.cwd(), "content/docs")
 
@@ -44,6 +45,7 @@ type DocsContent = {
   body: MDXContent
   toc: TOCItemType[]
   title: string
+  linkedTitle?: string
   description?: string
 }
 
@@ -66,12 +68,14 @@ export default async function DocsPage({ params }: PageProps) {
         <div className="mb-8 space-y-3">
           <div className="flex items-start justify-between gap-4">
             <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-              {page.data.title}
+              {renderInlineLinks(data.linkedTitle ?? data.title ?? "Docs")}
             </h1>
             {pageMarkdown ? <DocsCopyPage markdown={pageMarkdown} /> : null}
           </div>
           {page.data.description ? (
-            <p className="text-base text-muted-foreground">{page.data.description}</p>
+            <p className="text-base text-muted-foreground">
+              {renderInlineLinks(page.data.description)}
+            </p>
           ) : null}
           {isComponentPage ? <DocsLibrarySwitcher /> : null}
         </div>
@@ -120,8 +124,12 @@ export async function generateMetadata({
     return { title: "Not Found" }
   }
 
+  const pageTitle = (page.data as DocsContent).linkedTitle ?? page.data.title ?? "Docs"
+
   return {
-    title: `${page.data.title} — elorm/ui`,
-    description: page.data.description,
+    title: `${stripInlineLinks(pageTitle)} — elorm/ui`,
+    description: page.data.description
+      ? stripInlineLinks(page.data.description)
+      : undefined,
   }
 }

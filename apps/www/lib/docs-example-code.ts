@@ -114,6 +114,10 @@ export const docsImportCode: Record<string, DocsCodeEntry> = {
     base: "import { Avatar } from \"@/components/ui/avatar\"",
     radix: "import { Avatar } from \"@/components/ui/avatar\"",
   },
+  "navii-avatar": {
+    base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"",
+    radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"",
+  },
   "popover": {
     base: "import { Popover } from \"@/components/ui/popover\"",
     radix: "import { Popover } from \"@/components/ui/popover\"",
@@ -217,6 +221,16 @@ export const docsExampleCode: Record<string, Record<string, DocsCodeEntry>> = {
   "default": {
     base: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
     radix: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
+  }
+  },
+  "navii-avatar": {
+  "default": {
+    base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <NaviiAvatar seed=\"alice@example.com\" animated />\n  )\n}",
+    radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <NaviiAvatar seed=\"alice@example.com\" animated />\n  )\n}",
+  },
+  "photo-fallback": {
+    base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
+    radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
   }
   }
 }

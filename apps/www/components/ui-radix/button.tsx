@@ -22,10 +22,11 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-white shadow-sm hover:bg-destructive/90 focus-visible:ring-destructive/20",
         outline:
-          "border border-border/60 bg-muted/30 hover:bg-muted/50 hover:text-accent-foreground",
+          "border border-border/60 bg-muted/30 text-foreground hover:bg-muted/50 hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-muted/60 hover:text-accent-foreground",
+        ghost:
+          "text-foreground hover:bg-muted/60 hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         soft: cn(
           softRadius,

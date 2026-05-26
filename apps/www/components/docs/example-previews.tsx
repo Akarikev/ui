@@ -18,6 +18,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { SocialLinks } from "@/components/ui/social-links"
+import { NaviiAvatar } from "@/components/ui/navii-avatar"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 type ExamplePreviewComponent = () => ReactNode
 
@@ -80,6 +86,19 @@ const examplePreviews: Record<string, Record<string, ExamplePreviewComponent>> =
         <SocialLinks
           links={[{ platform: "github", href: "https://github.com/you" }]}
         />
+      ),
+    },
+    "navii-avatar": {
+      default: () => (
+        <NaviiAvatar seed="alice@example.com" animated title="Alice" />
+      ),
+      "photo-fallback": () => (
+        <Avatar>
+          <AvatarImage src="/does-not-exist.png" alt="User" />
+          <AvatarFallback className="p-0">
+            <NaviiAvatar seed="carol@example.com" size={36} title="Carol" />
+          </AvatarFallback>
+        </Avatar>
       ),
     },
   }

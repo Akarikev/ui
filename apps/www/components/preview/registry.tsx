@@ -23,6 +23,7 @@ import { CollapsibleDemo } from "@/components/demos/collapsible-demo"
 import { BadgeDemo } from "@/components/demos/badge-demo"
 import { AlertDemo } from "@/components/demos/alert-demo"
 import { AvatarDemo } from "@/components/demos/avatar-demo"
+import { NaviiAvatarDemo } from "@/components/demos/navii-avatar-demo"
 import { ProgressDemo } from "@/components/demos/progress-demo"
 import { TooltipDemo } from "@/components/demos/tooltip-demo"
 import { SkeletonDemo } from "@/components/demos/skeleton-demo"
@@ -70,6 +71,7 @@ const demos: Record<
   "social-links": { base: SocialLinksDemo },
   alert: { base: AlertDemo },
   avatar: { base: AvatarDemo },
+  "navii-avatar": { base: NaviiAvatarDemo },
   progress: { base: ProgressDemo },
   separator: { base: SeparatorDemo },
   tooltip: { base: TooltipDemo },
