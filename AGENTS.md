@@ -3,26 +3,27 @@
 - Brand and GitHub repo as **elorm/ui** with lowercase `elorm` (mirroring shadcn/ui), as a normal user repo not an organization.
 - Prefer **Bun** for local dev and monorepo scripts.
 - Prefer **native Next.js docs** over Mintlify; chose **Fumadocs core with a custom shadcn-style minimal layout**.
-- Docs layout is minimal and shadcn-like, with understated headings and icons; prose must not double-border code inside `.not-prose` components (e.g. `InstallCommand`).
+- Docs layout is minimal and shadcn-like, with understated headings and icons; prose must not double-border code inside `.not-prose` components (e.g. `InstallCommand`); when docs mention third-party libraries by name, link to their site in prose (use `meta.docsLead` in registry).
 - CLI should let users choose **Base UI or Radix UI** at init.
 - Docs install snippets should cover **npm, pnpm, yarn, and bun**.
 - Theme customization should be consolidated in one picker, not repeated across every demo section; marketing site defaults to **neutral** base and **mono** accent.
 - Marketing site should use **Geist** fonts; header nav links should be **bold** (`font-semibold`).
 - Component docs should include live preview and per-variant copy-paste code (shadcn-style); interactive demos start closed with an explicit open trigger.
-- Elorm style rules: use `Field`/`FieldGroup` for forms, `gap-*` not `space-y-*`, icons in buttons use `data-icon`, semantic color tokens only, shared styles from `@/lib/ui-styles`; customize components with an **elorm soft identity** (rounded surfaces, soft shadows) rather than stock Radix/Base UI defaults.
+- Elorm style rules: use `Field`/`FieldGroup` for forms, `gap-*` not `space-y-*`, icons in buttons use `data-icon`, semantic color tokens only, shared styles from `@/lib/ui-styles`; customize components with an **elorm soft identity** (rounded surfaces, soft shadows) rather than stock Radix/Base UI defaults; Select inside Dialogs needs `modal={false}` and a higher z-index on the positioner.
 - Docs mobile navigation uses a **sheet menu** (hamburger); hide it on `**lg+`** desktop.
+- Keep **README.md** project-focused with minimal docs; put open-source setup, workflows, and need-to-knows in **CONTRIBUTING.md**; do day-to-day work on **`dev`**, merge to **`main` via PR** when ready.
 
 ## Learned Workspace Facts
 
 - Turborepo monorepo: `apps/www` (Next.js marketing + native `/docs`), `packages/cli`, `packages/schema`, `packages/registry`, `packages/registry-radix`, `packages/themes`.
 - Docs content lives in `apps/www/content/docs/` and is served at `/docs` via Fumadocs (migrated from Mintlify proxy).
-- `scripts/generate-docs.ts` generates component MDX from `registry.json`; marketing catalog counts come from `apps/www/lib/registry-catalog.ts`.
+- `scripts/generate-docs.ts` generates component MDX from `registry.json` (supports `meta.docsLead` for markdown body text with links); marketing catalog counts come from `apps/www/lib/registry-catalog.ts`.
 - Public site domain is **ui.elorm.xyz**.
-- CLI config file is `elorm.json`; core commands are `init`, `add`, `search`, `docs`, and `build`.
+- CLI config is `elorm.json` (`init`, `add`, `search`, `docs`, `build`); npm package is **`elorm`**, publish with `bun run publish:cli`; CLI fetches components from **ui.elorm.xyz/r/** registry JSON, not git.
 - Dual headless registries: Base UI in `packages/registry`, Radix in `packages/registry-radix`.
 - `apps/www` uses Next.js 16; run the site with `bun run --filter www dev`.
 - Shared styling tokens live in `packages/registry/lib/ui-styles.ts` (mirrored in `apps/www/lib/ui-styles.ts`).
-- Registry includes `social-links` for configurable social icon link rows (github, x, mastodon, bluesky, reddit, discord).
+- Registry includes `social-links` for configurable social icon link rows (github, x, mastodon, bluesky, reddit, discord) and opt-in `navii-avatar` mascot avatars via `@usenavii/react` (`elorm add navii-avatar`); core `avatar` stays dependency-free.
 - Fumadocs MDX uses a static component map — don't nest custom tab children in MDX; use single registered components (e.g. `FrameworkSetup`).
 - Docs search calls `/api/search?query=`; framework logos are local `NextMark`/`ViteLogo` in `framework-logos.tsx` (npm `geist` has no logos export).
-- Hero background images use a fixed-height container and `unoptimized` Next/Image to avoid stretch blur on resize.
+- Hero and OG/Twitter image use `public/hero-anime-monitor.png`; hero uses a fixed-height container and `unoptimized` Next/Image to avoid stretch blur — do not add `app/opengraph-image.png` (it overrides layout metadata).

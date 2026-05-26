@@ -7,8 +7,8 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { focusRing, menuItemBase, popoverSurface, surfaceInput, transitionBase } from "@/lib/ui-styles"
 
-function Select({ ...props }: SelectPrimitive.Root.Props<string>) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />
+function Select({ modal = false, ...props }: SelectPrimitive.Root.Props<string>) {
+  return <SelectPrimitive.Root data-slot="select" modal={modal} {...props} />
 }
 
 function SelectGroup({ ...props }: SelectPrimitive.Group.Props) {
@@ -64,11 +64,11 @@ function SelectContent({
 }: SelectPrimitive.Popup.Props & { position?: "popper" }) {
   return (
     <SelectPrimitive.Portal>
-      <SelectPrimitive.Positioner>
+      <SelectPrimitive.Positioner className="z-[100]" sideOffset={4}>
         <SelectPrimitive.Popup
           data-slot="select-content"
           className={cn(
-            "relative z-50 max-h-96 min-w-[8rem] overflow-hidden data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95",
+            "z-[100] max-h-96 min-w-[var(--anchor-width)] overflow-hidden data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95",
             popoverSurface,
             className
           )}
