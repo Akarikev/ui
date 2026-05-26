@@ -493,6 +493,9 @@
         }
       ],
       "meta": {
+        "docsTitle": "[Navii](https://navii.uxderrick.com/) Avatar",
+        "docsDescription": "Deterministic mascot avatar powered by [Navii](https://navii.uxderrick.com/).",
+        "docsLead": "Deterministic mascot avatar powered by [Navii](https://navii.uxderrick.com/).",
         "usage": "Pass a stable seed (user id, UUID, or email). Same seed always produces the same mascot.",
         "examples": [
           {

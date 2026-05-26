@@ -31,6 +31,9 @@ interface RegistryExample {
 
 interface RegistryMeta {
   usage?: string
+  docsLead?: string
+  docsTitle?: string
+  docsDescription?: string
   composition?: string[]
   antiPatterns?: string[]
   examples?: RegistryExample[]
@@ -418,11 +421,16 @@ function generateMdx(item: RegistryItem, examples: RegistryExample[]): string {
   const title = item.title ?? pascalCase(item.name)
   const description =
     item.description ?? `Documentation for the ${title} component.`
+  const docsDescription = item.meta?.docsDescription ?? description
+  const docsLead = item.meta?.docsLead ?? description
 
   const lines: string[] = [
     "---",
-    `title: ${title}`,
-    `description: "${description.replace(/"/g, '\\"')}"`,
+    `title: "${title.replace(/"/g, '\\"')}"`,
+    ...(item.meta?.docsTitle
+      ? [`linkedTitle: "${item.meta.docsTitle.replace(/"/g, '\\"')}"`]
+      : []),
+    `description: "${docsDescription.replace(/"/g, '\\"')}"`,
     "---",
     "",
     `<ComponentPreviewTabs component="${item.name}" />`,
@@ -435,7 +443,7 @@ function generateMdx(item: RegistryItem, examples: RegistryExample[]): string {
     "",
     `<LibraryCodeBlock component="${item.name}" />`,
     "",
-    description,
+    docsLead,
     "",
   ]
 
