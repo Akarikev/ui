@@ -15,12 +15,47 @@ import { tmpdir } from "node:os"
 const ROOT = join(import.meta.dirname, "..")
 const CLI_PKG_PATH = join(ROOT, "packages/cli/package.json")
 const skipNpmCheck = process.argv.includes("--skip-npm-check")
+const NPM_RETRY_ATTEMPTS = 8
+const NPM_RETRY_DELAY_MS = 3000
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function waitForNpmVersion(version: string) {
+  for (let attempt = 1; attempt <= NPM_RETRY_ATTEMPTS; attempt++) {
+    try {
+      const published = run(`npm view elorm@${version} version`)
+      if (published === version) {
+        console.log(`Confirmed elorm@${version} is on npm`)
+        return
+      }
+    } catch {
+      // npm registry may lag right after publish
+    }
+
+    if (attempt < NPM_RETRY_ATTEMPTS) {
+      console.log(
+        `Waiting for elorm@${version} on npm (${attempt}/${NPM_RETRY_ATTEMPTS})...`
+      )
+      await sleep(NPM_RETRY_DELAY_MS)
+    }
+  }
+
+  console.error(
+    `elorm@${version} is not visible on npm yet. Run:\n  bun run publish:cli\n\nOr pass --skip-npm-check to create the release anyway.`
+  )
+  process.exit(1)
+}
 
 function run(command: string, options?: { stdio?: "inherit" | "pipe" }) {
-  return execSync(command, {
-    encoding: "utf-8",
+  const result = execSync(command, {
+    encoding: options?.stdio === "inherit" ? undefined : "utf-8",
     stdio: options?.stdio ?? "pipe",
-  }).trim()
+  })
+
+  if (result == null) return ""
+  return String(result).trim()
 }
 
 function commandExists(name: string) {
@@ -32,7 +67,7 @@ function commandExists(name: string) {
   }
 }
 
-function main() {
+async function main() {
   if (!commandExists("gh")) {
     console.error("GitHub CLI (gh) is required. Install: https://cli.github.com/")
     process.exit(1)
@@ -50,18 +85,7 @@ function main() {
       process.exit(1)
     }
 
-    try {
-      const published = run(`npm view elorm@${version} version`)
-      if (published !== version) {
-        throw new Error("version mismatch")
-      }
-      console.log(`Confirmed elorm@${version} is on npm`)
-    } catch {
-      console.error(
-        `elorm@${version} is not published on npm yet. Run:\n  bun run publish:cli\n\nOr pass --skip-npm-check to create the release anyway.`
-      )
-      process.exit(1)
-    }
+    await waitForNpmVersion(version)
   }
 
   try {
@@ -105,4 +129,7 @@ function main() {
   console.log(`https://github.com/Akarikev/ui/releases/tag/${tag}`)
 }
 
-main()
+main().catch((error) => {
+  console.error(error instanceof Error ? error.message : error)
+  process.exit(1)
+})
