@@ -139,7 +139,13 @@ Bug fixes and docs improvements are always appreciated. For large features, open
 ```bash
 bun run publish:cli:dry-run   # inspect tarball
 bun run publish:cli           # requires npm login
+bun run publish:release       # create GitHub release for packages/cli version (after npm publish)
+bun run publish:cli:all       # npm publish, then GitHub release
 ```
+
+`publish:release` reads the version from `packages/cli/package.json`, verifies it exists on npm, then runs `gh release create v<version>`. Requires [GitHub CLI](https://cli.github.com/) authenticated (`gh auth login`).
+
+To skip the npm check (e.g. registry lag): `bun scripts/create-github-release.ts --skip-npm-check`
 
 ### Deploy website + registry
 
