@@ -22,6 +22,7 @@
         "@radix-ui/react-slot": "^1.2.3",
         "@radix-ui/react-switch": "^1.2.5",
         "@radix-ui/react-tooltip": "^1.2.7",
+        "@usenavii/react": "^0.5.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "fumadocs-core": "^16.9.1",
@@ -47,14 +48,12 @@
     },
     "packages/cli": {
       "name": "elorm",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "bin": {
-        "elorm": "./bin/elorm.js",
+        "elorm": "dist/index.js",
       },
       "dependencies": {
         "@clack/prompts": "^0.11.0",
-        "@elorm/schema": "workspace:*",
-        "@elorm/themes": "workspace:*",
         "commander": "^14.0.0",
         "cosmiconfig": "^9.0.0",
         "execa": "^9.6.0",
@@ -64,6 +63,8 @@
         "zod": "^3.25.67",
       },
       "devDependencies": {
+        "@elorm/schema": "workspace:*",
+        "@elorm/themes": "workspace:*",
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.15.32",
         "tsup": "^8.5.0",
@@ -487,6 +488,10 @@
     "@types/unist": ["@types/unist@3.0.3", "", {}, "sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q=="],
 
     "@ungap/structured-clone": ["@ungap/structured-clone@1.3.1", "", {}, "sha512-mUFwbeTqrVgDQxFveS+df2yfap6iuP20NAKAsBt5jDEoOTDew+zwLAOilHCeQJOVSvmgCX4ogqIrA0mnyr08yQ=="],
+
+    "@usenavii/core": ["@usenavii/core@0.5.0", "", {}, "sha512-6PcNKtmcSKD7uWW79IPaZE1iPzAV+HE7anWbkxR9jYTZtDu/WHM3mFWBdncEIyRc2EFUfA2i2zSA8CPeE7fwTg=="],
+
+    "@usenavii/react": ["@usenavii/react@0.5.0", "", { "dependencies": { "@usenavii/core": "^0.5.0" }, "peerDependencies": { "react": ">=17" } }, "sha512-hEKWrh8ij03k8D1lfvNN32MqmBvJsFVbxpz7EWt7oa9ZvyesTcxdkF+MTx1nXydDQM3O59Al+DRfzoLgsJx6ng=="],
 
     "@vitest/expect": ["@vitest/expect@3.2.4", "", { "dependencies": { "@types/chai": "^5.2.2", "@vitest/spy": "3.2.4", "@vitest/utils": "3.2.4", "chai": "^5.2.0", "tinyrainbow": "^2.0.0" } }, "sha512-Io0yyORnB6sikFlt8QW5K7slY4OjqNX9jmJQ02QDda8lyM6B5oNgVWoSoKPac8/kgnCUzuHQKrSLtu/uOqqrig=="],
 

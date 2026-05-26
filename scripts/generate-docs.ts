@@ -73,6 +73,7 @@ const DOC_COMPONENTS = new Set([
   "tabs",
   "alert",
   "avatar",
+  "navii-avatar",
   "popover",
   "alert-dialog",
   "progress",

@@ -286,6 +286,16 @@
       ]
     },
     {
+      "name": "navii-avatar",
+      "type": "registry:ui",
+      "title": "Navii Avatar",
+      "description": "Deterministic mascot avatar powered by Navii.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",

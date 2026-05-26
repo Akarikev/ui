@@ -479,6 +479,34 @@
       "files": [{ "path": "packages/registry/ui/avatar.tsx", "type": "registry:ui" }]
     },
     {
+      "name": "navii-avatar",
+      "type": "registry:ui",
+      "title": "Navii Avatar",
+      "description": "Deterministic mascot avatar powered by Navii.",
+      "categories": ["ui", "data-display"],
+      "registryDependencies": ["utils"],
+      "dependencies": ["@usenavii/react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/navii-avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pass a stable seed (user id, UUID, or email). Same seed always produces the same mascot.",
+        "examples": [
+          {
+            "title": "Default",
+            "code": "<NaviiAvatar seed=\"alice@example.com\" animated />"
+          },
+          {
+            "title": "Photo fallback",
+            "code": "<Avatar><AvatarImage src={user.photoUrl} alt={user.name} /><AvatarFallback className=\"p-0\"><NaviiAvatar seed={user.id} size={36} /></AvatarFallback></Avatar>"
+          }
+        ]
+      }
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
