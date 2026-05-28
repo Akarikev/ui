@@ -1,0 +1,36 @@
+---
+title: Agent Skills
+description: Install AI agent skills for elorm/ui development.
+---
+
+# Agent Skills
+
+Teach your AI coding agent elorm/ui conventions, CLI workflows, and composition rules with installable skills.
+
+## Install
+
+<InstallCommand command="npx skills add Akarikev/ui --skill elorm -g -y" />
+
+For monorepo contributors:
+
+<InstallCommand command="npx skills add Akarikev/ui --skill elorm-maintainer -g -y" />
+
+Browse skills at [skills.sh](https://skills.sh).
+
+## What the skill covers
+
+The **elorm** skill helps agents:
+
+- Read live project context with `elorm info --json`
+- Fetch component metadata with `elorm docs <name> --json`
+- Follow elorm styling rules (`Field`/`FieldGroup`, `data-icon`, semantic tokens, soft identity)
+- Choose Base UI vs Radix trigger patterns correctly
+- Run the full CLI workflow (init, add, search, diff)
+
+## Maintainer skill
+
+The **elorm-maintainer** skill covers registry builds, docs generation, Fumadocs constraints, and publish workflows for contributors to the elorm/ui monorepo.
+
+## Source
+
+Skills live in the [Akarikev/ui](https://github.com/Akarikev/ui) repository under `skills/`.

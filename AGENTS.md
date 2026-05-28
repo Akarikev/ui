@@ -1,9 +1,9 @@
 ## Learned User Preferences
 
-- Brand and GitHub repo as **elorm/ui** with lowercase `elorm` (mirroring shadcn/ui), as a normal user repo not an organization.
+- Brand as **elorm/ui** with lowercase `elorm` (mirroring shadcn/ui); public GitHub repo is **Akarikev/ui** (user repo, not an organization).
 - Prefer **Bun** for local dev and monorepo scripts.
 - Prefer **native Next.js docs** over Mintlify; chose **Fumadocs core with a custom shadcn-style minimal layout**.
-- Docs layout is minimal and shadcn-like, with understated headings and icons; prose must not double-border code inside `.not-prose` components (e.g. `InstallCommand`); when docs mention third-party libraries by name, link to their site in prose (use `meta.docsLead` in registry).
+- Docs layout is minimal and shadcn-like, with understated headings and icons; prose must not double-border code inside `.not-prose` components (e.g. `InstallCommand`); when docs mention third-party libraries by name, link to their site in prose (`meta.docsLead`) and page headers (`meta.docsTitle` with markdown links).
 - CLI should let users choose **Base UI or Radix UI** at init.
 - Docs install snippets should cover **npm, pnpm, yarn, and bun**.
 - Theme customization should be consolidated in one picker, not repeated across every demo section; marketing site defaults to **neutral** base and **mono** accent.
@@ -17,13 +17,14 @@
 
 - Turborepo monorepo: `apps/www` (Next.js marketing + native `/docs`), `packages/cli`, `packages/schema`, `packages/registry`, `packages/registry-radix`, `packages/themes`.
 - Docs content lives in `apps/www/content/docs/` and is served at `/docs` via Fumadocs (migrated from Mintlify proxy).
-- `scripts/generate-docs.ts` generates component MDX from `registry.json` (supports `meta.docsLead` for markdown body text with links); marketing catalog counts come from `apps/www/lib/registry-catalog.ts`.
+- `scripts/generate-docs.ts` generates component MDX from `registry.json` (supports `meta.docsLead` for body links and linked `meta.docsTitle` for page headers); marketing catalog counts come from `apps/www/lib/registry-catalog.ts`.
 - Public site domain is **ui.elorm.xyz**.
-- CLI config is `elorm.json` (`init`, `add`, `search`, `docs`, `build`); npm package is **`elorm`**, publish with `bun run publish:cli`; CLI fetches components from **ui.elorm.xyz/r/** registry JSON, not git.
+- CLI config is `elorm.json` (`init`, `add`, `search`, `docs`, `build`); npm package is **`elorm`**, publish with `bun run publish:cli` (or `publish:cli:all` for npm + GitHub release via `scripts/create-github-release.ts`); CLI fetches components from **ui.elorm.xyz/r/** registry JSON, not git.
 - Dual headless registries: Base UI in `packages/registry`, Radix in `packages/registry-radix`.
 - `apps/www` uses Next.js 16; run the site with `bun run --filter www dev`.
 - Shared styling tokens live in `packages/registry/lib/ui-styles.ts` (mirrored in `apps/www/lib/ui-styles.ts`).
-- Registry includes `social-links` for configurable social icon link rows (github, x, mastodon, bluesky, reddit, discord) and opt-in `navii-avatar` mascot avatars via `@usenavii/react` (`elorm add navii-avatar`); core `avatar` stays dependency-free.
+- Registry includes `social-links` for configurable social icon link rows (github, x, mastodon, bluesky, reddit, discord) and opt-in `navii-avatar` mascot avatars via `@usenavii/react` ([Navii](https://navii.uxderrick.com/), `elorm add navii-avatar`); core `avatar` stays dependency-free.
+- Agent skills live in `skills/`; install with `npx skills add Akarikev/ui --skill elorm` (skills.sh indexes from public GitHub install telemetry).
 - Fumadocs MDX uses a static component map — don't nest custom tab children in MDX; use single registered components (e.g. `FrameworkSetup`).
 - Docs search calls `/api/search?query=`; framework logos are local `NextMark`/`ViteLogo` in `framework-logos.tsx` (npm `geist` has no logos export).
 - Hero and OG/Twitter image use `public/hero-anime-monitor.png`; hero uses a fixed-height container and `unoptimized` Next/Image to avoid stretch blur — do not add `app/opengraph-image.png` (it overrides layout metadata).

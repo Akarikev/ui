@@ -160,6 +160,6 @@ export async function initCommand(options: InitOptions = {}) {
   }
 
   p.outro(
-    `${pc.green("Success!")} Run ${pc.cyan("npx elorm add button")} to add your first component.`
+    `${pc.green("Success!")} Run ${pc.cyan("npx elorm add button")} to add your first component.\nInstall the agent skill: ${pc.cyan("npx skills add Akarikev/ui --skill elorm")}`
   )
 }

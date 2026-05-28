@@ -109,10 +109,17 @@ async function main() {
       "npx elorm add button card dialog",
       "```",
       "",
+      "### Agent skill",
+      "",
+      "```bash",
+      "npx skills add Akarikev/ui --skill elorm -g -y",
+      "```",
+      "",
       "### Links",
       "",
       `- [npm package](https://www.npmjs.com/package/elorm/v/${version})`,
       "- [Documentation](https://ui.elorm.xyz/docs)",
+      "- [Agent skills](https://ui.elorm.xyz/docs/get-started/agent-skills)",
       "- [Registry](https://ui.elorm.xyz/r/registry.json)",
     ].join("\n")
   )

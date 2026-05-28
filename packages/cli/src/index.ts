@@ -7,6 +7,7 @@ import { addCommand } from "./commands/add.js"
 import { buildCommand } from "./commands/build.js"
 import { searchCommand } from "./commands/search.js"
 import { docsCommand, diffCommand } from "./commands/docs.js"
+import { infoCommand } from "./commands/info.js"
 
 const { version } = createRequire(import.meta.url)("../package.json")
 
@@ -83,6 +84,14 @@ program
   .argument("<item>", "Component name")
   .action(async (item: string, options) => {
     await diffCommand(item, options)
+  })
+
+program
+  .command("info")
+  .description("Show project configuration and installed components")
+  .option("--json", "Output as JSON (AI-friendly)")
+  .action(async (options) => {
+    await infoCommand(options)
   })
 
 program.parse()

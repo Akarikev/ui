@@ -12,6 +12,7 @@ description: "All elorm CLI commands."
 | `elorm add [items...]` | Add components to your project |
 | `elorm search -q "query"` | Search the registry |
 | `elorm docs <item> [--json]` | Show component docs (JSON for AI agents) |
+| `elorm info [--json]` | Show project config and installed components |
 | `elorm diff <item>` | Compare local vs registry version |
 | `elorm build` | Build registry JSON (maintainers) |
 
@@ -36,6 +37,8 @@ description: "All elorm CLI commands."
 <InstallCommand command="elorm add button card dialog" />
 
 <InstallCommand command="elorm docs button --json" />
+
+<InstallCommand command="elorm info --json" />
 
 ```bash
 # Preview before overwriting

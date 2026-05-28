@@ -67,6 +67,16 @@ These apply to registry components and docs demos:
 
 Marketing catalog counts on the homepage come from **`apps/www/lib/registry-catalog.ts`** (derived from `registry.json`).
 
+### Agent skills
+
+Skills live in **`skills/`** and teach AI agents elorm/ui conventions. Update them when changing CLI flags, registry meta fields, or elorm-specific style rules.
+
+```bash
+npx skills add Akarikev/ui --skill elorm -g -y
+```
+
+See **`skills/README.md`** and [docs/get-started/agent-skills](https://ui.elorm.xyz/docs/get-started/agent-skills).
+
 ### CLI
 
 - Published as **`elorm`** on npm; `@elorm/schema` and `@elorm/themes` are bundled into the CLI at build time

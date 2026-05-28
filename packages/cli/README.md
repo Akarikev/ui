@@ -36,6 +36,16 @@ npx elorm add button card dialog
 npx elorm add login-form
 ```
 
+## AI agent skill
+
+Install the elorm skill for Cursor, Claude Code, and other agents:
+
+```bash
+npx skills add Akarikev/ui --skill elorm -g -y
+```
+
+Docs: [ui.elorm.xyz/docs/get-started/agent-skills](https://ui.elorm.xyz/docs/get-started/agent-skills)
+
 ## Commands
 
 | Command | Description |
@@ -44,6 +54,7 @@ npx elorm add login-form
 | `elorm add [items...]` | Add components or blocks |
 | `elorm search -q "query"` | Search the registry |
 | `elorm docs <item> [--json]` | Show component documentation |
+| `elorm info [--json]` | Show project config and installed components |
 | `elorm diff <item>` | Compare local vs registry version |
 
 ## Options

@@ -17,6 +17,7 @@
 <p align="center">
   <a href="https://ui.elorm.xyz"><img src="https://img.shields.io/badge/docs-ui.elorm.xyz-000?style=for-the-badge" alt="Docs" /></a>
   <a href="https://www.npmjs.com/package/elorm"><img src="https://img.shields.io/npm/v/elorm?style=for-the-badge&color=000&logo=npm&logoColor=white" alt="npm version" /></a>
+  <a href="https://skills.sh"><img src="https://img.shields.io/badge/agent_skills-npx_skills_add-000?style=for-the-badge" alt="Agent Skills" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-000?style=for-the-badge" alt="License" /></a>
 </p>
 
@@ -26,6 +27,8 @@
   <a href="https://ui.elorm.xyz/docs">Documentation</a>
   ·
   <a href="https://www.npmjs.com/package/elorm">npm</a>
+  ·
+  <a href="https://ui.elorm.xyz/docs/get-started/agent-skills">Agent Skills</a>
   ·
   <a href="./CONTRIBUTING.md">Contributing</a>
 </p>
@@ -59,6 +62,7 @@ Read the full guide at [ui.elorm.xyz/docs/get-started/installation](https://ui.e
 | --- | --- |
 | Installation | [docs/get-started/installation](https://ui.elorm.xyz/docs/get-started/installation) |
 | CLI reference | [docs/get-started/cli](https://ui.elorm.xyz/docs/get-started/cli) |
+| Agent skills | [docs/get-started/agent-skills](https://ui.elorm.xyz/docs/get-started/agent-skills) |
 | Components | [docs/components/button](https://ui.elorm.xyz/docs/components/button) |
 | Theming | [docs/get-started/theming](https://ui.elorm.xyz/docs/get-started/theming) |
 
