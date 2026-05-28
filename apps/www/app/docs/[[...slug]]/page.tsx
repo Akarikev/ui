@@ -13,6 +13,7 @@ import { DocsToc } from "@/components/docs/docs-toc"
 import { DocsLibrarySwitcher } from "@/components/docs/docs-library-switcher"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
 import { renderInlineLinks, stripInlineLinks } from "@/components/docs/render-inline-links"
+import { createDocsMetadata } from "@/lib/seo"
 
 const DOCS_ROOT = path.join(/* turbopackIgnore: true */ process.cwd(), "content/docs")
 
@@ -124,12 +125,16 @@ export async function generateMetadata({
     return { title: "Not Found" }
   }
 
-  const pageTitle = (page.data as DocsContent).linkedTitle ?? page.data.title ?? "Docs"
+  const pageTitle = stripInlineLinks(
+    (page.data as DocsContent).linkedTitle ?? page.data.title ?? "Docs"
+  )
+  const description = page.data.description
+    ? stripInlineLinks(page.data.description)
+    : undefined
 
-  return {
-    title: `${stripInlineLinks(pageTitle)} — elorm/ui`,
-    description: page.data.description
-      ? stripInlineLinks(page.data.description)
-      : undefined,
-  }
+  return createDocsMetadata({
+    title: pageTitle,
+    description,
+    pathname: page.url,
+  })
 }

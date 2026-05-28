@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 
 const nav = [
   { label: "Docs", href: "/docs" },
+  { label: "Agent Skills", href: "/docs/get-started/agent-skills" },
   { label: "Components", href: "/docs/components/button" },
   { label: "GitHub", href: "https://github.com/Akarikev/ui", external: true },
 ]

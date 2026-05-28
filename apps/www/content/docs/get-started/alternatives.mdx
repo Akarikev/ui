@@ -1,0 +1,62 @@
+---
+title: Alternatives
+description: "How elorm/ui compares to shadcn/ui and other copy-paste React component libraries — Base UI, Radix UI, Tailwind CSS v4, and agent skills."
+---
+
+# Alternatives
+
+Looking for a **copy-paste React component library** with Tailwind CSS, accessible primitives, and modern theming? elorm/ui follows the same philosophy as shadcn/ui — you own the code — with a few differences worth knowing.
+
+## elorm/ui at a glance
+
+- **Copy-paste model** — components live in your repo, not a black-box npm dependency
+- **Dual primitives** — choose **Base UI** or **Radix UI** at `elorm init`
+- **Tailwind CSS v4 + OKLCH** — theme presets for base color, accent, and radius
+- **Agent skills** — installable skill for Cursor, Claude, Codex, and other AI agents
+- **Native docs** — Fumadocs site at [ui.elorm.xyz/docs](https://ui.elorm.xyz/docs)
+
+## Comparison
+
+| | elorm/ui | shadcn/ui |
+| --- | --- | --- |
+| Distribution | Copy-paste via CLI | Copy-paste via CLI |
+| Primitives | Base UI **or** Radix UI | Radix (with Base UI path) |
+| Theming | OKLCH presets via `@elorm/themes` | CSS variables + presets |
+| Docs | Native Fumadocs at ui.elorm.xyz | ui.shadcn.com |
+| Agent skills | `npx skills add Akarikev/ui --skill elorm` | shadcn skill ecosystem |
+| CLI metadata | `elorm docs --json`, `elorm info --json` | `shadcn docs`, `shadcn info` |
+
+Both libraries are strong choices for teams that want **full control** over component source code.
+
+## When to choose elorm/ui
+
+- You want to pick **Base UI or Radix** at init without maintaining two separate design systems
+- You care about **agent-ready workflows** — structured registry metadata and an installable skill
+- You prefer a **minimal docs site** with live previews and per-variant copy-paste code
+- You want OKLCH theme presets with a soft, refined visual identity out of the box
+
+## Quick start
+
+<InstallCommand command="elorm init" />
+
+<InstallCommand command="elorm add button card dialog" />
+
+## Agent skills
+
+Teach your AI coding agent elorm/ui conventions:
+
+<InstallCommand command="skills add Akarikev/ui --skill elorm -g -y" />
+
+Read the full guide at [Agent Skills](/docs/get-started/agent-skills).
+
+<Cards>
+  <Card title="Installation" href="/docs/get-started/installation">
+    Set up elorm/ui in Next.js or Vite.
+  </Card>
+  <Card title="Agent Skills" href="/docs/get-started/agent-skills">
+    Install the elorm skill for AI agents.
+  </Card>
+  <Card title="Components" href="/docs/components/button">
+    Browse the full component catalog.
+  </Card>
+</Cards>

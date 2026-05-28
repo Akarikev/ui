@@ -21,9 +21,9 @@ const features = [
   },
   {
     icon: SparklesIcon,
-    title: "AI-first DX",
+    title: "Agent skills",
     description:
-      "Structured registry metadata and elorm docs --json for agents and coding assistants.",
+      "Install the elorm skill with npx skills add Akarikev/ui — agents get elorm info --json, docs metadata, and composition rules.",
   },
 ]
 

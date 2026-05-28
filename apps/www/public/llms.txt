@@ -1,0 +1,31 @@
+# elorm/ui
+
+> Copy-paste React component library with Base UI or Radix UI, Tailwind CSS v4, OKLCH theming, and installable agent skills.
+
+## Site
+
+- Home: https://ui.elorm.xyz
+- Docs: https://ui.elorm.xyz/docs
+- Installation: https://ui.elorm.xyz/docs/get-started/installation
+- CLI reference: https://ui.elorm.xyz/docs/get-started/cli
+- Agent skills: https://ui.elorm.xyz/docs/get-started/agent-skills
+- Alternatives: https://ui.elorm.xyz/docs/get-started/alternatives
+- Components: https://ui.elorm.xyz/docs/components/button
+
+## Install CLI
+
+npx elorm init
+npx elorm add button card dialog
+
+## Install agent skill
+
+npx skills add Akarikev/ui --skill elorm -g -y
+
+## Registry
+
+https://ui.elorm.xyz/r/registry.json
+
+## Source
+
+- GitHub: https://github.com/Akarikev/ui
+- npm: https://www.npmjs.com/package/elorm

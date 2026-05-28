@@ -1,11 +1,21 @@
 ---
 title: Agent Skills
-description: Install AI agent skills for elorm/ui development.
+description: "Install elorm/ui agent skills for Cursor, Claude, and Codex — CLI workflows, composition rules, and elorm info --json project context."
 ---
 
 # Agent Skills
 
 Teach your AI coding agent elorm/ui conventions, CLI workflows, and composition rules with installable skills.
+
+## Why install the skill
+
+Without a skill, agents guess at elorm-specific patterns — wrong form layout, missing `data-icon`, incorrect Base UI vs Radix triggers. The **elorm** skill injects live project context via `elorm info --json` and per-component docs via `elorm docs <name> --json`.
+
+Install once globally:
+
+<InstallCommand command="skills add Akarikev/ui --skill elorm -g -y" />
+
+Browse skills at [skills.sh](https://skills.sh).
 
 ## Install
 
@@ -14,8 +24,6 @@ Teach your AI coding agent elorm/ui conventions, CLI workflows, and composition 
 For monorepo contributors:
 
 <InstallCommand command="skills add Akarikev/ui --skill elorm-maintainer -g -y" />
-
-Browse skills at [skills.sh](https://skills.sh).
 
 ## What the skill covers
 
