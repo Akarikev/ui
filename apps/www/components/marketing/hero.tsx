@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { CopyCommand } from "./copy-command"
 import { cn } from "@/lib/utils"
 
@@ -25,12 +26,15 @@ export function Hero() {
 
       <div className="relative z-10 flex h-full flex-col items-center justify-start px-6 pb-12 pt-24 text-center sm:justify-center sm:py-20">
         <div className="flex max-w-3xl flex-col items-center gap-5">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm">
+          <Link
+            href="/docs/get-started/agent-skills"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm transition-colors hover:border-white/30 hover:bg-black/35"
+          >
             <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
               New
             </span>
-            Base UI or Radix — your choice
-          </div>
+            Agent skills for Cursor, Claude & Codex
+          </Link>
 
           <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-5xl md:text-6xl md:leading-[1.08]">
             Beautiful components
