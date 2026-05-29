@@ -75,7 +75,7 @@ export function ThemePicker({ ghost = false }: { ghost?: boolean }) {
               : { backgroundColor: accentSwatches[accent] }
           }
         />
-        <span className="sr-only">
+        <span className="sr-only" suppressHydrationWarning>
           {mode} mode, {accent} accent
         </span>
       </button>

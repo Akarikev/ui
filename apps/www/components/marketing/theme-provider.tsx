@@ -39,10 +39,21 @@ const DEFAULT_THEME: ThemeState = {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<ThemeState>(DEFAULT_THEME)
+  const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme: setNextTheme } = useNextTheme()
   const pathname = usePathname()
   const isMarketingHome = pathname === "/"
-  const mode: ThemeMode = resolvedTheme === "dark" ? "dark" : "light"
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const mode: ThemeMode =
+    !mounted || resolvedTheme === undefined
+      ? "dark"
+      : resolvedTheme === "dark"
+        ? "dark"
+        : "light"
 
   useEffect(() => {
     const root = document.documentElement
