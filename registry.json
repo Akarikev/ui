@@ -615,6 +615,114 @@
       "registryDependencies": ["utils", "badge", "input-group", "pagination", "table"],
       "dependencies": ["lucide-react"],
       "files": [{ "path": "packages/registry/blocks/data-table.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:lib",
+      "title": "Theme Provider",
+      "description": "next-themes provider for class-based light and dark mode.",
+      "categories": ["lib", "theming"],
+      "dependencies": ["next-themes"],
+      "files": [
+        {
+          "path": "packages/registry/lib/theme-provider.tsx",
+          "type": "registry:lib",
+          "target": "components/theme-provider.tsx"
+        }
+      ],
+      "meta": {
+        "addedAt": "2026-05-22",
+        "usage": "Wrap your app root. Works with Next.js and Vite. Pair with mode-toggle for UI switching.",
+        "examples": [
+          {
+            "title": "Next.js layout",
+            "code": "<html suppressHydrationWarning><body><ThemeProvider>{children}</ThemeProvider></body></html>"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mode-toggle",
+      "type": "registry:ui",
+      "title": "Mode Toggle",
+      "description": "A dropdown to switch between light, dark, and system themes.",
+      "categories": ["ui", "theming"],
+      "registryDependencies": ["utils", "button", "dropdown-menu"],
+      "dependencies": ["next-themes", "lucide-react"],
+      "files": [{ "path": "packages/registry/ui/mode-toggle.tsx", "type": "registry:ui" }],
+      "meta": {
+        "addedAt": "2026-05-22"
+      }
+    },
+    {
+      "name": "icon-nav-link",
+      "type": "registry:ui",
+      "title": "Icon Nav Link",
+      "description": "Icon-only navigation link that expands its label on hover.",
+      "categories": ["ui", "navigation"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["lucide-react"],
+      "files": [{ "path": "packages/registry/ui/icon-nav-link.tsx", "type": "registry:ui" }],
+      "meta": {
+        "addedAt": "2026-05-22",
+        "usage": "Use for compact icon rows in footers, headers, or toolbars. Pass href, label, and a Lucide icon.",
+        "examples": [
+          {
+            "title": "External link",
+            "code": "<IconNavLink href=\"https://github.com\" label=\"GitHub\" icon={GithubIcon} external />"
+          }
+        ]
+      }
+    },
+    {
+      "name": "page-footer",
+      "type": "registry:block",
+      "title": "Page Footer",
+      "description": "Marketing-style footer with icon nav links and optional attribution.",
+      "categories": ["blocks", "layout"],
+      "registryDependencies": ["utils", "icon-nav-link"],
+      "dependencies": ["lucide-react"],
+      "files": [{ "path": "packages/registry/blocks/page-footer.tsx", "type": "registry:block" }],
+      "meta": {
+        "addedAt": "2026-05-22",
+        "usage": "Pass a links array and optional attribution React node.",
+        "composition": ["IconNavLink"]
+      }
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "Toast notifications powered by Sonner.",
+      "categories": ["ui", "feedback"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["sonner"],
+      "files": [{ "path": "packages/registry/ui/sonner.tsx", "type": "registry:ui" }],
+      "meta": {
+        "addedAt": "2026-05-22",
+        "usage": "Mount `<Toaster />` once in your root layout. Call `toast()` from anywhere.",
+        "examples": [
+          {
+            "title": "Success toast",
+            "code": "toast.success(\"Saved successfully\")"
+          }
+        ]
+      }
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Command palette and searchable list built on cmdk.",
+      "categories": ["ui", "navigation"],
+      "registryDependencies": ["utils", "ui-styles", "dialog"],
+      "dependencies": ["cmdk", "lucide-react"],
+      "files": [{ "path": "packages/registry/ui/command.tsx", "type": "registry:ui" }],
+      "meta": {
+        "addedAt": "2026-05-22",
+        "usage": "Use CommandDialog for a palette overlay or Command + CommandSurface for inline search.",
+        "composition": ["Dialog", "CommandInput", "CommandList", "CommandItem"]
+      }
     }
   ]
 }

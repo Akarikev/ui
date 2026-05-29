@@ -24,6 +24,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import { toast, Toaster } from "@/components/ui/sonner"
+import { UiLibraryContent } from "@/components/docs/ui-library-content"
 
 type ExamplePreviewComponent = () => ReactNode
 
@@ -101,6 +103,19 @@ const examplePreviews: Record<string, Record<string, ExamplePreviewComponent>> =
         </Avatar>
       ),
     },
+    sonner: {
+      "success-toast": () => (
+        <>
+          <Toaster />
+          <Button
+            variant="outline"
+            onClick={() => toast.success("Saved successfully")}
+          >
+            Show success toast
+          </Button>
+        </>
+      ),
+    },
   }
 
 function getExamplePreview(
@@ -123,13 +138,22 @@ export function ExamplePreviewSection({
   }
 
   return (
-    <>
-      <div className="ui-base-only flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-        <Preview />
-      </div>
-      <div className="ui-radix-only flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-        <Preview />
-      </div>
-    </>
+    <UiLibraryContent
+      base={
+        <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+          <Preview />
+        </div>
+      }
+      radix={
+        <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+          <Preview />
+        </div>
+      }
+      heroui={
+        <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+          <Preview />
+        </div>
+      }
+    />
   )
 }

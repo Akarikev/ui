@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@heroui/styles";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -197,11 +198,18 @@
   @apply rounded border border-border bg-muted/50 px-1.5 py-0.5 text-sm;
 }
 
-:root:not([data-ui-library="radix"]) .ui-radix-only {
+:root:not([data-ui-library="radix"]):not([data-ui-library="heroui"]) .ui-radix-only,
+:root:not([data-ui-library="radix"]):not([data-ui-library="heroui"]) .ui-heroui-only {
   display: none !important;
 }
 
-:root[data-ui-library="radix"] .ui-base-only {
+:root[data-ui-library="radix"] .ui-base-only,
+:root[data-ui-library="radix"] .ui-heroui-only {
+  display: none !important;
+}
+
+:root[data-ui-library="heroui"] .ui-base-only,
+:root[data-ui-library="heroui"] .ui-radix-only {
   display: none !important;
 }
 

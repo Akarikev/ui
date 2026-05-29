@@ -39,12 +39,18 @@ import { LoginFormDemo } from "@/components/demos/login-form-demo"
 import { SettingsSectionDemo } from "@/components/demos/settings-section-demo"
 import { DataTableDemo } from "@/components/demos/data-table-demo"
 import { SocialLinksDemo } from "@/components/demos/social-links-demo"
+import { ModeToggleDemo } from "@/components/demos/mode-toggle-demo"
+import { SonnerDemo } from "@/components/demos/sonner-demo"
+import { CommandDemo } from "@/components/demos/command-demo"
+import { IconNavLinkDemo } from "@/components/demos/icon-nav-link-demo"
+import { PageFooterDemo } from "@/components/demos/page-footer-demo"
 
 const demos: Record<
   string,
   {
     base: () => ReactNode
     radix?: () => ReactNode
+    heroui?: () => ReactNode
   }
 > = {
   button: { base: ButtonDemo },
@@ -86,16 +92,24 @@ const demos: Record<
   "login-form": { base: LoginFormDemo },
   "settings-section": { base: SettingsSectionDemo },
   "data-table": { base: DataTableDemo },
+  "mode-toggle": { base: ModeToggleDemo },
+  sonner: { base: SonnerDemo },
+  command: { base: CommandDemo },
+  "icon-nav-link": { base: IconNavLinkDemo },
+  "page-footer": { base: PageFooterDemo },
 }
 
 export function getPreviewDemo(
   component: string,
-  library: "base-ui" | "radix" = "base-ui"
+  library: "base-ui" | "radix" | "heroui" = "base-ui"
 ) {
   const entry = demos[component]
   if (!entry) return ButtonDemo
   if (library === "radix") {
     return entry.radix ?? entry.base
+  }
+  if (library === "heroui") {
+    return entry.heroui ?? entry.base
   }
   return entry.base
 }

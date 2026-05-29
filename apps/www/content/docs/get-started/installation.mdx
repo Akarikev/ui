@@ -28,7 +28,7 @@ This creates:
 During init you'll choose:
 
 - **Framework** — Next.js or Vite
-- **UI library** — Base UI or Radix UI
+- **UI library** — Base UI, Radix UI, or HeroUI
 - **Base color** — neutral, zinc, slate, stone, or gray
 - **Accent color** — blue, violet, green, orange, rose, and more
 - **Border radius** — default, compact, or round
@@ -47,18 +47,22 @@ Components are copied into your project at the paths defined in `elorm.json`.
 
 ## Choosing a UI library
 
-elorm/ui supports two headless primitive libraries. Your choice is stored in `elorm.json` as `uiLibrary`:
+elorm/ui supports three headless primitive libraries. Your choice is stored in `elorm.json` as `uiLibrary`:
 
 | Library | Best for |
 |---------|----------|
 | **Base UI** | Modern unstyled primitives, smaller surface area |
 | **Radix UI** | Battle-tested ecosystem, familiar API |
+| **HeroUI** | React Aria + Tailwind v4 with elorm wrapper styling *(Preview — early primitives)* |
 
-Non-primitive components (input, card, badge, blocks) are shared between both libraries. Only headless primitives differ.
+Non-primitive components (input, card, badge, blocks) are shared between libraries. Only headless primitives differ.
 
 ```bash
 # Non-interactive init with Radix
 elorm init -y --ui-library radix --base-color zinc --accent blue
+
+# Non-interactive init with HeroUI
+elorm init -y --ui-library heroui --base-color neutral --accent mono
 ```
 
 ## Framework setup

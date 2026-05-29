@@ -4,6 +4,10 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type * as PageTree from "fumadocs-core/page-tree"
 import { getDocsIcon } from "@/lib/docs-icons"
+import {
+  getComponentSlugFromUrl,
+  isNewComponent,
+} from "@/lib/component-badges"
 import { cn } from "@/lib/utils"
 
 function nodeLabel(name: PageTree.Node["name"]): string {
@@ -24,6 +28,8 @@ function SidebarLink({
   const pathname = usePathname()
   const active = pathname === href || pathname === `${href}/`
   const Icon = getDocsIcon(nodeLabel(name).toLowerCase(), href)
+  const componentSlug = getComponentSlugFromUrl(href)
+  const showNewBadge = componentSlug ? isNewComponent(componentSlug) : false
 
   return (
     <Link
@@ -38,7 +44,12 @@ function SidebarLink({
       )}
     >
       {Icon ? <Icon className="size-4 shrink-0 opacity-70" /> : null}
-      {nodeLabel(name)}
+      <span className="truncate">{nodeLabel(name)}</span>
+      {showNewBadge ? (
+        <span className="ml-auto shrink-0 rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+          New
+        </span>
+      ) : null}
     </Link>
   )
 }

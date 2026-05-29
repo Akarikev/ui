@@ -1,6 +1,6 @@
 {
   "name": "elorm",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "CLI for elorm/ui — copy-paste React component library",
   "type": "module",
   "bin": {
@@ -67,7 +67,8 @@
     "cli",
     "shadcn",
     "base-ui",
-    "radix"
+    "radix",
+    "heroui"
   ],
   "license": "MIT"
 }

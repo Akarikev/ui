@@ -1,6 +1,7 @@
 import { getPreviewDemo } from "@/components/preview/registry"
 import { ExamplePreviewSection } from "@/components/docs/example-previews"
 import { HighlightedCode } from "@/components/docs/highlighted-code"
+import { UiLibraryContent } from "@/components/docs/ui-library-content"
 import { decodeDocsCode, readDemoSource } from "@/lib/docs-code"
 import {
   docsExampleCode,
@@ -18,12 +19,13 @@ async function resolvePreviewCode({
   example?: string
   code?: string
   radixCode?: string
-}): Promise<{ base: string; radix: string }> {
+}): Promise<{ base: string; radix: string; heroui: string }> {
   if (code) {
     const decodedBase = decodeDocsCode(code)
     return {
       base: decodedBase,
       radix: decodeDocsCode(radixCode ?? code),
+      heroui: decodedBase,
     }
   }
 
@@ -32,16 +34,19 @@ async function resolvePreviewCode({
     return {
       base: entry?.base ?? "",
       radix: entry?.radix ?? entry?.base ?? "",
+      heroui: entry?.heroui ?? entry?.base ?? "",
     }
   }
 
   const demoSource = await readDemoSource(slug)
   const radixDemoSource = await readDemoSource(slug, "radix")
+  const herouiDemoSource = await readDemoSource(slug, "heroui")
 
   if (demoSource) {
     return {
       base: demoSource,
       radix: radixDemoSource ?? demoSource,
+      heroui: herouiDemoSource ?? demoSource,
     }
   }
 
@@ -49,6 +54,7 @@ async function resolvePreviewCode({
   return {
     base: hero?.base ?? "",
     radix: hero?.radix ?? hero?.base ?? "",
+    heroui: hero?.heroui ?? hero?.base ?? "",
   }
 }
 
@@ -74,7 +80,9 @@ export async function ComponentPreviewTabs({
   const slug = component ?? name ?? "button"
   const Demo = getPreviewDemo(slug)
   const RadixDemo = getPreviewDemo(slug, "radix")
-  const { base: decodedCode, radix: decodedRadixCode } = await resolvePreviewCode({
+  const HeroUiDemo = getPreviewDemo(slug, "heroui")
+  const { base: decodedCode, radix: decodedRadixCode, heroui: decodedHerouiCode } =
+    await resolvePreviewCode({
     slug,
     example,
     code,
@@ -103,14 +111,23 @@ export async function ComponentPreviewTabs({
         <ExamplePreviewSection component={slug} example={example} />
       ) : null}
       {showFullDemo ? (
-        <>
-          <div className="ui-base-only flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-            <Demo />
-          </div>
-          <div className="ui-radix-only flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-            <RadixDemo />
-          </div>
-        </>
+        <UiLibraryContent
+          base={
+            <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+              <Demo />
+            </div>
+          }
+          radix={
+            <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+              <RadixDemo />
+            </div>
+          }
+          heroui={
+            <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+              <HeroUiDemo />
+            </div>
+          }
+        />
       ) : null}
       <details className="group border-t border-border">
         <summary className="cursor-pointer list-none bg-muted/20 px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
@@ -123,12 +140,11 @@ export async function ComponentPreviewTabs({
             </span>
           </span>
         </summary>
-        <div className="ui-base-only">
-          <HighlightedCode code={decodedCode} language="tsx" />
-        </div>
-        <div className="ui-radix-only">
-          <HighlightedCode code={decodedRadixCode} language="tsx" />
-        </div>
+        <UiLibraryContent
+          base={<HighlightedCode code={decodedCode} language="tsx" />}
+          radix={<HighlightedCode code={decodedRadixCode} language="tsx" />}
+          heroui={<HighlightedCode code={decodedHerouiCode} language="tsx" />}
+        />
       </details>
     </div>
   )

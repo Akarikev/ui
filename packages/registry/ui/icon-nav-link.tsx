@@ -1,21 +1,26 @@
 import type { LucideIcon } from "lucide-react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
 
-export function IconNavLink({
+import { cn } from "@/lib/utils"
+import { transitionBase } from "@/lib/ui-styles"
+
+function IconNavLink({
   href,
   label,
   icon: Icon,
   external = false,
-}: {
+  className,
+  ...props
+}: React.ComponentProps<"a"> & {
   href: string
   label: string
   icon: LucideIcon
   external?: boolean
 }) {
-  const className = cn(
-    "group inline-flex items-center rounded-full p-2.5 text-muted-foreground transition-all duration-200",
-    "hover:border hover:border-border/60 hover:bg-muted/30 hover:px-3.5 hover:text-foreground"
+  const linkClassName = cn(
+    "group inline-flex items-center rounded-full p-2.5 text-muted-foreground",
+    "hover:border hover:border-border/60 hover:bg-muted/30 hover:px-3.5 hover:text-foreground",
+    transitionBase,
+    className
   )
 
   const content = (
@@ -28,23 +33,19 @@ export function IconNavLink({
     </>
   )
 
-  if (external) {
-    return (
-      <a
-        href={href}
-        className={className}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={label}
-      >
-        {content}
-      </a>
-    )
-  }
-
   return (
-    <Link href={href} className={className} aria-label={label}>
+    <a
+      href={href}
+      className={linkClassName}
+      aria-label={label}
+      {...(external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : undefined)}
+      {...props}
+    >
       {content}
-    </Link>
+    </a>
   )
 }
+
+export { IconNavLink }

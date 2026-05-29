@@ -22,10 +22,9 @@ interface BuildOptions {
   library?: UiLibrary | "all"
 }
 
-const RADIX_PRIMITIVES: Record<
-  string,
-  { path: string; dependencies: string[] }
-> = {
+type LibraryOverride = { path: string; dependencies: string[] }
+
+const RADIX_PRIMITIVES: Record<string, LibraryOverride> = {
   button: {
     path: "packages/registry-radix/ui/button.tsx",
     dependencies: ["@radix-ui/react-slot", "class-variance-authority"],
@@ -62,6 +61,51 @@ const RADIX_PRIMITIVES: Record<
     path: "packages/registry-radix/ui/tooltip.tsx",
     dependencies: ["@radix-ui/react-tooltip"],
   },
+  "mode-toggle": {
+    path: "packages/registry-radix/ui/mode-toggle.tsx",
+    dependencies: ["next-themes", "lucide-react"],
+  },
+}
+
+const HEROUI_PRIMITIVES: Record<string, LibraryOverride> = {
+  button: {
+    path: "packages/registry-heroui/ui/button.tsx",
+    dependencies: ["@heroui/react", "class-variance-authority"],
+  },
+  checkbox: {
+    path: "packages/registry-heroui/ui/checkbox.tsx",
+    dependencies: ["@heroui/react", "lucide-react"],
+  },
+  switch: {
+    path: "packages/registry-heroui/ui/switch.tsx",
+    dependencies: ["@heroui/react"],
+  },
+  select: {
+    path: "packages/registry-heroui/ui/select.tsx",
+    dependencies: ["@heroui/react", "lucide-react"],
+  },
+  dialog: {
+    path: "packages/registry-heroui/ui/dialog.tsx",
+    dependencies: ["@heroui/react", "lucide-react"],
+  },
+  sheet: {
+    path: "packages/registry-heroui/ui/sheet.tsx",
+    dependencies: ["@heroui/react", "lucide-react", "class-variance-authority"],
+  },
+  "dropdown-menu": {
+    path: "packages/registry-heroui/ui/dropdown-menu.tsx",
+    dependencies: ["@heroui/react", "lucide-react"],
+  },
+  tooltip: {
+    path: "packages/registry-heroui/ui/tooltip.tsx",
+    dependencies: ["@heroui/react"],
+  },
+}
+
+function getLibraryOverrides(library: UiLibrary): Record<string, LibraryOverride> {
+  if (library === "radix") return RADIX_PRIMITIVES
+  if (library === "heroui") return HEROUI_PRIMITIVES
+  return {}
 }
 
 function adaptItemsForLibrary(
@@ -70,8 +114,10 @@ function adaptItemsForLibrary(
 ): RegistryItem[] {
   if (library === "base-ui") return items
 
+  const overrides = getLibraryOverrides(library)
+
   return items.map((item) => {
-    const override = RADIX_PRIMITIVES[item.name]
+    const override = overrides[item.name]
     if (!override) return item
 
     return {
@@ -188,7 +234,7 @@ export async function buildCommand(options: BuildOptions = {}) {
   const registry = registrySchema.parse(raw)
 
   const libraries: UiLibrary[] =
-    libraryOption === "all" ? ["base-ui", "radix"] : [libraryOption]
+    libraryOption === "all" ? ["base-ui", "radix", "heroui"] : [libraryOption]
 
   await fs.emptyDir(outputDir)
 
@@ -210,7 +256,7 @@ export async function buildCommand(options: BuildOptions = {}) {
     {
       ...registry,
       libraries,
-      items: allBuilt["base-ui"] ?? allBuilt["radix"],
+      items: allBuilt["base-ui"] ?? allBuilt["radix"] ?? allBuilt["heroui"],
     },
     { spaces: 2 }
   )

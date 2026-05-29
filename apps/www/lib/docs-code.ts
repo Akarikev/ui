@@ -5,14 +5,27 @@ const DEMOS_DIR = path.join(process.cwd(), "components/demos")
 
 export async function readDemoSource(
   component: string,
-  library: "base-ui" | "radix" = "base-ui"
+  library: "base-ui" | "radix" | "heroui" = "base-ui"
 ): Promise<string | null> {
   const basePath = path.join(DEMOS_DIR, `${component}-demo.tsx`)
   const radixPath = path.join(DEMOS_DIR, `${component}-demo-radix.tsx`)
+  const herouiPath = path.join(DEMOS_DIR, `${component}-demo-heroui.tsx`)
 
   if (library === "radix") {
     try {
       return await fs.readFile(radixPath, "utf-8")
+    } catch {
+      try {
+        return await fs.readFile(basePath, "utf-8")
+      } catch {
+        return null
+      }
+    }
+  }
+
+  if (library === "heroui") {
+    try {
+      return await fs.readFile(herouiPath, "utf-8")
     } catch {
       try {
         return await fs.readFile(basePath, "utf-8")

@@ -51,6 +51,31 @@ import {
   TooltipTrigger as RadixTooltipTrigger,
 } from "@/components/ui-radix/tooltip"
 
+import { Button as HeroButton } from "@/components/ui-heroui/button"
+import { Checkbox as HeroCheckbox } from "@/components/ui-heroui/checkbox"
+import { Switch as HeroSwitch } from "@/components/ui-heroui/switch"
+import {
+  Select as HeroSelect,
+  SelectContent as HeroSelectContent,
+  SelectItem as HeroSelectItem,
+  SelectTrigger as HeroSelectTrigger,
+  SelectValue as HeroSelectValue,
+} from "@/components/ui-heroui/select"
+import {
+  Dialog as HeroDialog,
+  DialogContent as HeroDialogContent,
+  DialogDescription as HeroDialogDescription,
+  DialogHeader as HeroDialogHeader,
+  DialogTitle as HeroDialogTitle,
+  DialogTrigger as HeroDialogTrigger,
+} from "@/components/ui-heroui/dialog"
+import {
+  Tooltip as HeroTooltip,
+  TooltipContent as HeroTooltipContent,
+  TooltipProvider as HeroTooltipProvider,
+  TooltipTrigger as HeroTooltipTrigger,
+} from "@/components/ui-heroui/tooltip"
+
 import type { PrimitiveId, UiLibrary } from "@/lib/ui-library"
 
 interface PrimitiveDemoProps {
@@ -58,13 +83,23 @@ interface PrimitiveDemoProps {
   library: UiLibrary
 }
 
+const LIBRARY_LABEL: Record<UiLibrary, string> = {
+  "base-ui": "Base UI",
+  radix: "Radix UI",
+  heroui: "HeroUI",
+}
+
 export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
-  const isRadix = library === "radix"
   const uid = `${component}-${library}`
 
   switch (component) {
     case "button": {
-      const Button = isRadix ? RadixButton : BaseButton
+      const Button =
+        library === "radix"
+          ? RadixButton
+          : library === "heroui"
+            ? HeroButton
+            : BaseButton
       return (
         <div className="flex flex-wrap gap-3">
           <Button>Default</Button>
@@ -74,7 +109,12 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
       )
     }
     case "checkbox": {
-      const Checkbox = isRadix ? RadixCheckbox : BaseCheckbox
+      const Checkbox =
+        library === "radix"
+          ? RadixCheckbox
+          : library === "heroui"
+            ? HeroCheckbox
+            : BaseCheckbox
       return (
         <div className="flex items-center gap-2">
           <Checkbox id={uid} defaultChecked />
@@ -83,7 +123,12 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
       )
     }
     case "switch": {
-      const Switch = isRadix ? RadixSwitch : BaseSwitch
+      const Switch =
+        library === "radix"
+          ? RadixSwitch
+          : library === "heroui"
+            ? HeroSwitch
+            : BaseSwitch
       return (
         <div className="flex items-center gap-2">
           <Switch id={uid} defaultChecked />
@@ -92,11 +137,30 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
       )
     }
     case "select": {
-      const Select = isRadix ? RadixSelect : BaseSelect
-      const SelectTrigger = isRadix ? RadixSelectTrigger : BaseSelectTrigger
-      const SelectValue = isRadix ? RadixSelectValue : BaseSelectValue
-      const SelectContent = isRadix ? RadixSelectContent : BaseSelectContent
-      const SelectItem = isRadix ? RadixSelectItem : BaseSelectItem
+      if (library === "heroui") {
+        return (
+          <HeroSelect defaultValue="apple">
+            <HeroSelectTrigger className="w-[180px]">
+              <HeroSelectValue />
+            </HeroSelectTrigger>
+            <HeroSelectContent>
+              <HeroSelectItem value="apple">Apple</HeroSelectItem>
+              <HeroSelectItem value="banana">Banana</HeroSelectItem>
+              <HeroSelectItem value="orange">Orange</HeroSelectItem>
+            </HeroSelectContent>
+          </HeroSelect>
+        )
+      }
+
+      const Select = library === "radix" ? RadixSelect : BaseSelect
+      const SelectTrigger =
+        library === "radix" ? RadixSelectTrigger : BaseSelectTrigger
+      const SelectValue =
+        library === "radix" ? RadixSelectValue : BaseSelectValue
+      const SelectContent =
+        library === "radix" ? RadixSelectContent : BaseSelectContent
+      const SelectItem =
+        library === "radix" ? RadixSelectItem : BaseSelectItem
       return (
         <Select defaultValue="apple">
           <SelectTrigger className="w-[180px]">
@@ -111,25 +175,58 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
       )
     }
     case "dialog": {
-      const Dialog = isRadix ? RadixDialog : BaseDialog
-      const DialogTrigger = isRadix ? RadixDialogTrigger : BaseDialogTrigger
-      const DialogContent = isRadix ? RadixDialogContent : BaseDialogContent
-      const DialogHeader = isRadix ? RadixDialogHeader : BaseDialogHeader
-      const DialogTitle = isRadix ? RadixDialogTitle : BaseDialogTitle
-      const DialogDescription = isRadix
-        ? RadixDialogDescription
-        : BaseDialogDescription
-      const Button = isRadix ? RadixButton : BaseButton
+      const Dialog =
+        library === "radix"
+          ? RadixDialog
+          : library === "heroui"
+            ? HeroDialog
+            : BaseDialog
+      const DialogTrigger =
+        library === "radix"
+          ? RadixDialogTrigger
+          : library === "heroui"
+            ? HeroDialogTrigger
+            : BaseDialogTrigger
+      const DialogContent =
+        library === "radix"
+          ? RadixDialogContent
+          : library === "heroui"
+            ? HeroDialogContent
+            : BaseDialogContent
+      const DialogHeader =
+        library === "radix"
+          ? RadixDialogHeader
+          : library === "heroui"
+            ? HeroDialogHeader
+            : BaseDialogHeader
+      const DialogTitle =
+        library === "radix"
+          ? RadixDialogTitle
+          : library === "heroui"
+            ? HeroDialogTitle
+            : BaseDialogTitle
+      const DialogDescription =
+        library === "radix"
+          ? RadixDialogDescription
+          : library === "heroui"
+            ? HeroDialogDescription
+            : BaseDialogDescription
+      const Button =
+        library === "radix"
+          ? RadixButton
+          : library === "heroui"
+            ? HeroButton
+            : BaseButton
       return (
         <Dialog>
-          <DialogTrigger {...(isRadix ? { asChild: true } : {})}>
+          <DialogTrigger {...(library === "radix" ? { asChild: true } : {})}>
             <Button variant="outline">Open dialog</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>Edit profile</DialogTitle>
               <DialogDescription>
-                Same styled output — different headless primitive under the hood.
+                Same styled output — {LIBRARY_LABEL[library]} under the hood.
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
@@ -137,21 +234,44 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
       )
     }
     case "tooltip": {
-      const TooltipProvider = isRadix
-        ? RadixTooltipProvider
-        : BaseTooltipProvider
-      const Tooltip = isRadix ? RadixTooltip : BaseTooltip
-      const TooltipTrigger = isRadix ? RadixTooltipTrigger : BaseTooltipTrigger
-      const TooltipContent = isRadix ? RadixTooltipContent : BaseTooltipContent
-      const Button = isRadix ? RadixButton : BaseButton
+      const TooltipProvider =
+        library === "radix"
+          ? RadixTooltipProvider
+          : library === "heroui"
+            ? HeroTooltipProvider
+            : BaseTooltipProvider
+      const Tooltip =
+        library === "radix"
+          ? RadixTooltip
+          : library === "heroui"
+            ? HeroTooltip
+            : BaseTooltip
+      const TooltipTrigger =
+        library === "radix"
+          ? RadixTooltipTrigger
+          : library === "heroui"
+            ? HeroTooltipTrigger
+            : BaseTooltipTrigger
+      const TooltipContent =
+        library === "radix"
+          ? RadixTooltipContent
+          : library === "heroui"
+            ? HeroTooltipContent
+            : BaseTooltipContent
+      const Button =
+        library === "radix"
+          ? RadixButton
+          : library === "heroui"
+            ? HeroButton
+            : BaseButton
       return (
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger {...(isRadix ? { asChild: true } : {})}>
+            <TooltipTrigger {...(library === "radix" ? { asChild: true } : {})}>
               <Button variant="outline">Hover me</Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Built with {isRadix ? "Radix UI" : "Base UI"}</p>
+              <p>Built with {LIBRARY_LABEL[library]}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

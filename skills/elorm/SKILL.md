@@ -1,9 +1,9 @@
 ---
-name: elorm
+
+## name: elorm
 description: Manages elorm/ui components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with elorm/ui, component registries, or any project with an elorm.json file.
 user-invocable: false
 allowed-tools: Bash(npx elorm *), Bash(bunx elorm *), Bash(pnpm dlx elorm *)
----
 
 # elorm/ui
 
@@ -32,17 +32,17 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 
 ### Styling & Tailwind → [rules/styling.md](./rules/styling.md)
 
-- **`className` for layout, not styling.** Never override component colors or typography.
-- **No `space-x-*` or `space-y-*`.** Use `flex` with `gap-*`.
-- **Use `size-*` when width and height are equal.**
+- `**className` for layout, not styling.** Never override component colors or typography.
+- **No `space-x-`* or `space-y-*`.** Use `flex` with `gap-`*.
+- **Use `size-`* when width and height are equal.**
 - **No manual `dark:` color overrides.** Use semantic tokens.
 - **Use `cn()` for conditional classes.**
 - **Shared styles from `@/lib/ui-styles`.** Use `softRadius`, `softShadow`, `surfaceSoft`, `pressable` — not ad-hoc classes.
 
 ### Forms & Inputs → [rules/forms.md](./rules/forms.md)
 
-- **Forms use `FieldGroup` + `Field`.** Never raw `div` with `space-y-*` for form layout.
-- **`InputGroup` uses `InputGroupInput`/`InputGroupTextarea`.** Never raw `Input`/`Textarea` inside `InputGroup`.
+- **Forms use `FieldGroup` + `Field`.** Never raw `div` with `space-y-`* for form layout.
+- `**InputGroup` uses `InputGroupInput`/`InputGroupTextarea`.** Never raw `Input`/`Textarea` inside `InputGroup`.
 - **Field validation uses `data-invalid` + `aria-invalid`.** `data-invalid` on `Field`, `aria-invalid` on the control.
 
 ### Component Structure → [rules/composition.md](./rules/composition.md)
@@ -58,9 +58,9 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 - **No sizing classes on icons inside components** when the component handles sizing.
 - **Use lucide-react by default** unless `elorm.json` specifies another `iconLibrary`.
 
-### Base UI vs Radix → [rules/base-vs-radix.md](./rules/base-vs-radix.md)
+### Base UI vs Radix vs HeroUI → [rules/base-vs-radix.md](./rules/base-vs-radix.md)
 
-- Check `uiLibrary` from project context (`base-ui` or `radix`).
+- Check `uiLibrary` from project context (`base-ui`, `radix`, or `heroui`).
 - Only **8 primitives** differ between libraries: button, checkbox, switch, select, dialog, sheet, dropdown-menu, tooltip.
 - Base UI triggers use `render={<Button>…</Button>}`; Radix uses `asChild`.
 
@@ -94,16 +94,18 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 
 ## Component Selection
 
-| Need | Use |
-| --- | --- |
+
+| Need          | Use                                                                       |
+| ------------- | ------------------------------------------------------------------------- |
 | Button/action | `Button` with appropriate variant (`soft`, `soft-outline`, `size="soft"`) |
-| Form inputs | `Input`, `Select`, `Switch`, `Checkbox`, `Textarea`, `Label`, `Field` |
-| Data display | `Card`, `Badge`, `Skeleton`, `StatCard` |
-| Overlays | `Dialog`, `Sheet`, `DropdownMenu`, `Tooltip`, `AlertDialog` |
-| Layout | `Card`, `Separator`, `PageHeader` |
-| Empty states | `EmptyState` block (`elorm add empty-state`) |
-| Dashboard | `StatCard`, `PageHeader`, `DataTable` block |
-| Social links | `SocialLinks` (github, x, mastodon, bluesky, reddit, discord) |
+| Form inputs   | `Input`, `Select`, `Switch`, `Checkbox`, `Textarea`, `Label`, `Field`     |
+| Data display  | `Card`, `Badge`, `Skeleton`, `StatCard`                                   |
+| Overlays      | `Dialog`, `Sheet`, `DropdownMenu`, `Tooltip`, `AlertDialog`               |
+| Layout        | `Card`, `Separator`, `PageHeader`                                         |
+| Empty states  | `EmptyState` block (`elorm add empty-state`)                              |
+| Dashboard     | `StatCard`, `PageHeader`, `DataTable` block                               |
+| Social links  | `SocialLinks` (github, x, mastodon, bluesky, reddit, discord)             |
+
 
 ## Registry Model
 
@@ -117,13 +119,13 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 
 From project context (`npx elorm info --json`):
 
-- **`aliases`** → use the actual alias prefix for imports (e.g. `@/`, `~/`) — never hardcode defaults
-- **`rsc`** → when `true`, client components need `"use client"`
-- **`uiLibrary`** → `base-ui` or `radix` — affects trigger APIs on 8 primitives
-- **`tailwind.css`** → global CSS file where tokens are defined — edit this file, never create a new one
-- **`iconLibrary`** → determines icon import package
-- **`installedComponents`** → check before running `add`; don't import uninstalled components
-- **`registries`** → URL templates for fetching components
+- `**aliases`** → use the actual alias prefix for imports (e.g. `@/`, `~/`) — never hardcode defaults
+- `**rsc**` → when `true`, client components need `"use client"`
+- **`uiLibrary`** → `base-ui`, `radix`, or `heroui` — affects trigger APIs on 8 primitives
+- `**tailwind.css**` → global CSS file where tokens are defined — edit this file, never create a new one
+- `**iconLibrary**` → determines icon import package
+- `**installedComponents**` → check before running `add`; don't import uninstalled components
+- `**registries**` → URL templates for fetching components
 
 ## Workflow
 
@@ -141,6 +143,7 @@ From project context (`npx elorm info --json`):
 # Initialize
 npx elorm init
 npx elorm init -y --template next --ui-library base-ui --base-color neutral --accent mono
+npx elorm init -y --template next --ui-library heroui --base-color neutral --accent mono
 
 # Add components and blocks
 npx elorm add button card dialog
@@ -166,3 +169,4 @@ npx elorm add button --dry-run
 - [rules/composition.md](./rules/composition.md) — Card, Dialog, Select, overlays
 - [rules/icons.md](./rules/icons.md) — data-icon, Spinner loading buttons
 - [rules/base-vs-radix.md](./rules/base-vs-radix.md) — render vs asChild, primitive split
+

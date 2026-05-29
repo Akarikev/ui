@@ -3,7 +3,7 @@ import fs from "fs-extra"
 import { execa } from "execa"
 import * as p from "@clack/prompts"
 import pc from "picocolors"
-import type { ElormConfig, RegistryItem } from "@elorm/schema"
+import type { ElormConfig, RegistryItem, UiLibrary } from "@elorm/schema"
 import {
   dedupeByTarget,
   fetchRegistryItem,
@@ -19,7 +19,7 @@ interface AddOptions {
   cwd?: string
   overwrite?: boolean
   dryRun?: boolean
-  library?: "base-ui" | "radix"
+  library?: UiLibrary
   interactive?: boolean
 }
 
@@ -55,6 +55,11 @@ export async function addCommand(
           hint: "Battle-tested, accessible components",
         },
         {
+          value: "heroui",
+          label: "HeroUI",
+          hint: "React Aria + Tailwind v4 with elorm wrappers",
+        },
+        {
           value: "config",
           label: `Use config default (${config.uiLibrary})`,
           hint: "From elorm.json",
@@ -68,7 +73,7 @@ export async function addCommand(
     }
 
     if (choice !== "config") {
-      projectConfig = { ...config, uiLibrary: choice as "base-ui" | "radix" }
+      projectConfig = { ...config, uiLibrary: choice as UiLibrary }
       p.log.info(`Using ${pc.cyan(choice)}`)
     } else {
       p.log.info(`Using ${pc.cyan(config.uiLibrary)} from config`)
@@ -76,8 +81,14 @@ export async function addCommand(
   }
   // Allow library override via CLI flag
   else if (options.library) {
-    if (options.library !== "base-ui" && options.library !== "radix") {
-      p.log.error(`Invalid library: ${options.library}. Must be 'base-ui' or 'radix'.`)
+    if (
+      options.library !== "base-ui" &&
+      options.library !== "radix" &&
+      options.library !== "heroui"
+    ) {
+      p.log.error(
+        `Invalid library: ${options.library}. Must be 'base-ui', 'radix', or 'heroui'.`
+      )
       process.exit(1)
     }
     projectConfig = { ...config, uiLibrary: options.library }

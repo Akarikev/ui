@@ -1,21 +1,24 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import type { UiLibrary } from "@/lib/ui-library"
+import { UiPreviewBadge } from "@/components/docs/ui-preview-badge"
 import { cn } from "@/lib/utils"
 
 const LIBRARIES = [
   { id: "base-ui", label: "Base UI" },
   { id: "radix", label: "Radix UI" },
-] as const
+  { id: "heroui", label: "HeroUI" },
+] as const satisfies ReadonlyArray<{ id: UiLibrary; label: string }>
 
 const STORAGE_KEY = "elorm-docs-ui-library"
 
 export function DocsLibrarySwitcher({ className }: { className?: string }) {
-  const [selected, setSelected] = useState<(typeof LIBRARIES)[number]["id"]>("base-ui")
+  const [selected, setSelected] = useState<UiLibrary>("base-ui")
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    if (stored === "base-ui" || stored === "radix") {
+    if (stored === "base-ui" || stored === "radix" || stored === "heroui") {
       setSelected(stored)
       document.documentElement.dataset.uiLibrary = stored
       return
@@ -23,7 +26,7 @@ export function DocsLibrarySwitcher({ className }: { className?: string }) {
     document.documentElement.dataset.uiLibrary = "base-ui"
   }, [])
 
-  function handleSelect(next: (typeof LIBRARIES)[number]["id"]) {
+  function handleSelect(next: UiLibrary) {
     setSelected(next)
     window.localStorage.setItem(STORAGE_KEY, next)
     document.documentElement.dataset.uiLibrary = next
@@ -32,29 +35,37 @@ export function DocsLibrarySwitcher({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "inline-flex flex-wrap items-center gap-1 rounded-lg border border-border bg-muted/30 p-1 text-sm",
+        "flex w-full flex-col gap-2 rounded-lg border border-border bg-muted/30 p-2 text-sm sm:inline-flex sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-1 sm:p-1",
         className
       )}
     >
-      {LIBRARIES.map((lib) => (
-        <button
-          type="button"
-          key={lib.id}
-          onClick={() => handleSelect(lib.id)}
-          className={cn(
-            "rounded-md px-3 py-1.5 font-medium transition-[color,box-shadow,background-color]",
-            selected === lib.id
-              ? "bg-background text-foreground shadow-sm ring-1 ring-border/50"
-              : "text-muted-foreground hover:text-foreground"
-          )}
-          aria-pressed={selected === lib.id}
-          title={`Use ${lib.label} examples`}
-        >
-          {lib.label}
-        </button>
-      ))}
-      <span className="px-2 text-xs text-muted-foreground">
-        Saved preference for <code className="text-foreground">elorm init --ui-library {selected}</code>
+      <div className="flex w-full gap-1 sm:w-auto">
+        {LIBRARIES.map((lib) => (
+          <button
+            type="button"
+            key={lib.id}
+            onClick={() => handleSelect(lib.id)}
+            className={cn(
+              "flex flex-1 items-center justify-center rounded-md px-2 py-1.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow,background-color] sm:flex-none sm:px-3 sm:text-sm",
+              selected === lib.id
+                ? "bg-background text-foreground shadow-sm ring-1 ring-border/50"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+            aria-pressed={selected === lib.id}
+            title={`Use ${lib.label} examples`}
+          >
+            <span className="inline-flex items-center gap-1.5">
+              {lib.label}
+              {lib.id === "heroui" ? (
+                <UiPreviewBadge size="sm" className="hidden sm:inline-flex" />
+              ) : null}
+            </span>
+          </button>
+        ))}
+      </div>
+      <span className="px-1 text-xs text-muted-foreground sm:px-2">
+        Saved preference for{" "}
+        <code className="text-foreground">elorm init --ui-library {selected}</code>
       </span>
     </div>
   )

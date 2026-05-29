@@ -10,7 +10,7 @@ Read these before changing components, docs, or the CLI.
 
 ### Branding
 
-- Always **elorm/ui** with lowercase `elorm` (like shadcn/ui), not "Elorm UI".
+- Always **elorm/ui** with lowercase `elorm`, not "Elorm UI".
 - Public site: **ui.elorm.xyz**
 - Registry JSON is served at `https://ui.elorm.xyz/r/{library}/{name}.json`
 
@@ -37,11 +37,11 @@ This is a **Turborepo monorepo** managed with **Bun**. Node **20+** is required.
 
 These apply to registry components and docs demos:
 
-- Use **`Field` / `FieldGroup`** for forms, not ad-hoc label stacks
-- Use **`gap-*`**, not `space-y-*` or `space-x-*`
-- Icons in buttons use **`data-icon`**
+- Use `**Field` / `FieldGroup`** for forms, not ad-hoc label stacks
+- Use `**gap-***`, not `space-y-*` or `space-x-*`
+- Icons in buttons use `**data-icon**`
 - Use **semantic color tokens** only (`bg-primary`, `text-muted-foreground`) — no raw palette classes
-- Shared styles live in **`@/lib/ui-styles`** (`packages/registry/lib/ui-styles.ts`)
+- Shared styles live in `**@/lib/ui-styles`** (`packages/registry/lib/ui-styles.ts`)
 - **elorm soft identity:** rounded surfaces and soft shadows — not stock Radix/Base UI defaults
 - **Dialog / Sheet / Alert Dialog** demos start **closed** with an explicit open trigger; Cancel/Save/close must dismiss
 
@@ -53,34 +53,34 @@ These apply to registry components and docs demos:
 - Code tabs pull from generated `apps/www/lib/docs-example-code.ts` — run `bun run docs:generate` after registry or demo changes
 - **Do not nest custom tab children in MDX** — Fumadocs uses a static component map. Use single registered components (e.g. `FrameworkSetup`)
 - Prose must not **double-border code** inside `.not-prose` blocks (e.g. `InstallCommand`)
-- Docs search API expects **`/api/search?query=`** (not `q`)
-- Mobile docs nav uses a **sheet**; hamburger is **`lg:hidden`**
+- Docs search API expects `**/api/search?query=`** (not `q`)
+- Mobile docs nav uses a **sheet**; hamburger is `**lg:hidden`**
 
 ### Registry workflow
 
 1. Add or edit source in `packages/registry/` (and `packages/registry-radix/` for primitives)
-2. Add or update the item in **`registry.json`**
-3. Run **`bun run registry:build`** — writes JSON to `apps/www/public/r/`
-4. Run **`bun run docs:generate`** — refreshes MDX and example code
-5. Sync www app copies if needed: **`bun run www:sync`**
+2. Add or update the item in `**registry.json**`
+3. Run `**bun run registry:build**` — writes JSON to `apps/www/public/r/`
+4. Run `**bun run docs:generate**` — refreshes MDX and example code
+5. Sync www app copies if needed: `**bun run www:sync**`
 6. Add or update a demo in `apps/www/components/demos/` and register it in the preview registry
 
-Marketing catalog counts on the homepage come from **`apps/www/lib/registry-catalog.ts`** (derived from `registry.json`).
+Marketing catalog counts on the homepage come from `**apps/www/lib/registry-catalog.ts**` (derived from `registry.json`).
 
 ### Agent skills
 
-Skills live in **`skills/`** and teach AI agents elorm/ui conventions. Update them when changing CLI flags, registry meta fields, or elorm-specific style rules.
+Skills live in `**skills/**` and teach AI agents elorm/ui conventions. Update them when changing CLI flags, registry meta fields, or elorm-specific style rules.
 
 ```bash
 npx skills add Akarikev/ui --skill elorm -g -y
 ```
 
-See **`skills/README.md`** and [docs/get-started/agent-skills](https://ui.elorm.xyz/docs/get-started/agent-skills).
+See `**skills/README.md**` and [docs/get-started/agent-skills](https://ui.elorm.xyz/docs/get-started/agent-skills).
 
 ### CLI
 
-- Published as **`elorm`** on npm; `@elorm/schema` and `@elorm/themes` are bundled into the CLI at build time
-- Config file: **`elorm.json`** with `$schema` pointing to `https://ui.elorm.xyz/schema/elorm.json`
+- Published as `**elorm**` on npm; `@elorm/schema` and `@elorm/themes` are bundled into the CLI at build time
+- Config file: `**elorm.json**` with `$schema` pointing to `https://ui.elorm.xyz/schema/elorm.json`
 - Default registry URL: `https://ui.elorm.xyz/r/{library}/{name}.json`
 - Install snippets in docs should cover **npm, pnpm, yarn, and bun**
 
@@ -127,11 +127,11 @@ For **blocks**, source lives in `packages/registry/blocks/`.
 1. Fork and create a branch from `main`
 2. Keep changes focused — one component or one concern per PR when possible
 3. Run before opening:
-   ```bash
+  ```bash
    bun run typecheck
    bun run test
    bun run build
-   ```
+  ```
 4. Include screenshots or a short note for visual changes (marketing, docs previews, component styling)
 5. Describe what changed and why in the PR body
 
@@ -161,7 +161,7 @@ To skip the npm check (e.g. registry lag): `bun scripts/create-github-release.ts
 
 The site deploys from `apps/www` (Vercel). Custom domain: **ui.elorm.xyz**.
 
-Every registry change must be built and deployed so `/r/*` stays in sync:
+Every registry change must be built and deployed so `/r/`* stays in sync:
 
 ```bash
 bun run registry:build

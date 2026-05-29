@@ -1,0 +1,41 @@
+---
+title: Dark Mode
+description: "Add light, dark, and system theme switching to your elorm/ui project."
+---
+
+## Overview
+
+elorm/ui uses class-based dark mode via CSS variables. Add [next-themes](https://github.com/pacocoursey/next-themes) for runtime theme switching — it works with both Next.js and Vite.
+
+<DarkModePreview />
+
+<InstallCommand command="elorm add theme-provider mode-toggle" />
+
+## Framework setup
+
+<FrameworkDarkModeSetup />
+
+## Usage
+
+Import the toggle anywhere inside your provider:
+
+```tsx
+import { ModeToggle } from "@/components/ui/mode-toggle"
+
+export function SiteHeader() {
+  return (
+    <header className="flex items-center justify-between">
+      <span>My App</span>
+      <ModeToggle />
+    </header>
+  )
+}
+```
+
+## How it works
+
+- `ThemeProvider` toggles the `dark` class on `<html>` via `attribute="class"`
+- elorm CSS tokens in your global stylesheet define both light and dark values under `.dark`
+- `ModeToggle` exposes light, dark, and system options through a dropdown menu
+
+See [Theming](/docs/get-started/theming) for customizing color tokens.

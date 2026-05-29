@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react"
 import { usePathname } from "next/navigation"
+import { useTheme as useNextTheme } from "next-themes"
 import {
   applyThemeToElement,
   type AccentColor,
@@ -20,10 +21,10 @@ export type ThemeMode = "light" | "dark"
 export interface ThemeState {
   baseColor: BaseColor
   accent: AccentColor
-  mode: ThemeMode
 }
 
 interface ThemeContextValue extends ThemeState {
+  mode: ThemeMode
   setBaseColor: (baseColor: BaseColor) => void
   setAccent: (accent: AccentColor) => void
   setMode: (mode: ThemeMode) => void
@@ -34,37 +35,34 @@ const ThemeContext = createContext<ThemeContextValue | null>(null)
 const DEFAULT_THEME: ThemeState = {
   baseColor: "neutral",
   accent: "mono",
-  mode: "dark",
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<ThemeState>(DEFAULT_THEME)
+  const { resolvedTheme, setTheme: setNextTheme } = useNextTheme()
   const pathname = usePathname()
   const isMarketingHome = pathname === "/"
+  const mode: ThemeMode = resolvedTheme === "dark" ? "dark" : "light"
 
   useEffect(() => {
     const root = document.documentElement
-    if (theme.mode === "dark") {
-      root.classList.add("dark")
-    } else {
-      root.classList.remove("dark")
-    }
     applyThemeToElement(
       root,
       { baseColor: theme.baseColor, accent: theme.accent },
-      theme.mode
+      mode
     )
-    if (theme.mode === "light" && isMarketingHome) {
+    if (mode === "light" && isMarketingHome) {
       applyMarketingLightOverrides(root)
     }
-  }, [theme, isMarketingHome])
+  }, [theme, mode, isMarketingHome])
 
   const value: ThemeContextValue = {
     ...theme,
+    mode,
     setBaseColor: (baseColor) =>
       setTheme((current) => ({ ...current, baseColor })),
     setAccent: (accent) => setTheme((current) => ({ ...current, accent })),
-    setMode: (mode) => setTheme((current) => ({ ...current, mode })),
+    setMode: (nextMode) => setNextTheme(nextMode),
   }
 
   return (

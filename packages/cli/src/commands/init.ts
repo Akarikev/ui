@@ -57,6 +57,10 @@ export async function initCommand(options: InitOptions = {}) {
       options: [
         { value: "base-ui", label: "Base UI (default, modern, unstyled)" },
         { value: "radix", label: "Radix UI (battle-tested, widely adopted)" },
+        {
+          value: "heroui",
+          label: "HeroUI (React Aria + Tailwind v4, elorm wrappers)",
+        },
       ],
     })
 

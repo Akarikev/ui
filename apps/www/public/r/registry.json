@@ -406,6 +406,66 @@
       ]
     },
     {
+      "name": "theme-provider",
+      "type": "registry:lib",
+      "title": "Theme Provider",
+      "description": "next-themes provider for class-based light and dark mode.",
+      "categories": [
+        "lib",
+        "theming"
+      ]
+    },
+    {
+      "name": "mode-toggle",
+      "type": "registry:ui",
+      "title": "Mode Toggle",
+      "description": "A dropdown to switch between light, dark, and system themes.",
+      "categories": [
+        "ui",
+        "theming"
+      ]
+    },
+    {
+      "name": "icon-nav-link",
+      "type": "registry:ui",
+      "title": "Icon Nav Link",
+      "description": "Icon-only navigation link that expands its label on hover.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "page-footer",
+      "type": "registry:block",
+      "title": "Page Footer",
+      "description": "Marketing-style footer with icon nav links and optional attribution.",
+      "categories": [
+        "blocks",
+        "layout"
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "Toast notifications powered by Sonner.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Command palette and searchable list built on cmdk.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
       "name": "theme-neutral",
       "type": "registry:theme",
       "title": "Neutral Theme",
@@ -525,6 +585,7 @@
   ],
   "libraries": [
     "base-ui",
-    "radix"
+    "radix",
+    "heroui"
   ]
 }

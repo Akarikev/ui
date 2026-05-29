@@ -3,164 +3,229 @@
 export type DocsCodeEntry = {
   base: string
   radix: string
+  heroui: string
 }
 
 export const docsImportCode: Record<string, DocsCodeEntry> = {
   "button": {
     base: "import { Button } from \"@/components/ui/button\"",
     radix: "import { Button } from \"@/components/ui/button\"",
+    heroui: "import { Button } from \"@/components/ui/button\"",
   },
   "input": {
     base: "import { Input } from \"@/components/ui/input\"",
     radix: "import { Input } from \"@/components/ui/input\"",
+    heroui: "import { Input } from \"@/components/ui/input\"",
   },
   "textarea": {
     base: "import { Textarea } from \"@/components/ui/textarea\"",
     radix: "import { Textarea } from \"@/components/ui/textarea\"",
+    heroui: "import { Textarea } from \"@/components/ui/textarea\"",
   },
   "label": {
     base: "import { Label } from \"@/components/ui/label\"",
     radix: "import { Label } from \"@/components/ui/label\"",
+    heroui: "import { Label } from \"@/components/ui/label\"",
   },
   "checkbox": {
     base: "import { Checkbox } from \"@/components/ui/checkbox\"",
     radix: "import { Checkbox } from \"@/components/ui/checkbox\"",
+    heroui: "import { Checkbox } from \"@/components/ui/checkbox\"",
   },
   "switch": {
     base: "import { Switch } from \"@/components/ui/switch\"",
     radix: "import { Switch } from \"@/components/ui/switch\"",
+    heroui: "import { Switch } from \"@/components/ui/switch\"",
   },
   "select": {
     base: "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\"",
     radix: "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\"\n\n// Radix preset: generated via `elorm init --ui-library radix`",
+    heroui: "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\"\n\n// HeroUI preset: generated via `elorm init --ui-library heroui`",
   },
   "dialog": {
     base: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"",
     radix: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\n\n// Radix preset: generated via `elorm init --ui-library radix`",
+    heroui: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\n\n// HeroUI preset: generated via `elorm init --ui-library heroui`",
   },
   "sheet": {
     base: "import {\n  Sheet,\n  SheetContent,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/components/ui/sheet\"",
     radix: "import {\n  Sheet,\n  SheetContent,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/components/ui/sheet\"\n\n// Radix preset: generated via `elorm init --ui-library radix`",
+    heroui: "import {\n  Sheet,\n  SheetContent,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/components/ui/sheet\"\n\n// HeroUI preset: generated via `elorm init --ui-library heroui`",
   },
   "dropdown-menu": {
     base: "import {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"",
     radix: "import {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\n\n// Radix preset: generated via `elorm init --ui-library radix`",
+    heroui: "import {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\n\n// HeroUI preset: generated via `elorm init --ui-library heroui`",
   },
   "tooltip": {
     base: "import {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\"",
     radix: "import {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\"",
+    heroui: "import {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\"",
   },
   "card": {
     base: "import { Card } from \"@/components/ui/card\"",
     radix: "import { Card } from \"@/components/ui/card\"",
+    heroui: "import { Card } from \"@/components/ui/card\"",
   },
   "badge": {
     base: "import { Badge } from \"@/components/ui/badge\"",
     radix: "import { Badge } from \"@/components/ui/badge\"",
+    heroui: "import { Badge } from \"@/components/ui/badge\"",
   },
   "social-links": {
     base: "import { SocialLinks } from \"@/components/ui/social-links\"",
     radix: "import { SocialLinks } from \"@/components/ui/social-links\"",
+    heroui: "import { SocialLinks } from \"@/components/ui/social-links\"",
   },
   "separator": {
     base: "import { Separator } from \"@/components/ui/separator\"",
     radix: "import { Separator } from \"@/components/ui/separator\"",
+    heroui: "import { Separator } from \"@/components/ui/separator\"",
   },
   "skeleton": {
     base: "import { Skeleton } from \"@/components/ui/skeleton\"",
     radix: "import { Skeleton } from \"@/components/ui/skeleton\"",
+    heroui: "import { Skeleton } from \"@/components/ui/skeleton\"",
   },
   "empty-state": {
     base: "import { EmptyState } from \"@/components/blocks/empty-state\"",
     radix: "import { EmptyState } from \"@/components/blocks/empty-state\"",
+    heroui: "import { EmptyState } from \"@/components/blocks/empty-state\"",
   },
   "stat-card": {
     base: "import { StatCard } from \"@/components/blocks/stat-card\"",
     radix: "import { StatCard } from \"@/components/blocks/stat-card\"",
+    heroui: "import { StatCard } from \"@/components/blocks/stat-card\"",
   },
   "page-header": {
     base: "import { PageHeader } from \"@/components/blocks/page-header\"",
     radix: "import { PageHeader } from \"@/components/blocks/page-header\"",
+    heroui: "import { PageHeader } from \"@/components/blocks/page-header\"",
   },
   "field": {
     base: "import { Field } from \"@/components/ui/field\"",
     radix: "import { Field } from \"@/components/ui/field\"",
+    heroui: "import { Field } from \"@/components/ui/field\"",
   },
   "input-group": {
     base: "import { InputGroup } from \"@/components/ui/input-group\"",
     radix: "import { InputGroup } from \"@/components/ui/input-group\"",
+    heroui: "import { InputGroup } from \"@/components/ui/input-group\"",
   },
   "spinner": {
     base: "import { Spinner } from \"@/components/ui/spinner\"",
     radix: "import { Spinner } from \"@/components/ui/spinner\"",
+    heroui: "import { Spinner } from \"@/components/ui/spinner\"",
   },
   "radio-group": {
     base: "import { RadioGroup } from \"@/components/ui/radio-group\"",
     radix: "import { RadioGroup } from \"@/components/ui/radio-group\"",
+    heroui: "import { RadioGroup } from \"@/components/ui/radio-group\"",
   },
   "toggle-group": {
     base: "import { ToggleGroup } from \"@/components/ui/toggle-group\"",
     radix: "import { ToggleGroup } from \"@/components/ui/toggle-group\"",
+    heroui: "import { ToggleGroup } from \"@/components/ui/toggle-group\"",
   },
   "tabs": {
     base: "import { Tabs } from \"@/components/ui/tabs\"",
     radix: "import { Tabs } from \"@/components/ui/tabs\"",
+    heroui: "import { Tabs } from \"@/components/ui/tabs\"",
   },
   "alert": {
     base: "import { Alert } from \"@/components/ui/alert\"",
     radix: "import { Alert } from \"@/components/ui/alert\"",
+    heroui: "import { Alert } from \"@/components/ui/alert\"",
   },
   "avatar": {
     base: "import { Avatar } from \"@/components/ui/avatar\"",
     radix: "import { Avatar } from \"@/components/ui/avatar\"",
+    heroui: "import { Avatar } from \"@/components/ui/avatar\"",
   },
   "navii-avatar": {
     base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"",
     radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"",
+    heroui: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"",
   },
   "popover": {
     base: "import { Popover } from \"@/components/ui/popover\"",
     radix: "import { Popover } from \"@/components/ui/popover\"",
+    heroui: "import { Popover } from \"@/components/ui/popover\"",
   },
   "alert-dialog": {
     base: "import { AlertDialog } from \"@/components/ui/alert-dialog\"",
     radix: "import { AlertDialog } from \"@/components/ui/alert-dialog\"",
+    heroui: "import { AlertDialog } from \"@/components/ui/alert-dialog\"",
   },
   "progress": {
     base: "import { Progress } from \"@/components/ui/progress\"",
     radix: "import { Progress } from \"@/components/ui/progress\"",
+    heroui: "import { Progress } from \"@/components/ui/progress\"",
   },
   "table": {
     base: "import {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\"",
     radix: "import {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\"",
+    heroui: "import {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\"",
   },
   "pagination": {
     base: "import { Pagination } from \"@/components/ui/pagination\"",
     radix: "import { Pagination } from \"@/components/ui/pagination\"",
+    heroui: "import { Pagination } from \"@/components/ui/pagination\"",
   },
   "breadcrumb": {
     base: "import { Breadcrumb } from \"@/components/ui/breadcrumb\"",
     radix: "import { Breadcrumb } from \"@/components/ui/breadcrumb\"",
+    heroui: "import { Breadcrumb } from \"@/components/ui/breadcrumb\"",
   },
   "accordion": {
     base: "import { Accordion } from \"@/components/ui/accordion\"",
     radix: "import { Accordion } from \"@/components/ui/accordion\"",
+    heroui: "import { Accordion } from \"@/components/ui/accordion\"",
   },
   "collapsible": {
     base: "import { Collapsible } from \"@/components/ui/collapsible\"",
     radix: "import { Collapsible } from \"@/components/ui/collapsible\"",
+    heroui: "import { Collapsible } from \"@/components/ui/collapsible\"",
   },
   "login-form": {
     base: "import { LoginForm } from \"@/components/blocks/login-form\"",
     radix: "import { LoginForm } from \"@/components/blocks/login-form\"",
+    heroui: "import { LoginForm } from \"@/components/blocks/login-form\"",
   },
   "settings-section": {
     base: "import { SettingsSection } from \"@/components/blocks/settings-section\"",
     radix: "import { SettingsSection } from \"@/components/blocks/settings-section\"",
+    heroui: "import { SettingsSection } from \"@/components/blocks/settings-section\"",
   },
   "data-table": {
     base: "import { DataTable } from \"@/components/blocks/data-table\"",
     radix: "import { DataTable } from \"@/components/blocks/data-table\"",
+    heroui: "import { DataTable } from \"@/components/blocks/data-table\"",
+  },
+  "mode-toggle": {
+    base: "import { ModeToggle } from \"@/components/ui/mode-toggle\"",
+    radix: "import { ModeToggle } from \"@/components/ui/mode-toggle\"",
+    heroui: "import { ModeToggle } from \"@/components/ui/mode-toggle\"",
+  },
+  "icon-nav-link": {
+    base: "import { IconNavLink } from \"@/components/ui/icon-nav-link\"",
+    radix: "import { IconNavLink } from \"@/components/ui/icon-nav-link\"",
+    heroui: "import { IconNavLink } from \"@/components/ui/icon-nav-link\"",
+  },
+  "page-footer": {
+    base: "import { PageFooter } from \"@/components/blocks/page-footer\"",
+    radix: "import { PageFooter } from \"@/components/blocks/page-footer\"",
+    heroui: "import { PageFooter } from \"@/components/blocks/page-footer\"",
+  },
+  "sonner": {
+    base: "import { Sonner } from \"@/components/ui/sonner\"",
+    radix: "import { Sonner } from \"@/components/ui/sonner\"",
+    heroui: "import { Sonner } from \"@/components/ui/sonner\"",
+  },
+  "command": {
+    base: "import { Command } from \"@/components/ui/command\"",
+    radix: "import { Command } from \"@/components/ui/command\"",
+    heroui: "import { Command } from \"@/components/ui/command\"",
   }
 }
 
@@ -173,64 +238,91 @@ export const docsExampleCode: Record<string, Record<string, DocsCodeEntry>> = {
   "secondary": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"secondary\">Secondary</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"secondary\">Secondary</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"secondary\">Secondary</Button>\n  )\n}",
   },
   "outline": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"outline\">Outline</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"outline\">Outline</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"outline\">Outline</Button>\n  )\n}",
   },
   "ghost": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"ghost\">Ghost</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"ghost\">Ghost</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"ghost\">Ghost</Button>\n  )\n}",
   },
   "destructive": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"destructive\">Destructive</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"destructive\">Destructive</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"destructive\">Destructive</Button>\n  )\n}",
   },
   "link": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"link\">Link</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"link\">Link</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"link\">Link</Button>\n  )\n}",
   },
   "soft": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"soft\" size=\"soft\">Request a demo</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"soft\" size=\"soft\">Request a demo</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"soft\" size=\"soft\">Request a demo</Button>\n  )\n}",
   },
   "soft-outline": {
     base: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"soft-outline\" size=\"soft\">Join waitlist</Button>\n  )\n}",
     radix: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"soft-outline\" size=\"soft\">Join waitlist</Button>\n  )\n}",
+    heroui: "import { Button } from \"@/components/ui/button\"\n\nexport function ButtonDemo() {\n  return (\n    <Button variant=\"soft-outline\" size=\"soft\">Join waitlist</Button>\n  )\n}",
   }
   },
   "input": {
   "default": {
     base: "import { Input } from \"@/components/ui/input\"\n\nexport function InputDemo() {\n  return (\n    <Input type=\"email\" placeholder=\"Email\" />\n  )\n}",
     radix: "import { Input } from \"@/components/ui/input\"\n\nexport function InputDemo() {\n  return (\n    <Input type=\"email\" placeholder=\"Email\" />\n  )\n}",
+    heroui: "import { Input } from \"@/components/ui/input\"\n\nexport function InputDemo() {\n  return (\n    <Input type=\"email\" placeholder=\"Email\" />\n  )\n}",
   }
   },
   "dialog": {
   "basic": {
     base: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\n\nexport function DialogDemo() {\n  return (\n    <Dialog>\n      <DialogTrigger>Open</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Title</DialogTitle>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  )\n}",
     radix: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\n\n// Radix preset: generated via `elorm init --ui-library radix`\n\nexport function DialogDemo() {\n  return (\n    <Dialog>\n      <DialogTrigger>Open</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Title</DialogTitle>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  )\n}",
+    heroui: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\n\n// HeroUI preset: generated via `elorm init --ui-library heroui`\n\nexport function DialogDemo() {\n  return (\n    <Dialog>\n      <DialogTrigger>Open</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Title</DialogTitle>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  )\n}",
   }
   },
   "card": {
   "basic": {
     base: "import { Card } from \"@/components/ui/card\"\n\nexport function CardDemo() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Title</CardTitle>\n      </CardHeader>\n      <CardContent>Content</CardContent>\n    </Card>\n  )\n}",
     radix: "import { Card } from \"@/components/ui/card\"\n\nexport function CardDemo() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Title</CardTitle>\n      </CardHeader>\n      <CardContent>Content</CardContent>\n    </Card>\n  )\n}",
+    heroui: "import { Card } from \"@/components/ui/card\"\n\nexport function CardDemo() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Title</CardTitle>\n      </CardHeader>\n      <CardContent>Content</CardContent>\n    </Card>\n  )\n}",
   }
   },
   "social-links": {
   "default": {
     base: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
     radix: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
+    heroui: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
   }
   },
   "navii-avatar": {
   "default": {
     base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <NaviiAvatar seed=\"alice@example.com\" animated />\n  )\n}",
     radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <NaviiAvatar seed=\"alice@example.com\" animated />\n  )\n}",
+    heroui: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <NaviiAvatar seed=\"alice@example.com\" animated />\n  )\n}",
   },
   "photo-fallback": {
     base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
     radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
+    heroui: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
+  }
+  },
+  "icon-nav-link": {
+  "external-link": {
+    base: "import { IconNavLink } from \"@/components/ui/icon-nav-link\"\n\nexport function IconNavLinkDemo() {\n  return (\n    <IconNavLink href=\"https://github.com\" label=\"GitHub\" icon={GithubIcon} external />\n  )\n}",
+    radix: "import { IconNavLink } from \"@/components/ui/icon-nav-link\"\n\nexport function IconNavLinkDemo() {\n  return (\n    <IconNavLink href=\"https://github.com\" label=\"GitHub\" icon={GithubIcon} external />\n  )\n}",
+    heroui: "import { IconNavLink } from \"@/components/ui/icon-nav-link\"\n\nexport function IconNavLinkDemo() {\n  return (\n    <IconNavLink href=\"https://github.com\" label=\"GitHub\" icon={GithubIcon} external />\n  )\n}",
+  }
+  },
+  "sonner": {
+  "success-toast": {
+    base: "import { Sonner } from \"@/components/ui/sonner\"\n\nexport function SonnerDemo() {\n  return (\n    toast.success(\"Saved successfully\")\n  )\n}",
+    radix: "import { Sonner } from \"@/components/ui/sonner\"\n\nexport function SonnerDemo() {\n  return (\n    toast.success(\"Saved successfully\")\n  )\n}",
+    heroui: "import { Sonner } from \"@/components/ui/sonner\"\n\nexport function SonnerDemo() {\n  return (\n    toast.success(\"Saved successfully\")\n  )\n}",
   }
   }
 }

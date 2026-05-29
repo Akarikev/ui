@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const uiLibrarySchema = z.enum(["base-ui", "radix"])
+export const uiLibrarySchema = z.enum(["base-ui", "radix", "heroui"])
 export type UiLibrary = z.infer<typeof uiLibrarySchema>
 
 export const registryItemTypeSchema = z.enum([

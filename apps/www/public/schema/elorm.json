@@ -8,7 +8,7 @@
     "style": { "type": "string", "enum": ["elorm"], "default": "elorm" },
     "uiLibrary": {
       "type": "string",
-      "enum": ["base-ui", "radix"],
+      "enum": ["base-ui", "radix", "heroui"],
       "default": "base-ui"
     },
     "rsc": { "type": "boolean", "default": true },

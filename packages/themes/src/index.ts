@@ -56,9 +56,13 @@ function formatVarsBlock(tokens: ThemeTokens, indent = "  "): string {
 
 export function generateCssTemplate(options: GenerateCssOptions = {}): string {
   const theme = getThemeTokens(options)
+  const herouiImport =
+    options.uiLibrary === "heroui"
+      ? '\n@import "@heroui/styles";\n'
+      : ""
 
   return `@import "tailwindcss";
-
+${herouiImport}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

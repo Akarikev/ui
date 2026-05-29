@@ -24,7 +24,7 @@ program
   .option("-y, --yes", "Skip prompts and use defaults")
   .option("-t, --template <template>", "Framework template (next, vite)")
   .option("--css <path>", "Path to global CSS file")
-  .option("--ui-library <library>", "Headless library (base-ui, radix)")
+  .option("--ui-library <library>", "Headless library (base-ui, radix, heroui)")
   .option("--base-color <color>", "Base color (neutral, zinc, slate, stone, gray)")
   .option(
     "--accent <accent>",
@@ -41,7 +41,7 @@ program
   .argument("[items...]", "Component names to add")
   .option("-o, --overwrite", "Overwrite existing files")
   .option("--dry-run", "Preview changes without writing")
-  .option("-l, --library <library>", "UI library (base-ui, radix) - overrides config")
+  .option("-l, --library <library>", "UI library (base-ui, radix, heroui) - overrides config")
   .option("-i, --interactive", "Choose UI library interactively")
   .action(async (items: string[], options) => {
     await addCommand(items, options)
@@ -54,7 +54,7 @@ program
   .option("-r, --registry <path>", "Registry index path", "registry.json")
   .option(
     "-l, --library <library>",
-    "Library variant to build (base-ui, radix, all)",
+    "Library variant to build (base-ui, radix, heroui, all)",
     "all"
   )
   .action(async (options) => {

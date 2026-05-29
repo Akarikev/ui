@@ -28,7 +28,7 @@ function RadioGroupItem({
     <RadioPrimitive.Root
       data-slot="radio-group-item"
       className={cn(
-        "peer aspect-square size-4 shrink-0 rounded-full border border-input shadow-xs outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[checked]:border-primary data-[checked]:text-primary",
+        "peer relative aspect-square size-4 shrink-0 rounded-full border border-border shadow-xs outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[checked]:border-primary data-[checked]:bg-primary",
         focusRing,
         transitionBase,
         className
@@ -37,9 +37,9 @@ function RadioGroupItem({
     >
       <RadioPrimitive.Indicator
         data-slot="radio-group-indicator"
-        className="flex items-center justify-center"
+        className="flex size-full items-center justify-center"
       >
-        <div className="size-2 rounded-full bg-primary" />
+        <div className="size-1.5 rounded-full bg-primary-foreground" />
       </RadioPrimitive.Indicator>
     </RadioPrimitive.Root>
   )

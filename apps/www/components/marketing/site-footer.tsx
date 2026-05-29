@@ -1,3 +1,5 @@
+"use client"
+
 import {
   BlocksIcon,
   BookOpenIcon,
@@ -7,7 +9,7 @@ import {
   ScaleIcon,
 } from "lucide-react"
 import Link from "next/link"
-import { IconNavLink } from "@/components/marketing/icon-nav-link"
+import { PageFooter } from "@/components/blocks/page-footer"
 import { GITHUB_REPO_URL, NPM_PACKAGE_URL } from "@/lib/seo"
 
 const footerLinks = [
@@ -33,20 +35,13 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/40 px-6 py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6">
-        <nav className="flex flex-wrap items-center justify-center gap-2">
-          {footerLinks.map((item) => (
-            <IconNavLink
-              key={item.href}
-              href={item.href}
-              label={item.label}
-              icon={item.icon}
-              external={"external" in item ? item.external : false}
-            />
-          ))}
-        </nav>
-        <p className="text-center text-sm text-muted-foreground">
+    <PageFooter
+      links={footerLinks.map((item) => ({
+        ...item,
+        external: "external" in item ? item.external : false,
+      }))}
+      attribution={
+        <>
           Built by{" "}
           <a
             href="https://x.com/elorm_elom"
@@ -64,8 +59,8 @@ export function SiteFooter() {
             GitHub
           </Link>
           .
-        </p>
-      </div>
-    </footer>
+        </>
+      }
+    />
   )
 }

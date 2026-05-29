@@ -21,6 +21,7 @@ const DEMOS_DIR = path.join(ROOT, "apps/www/components/demos")
 interface DocsCodeEntry {
   base: string
   radix: string
+  heroui: string
 }
 
 interface RegistryExample {
@@ -91,6 +92,11 @@ const DOC_COMPONENTS = new Set([
   "login-form",
   "settings-section",
   "data-table",
+  "command",
+  "sonner",
+  "mode-toggle",
+  "icon-nav-link",
+  "page-footer",
 ])
 
 function pascalCase(name: string): string {
@@ -113,6 +119,9 @@ function getImportName(name: string): string {
     "login-form": "LoginForm",
     "settings-section": "SettingsSection",
     "data-table": "DataTable",
+    "icon-nav-link": "IconNavLink",
+    "page-footer": "PageFooter",
+    "mode-toggle": "ModeToggle",
   }
   return map[name] ?? pascalCase(name)
 }
@@ -240,6 +249,17 @@ function defaultImportCode(name: string, importPath: string, importName: string)
   }
 
   return map[name] ?? `import { ${importName} } from "${importPath}"`
+}
+
+function herouiImportCode(name: string, importPath: string, importName: string): string {
+  const base = defaultImportCode(name, importPath, importName)
+  const overrides: Record<string, string> = {
+    select: `${base}\n\n// HeroUI preset: generated via \`elorm init --ui-library heroui\``,
+    dialog: `${base}\n\n// HeroUI preset: generated via \`elorm init --ui-library heroui\``,
+    sheet: `${base}\n\n// HeroUI preset: generated via \`elorm init --ui-library heroui\``,
+    "dropdown-menu": `${base}\n\n// HeroUI preset: generated via \`elorm init --ui-library heroui\``,
+  }
+  return overrides[name] ?? base
 }
 
 function radixImportCode(name: string, importPath: string, importName: string): string {
@@ -417,6 +437,16 @@ function compositionTree(title: string, parts: string[]): string {
   return ["```text", ...lines, "```"].join("\n")
 }
 
+/** Wrap inline JSX-like tags in backticks so MDX does not treat them as components. */
+function escapeMdxProse(text: string): string {
+  return text.replace(/<([A-Z][\w.-]*(?:\s[^>]*)?\/?)>/g, (match) => {
+    if (match.startsWith("`") || match.endsWith("`")) {
+      return match
+    }
+    return `\`${match}\``
+  })
+}
+
 function generateMdx(item: RegistryItem, examples: RegistryExample[]): string {
   const title = item.title ?? pascalCase(item.name)
   const description =
@@ -443,12 +473,12 @@ function generateMdx(item: RegistryItem, examples: RegistryExample[]): string {
     "",
     `<LibraryCodeBlock component="${item.name}" />`,
     "",
-    docsLead,
+    escapeMdxProse(docsLead),
     "",
   ]
 
   if (item.meta?.usage) {
-    lines.push(item.meta.usage, "")
+    lines.push(escapeMdxProse(item.meta.usage), "")
   }
 
   if (item.meta?.composition?.length) {
@@ -464,7 +494,7 @@ function generateMdx(item: RegistryItem, examples: RegistryExample[]): string {
     for (const example of examples) {
       lines.push(`### ${example.title}`, "")
       if (example.description) {
-        lines.push(example.description, "")
+        lines.push(escapeMdxProse(example.description), "")
       }
       lines.push(
         `<ComponentPreviewTabs component="${item.name}" example="${exampleSlug(example.title)}" />`,
@@ -488,6 +518,7 @@ function buildItemDocsCode(
   item: RegistryItem,
   demoCode: string | null,
   radixDemoCode: string | null,
+  herouiDemoCode: string | null,
   examples: RegistryExample[]
 ): {
   hero?: DocsCodeEntry
@@ -504,6 +535,7 @@ function buildItemDocsCode(
   const heroRadixCode = radixVariantCode(item.name, heroCode)
   const baseImportCode = defaultImportCode(item.name, importPath, importName)
   const radixImport = radixImportCode(item.name, importPath, importName)
+  const herouiImport = herouiImportCode(item.name, importPath, importName)
   const heroDisplayCode =
     demoCode ??
     completeExampleCode(
@@ -519,6 +551,15 @@ function buildItemDocsCode(
       item.name,
       importName,
       radixImport,
+      heroRadixCode
+    )
+  const heroHerouiDisplayCode =
+    herouiDemoCode ??
+    demoCode ??
+    completeExampleCode(
+      item.name,
+      importName,
+      herouiImport,
       heroRadixCode
     )
 
@@ -542,6 +583,12 @@ function buildItemDocsCode(
         radixImport,
         exampleRadixSnippet
       ),
+      heroui: completeExampleCode(
+        item.name,
+        importName,
+        herouiImport,
+        exampleRadixSnippet
+      ),
     }
   }
 
@@ -551,11 +598,13 @@ function buildItemDocsCode(
       : {
           base: heroDisplayCode,
           radix: heroRadixDisplayCode,
+          heroui: heroHerouiDisplayCode,
         },
     examples: exampleEntries,
     imports: {
       base: baseImportCode,
       radix: radixImport,
+      heroui: herouiImport,
     },
   }
 }
@@ -566,6 +615,7 @@ function serializeDocsCodeMap(map: Record<string, DocsCodeEntry>): string {
       ([key, value]) => `  ${JSON.stringify(key)}: {
     base: ${JSON.stringify(value.base)},
     radix: ${JSON.stringify(value.radix)},
+    heroui: ${JSON.stringify(value.heroui)},
   }`
     )
     .join(",\n")
@@ -590,6 +640,7 @@ ${serialized}
 export type DocsCodeEntry = {
   base: string
   radix: string
+  heroui: string
 }
 
 export const docsImportCode: Record<string, DocsCodeEntry> = {
@@ -629,8 +680,10 @@ async function main() {
       : []
     const demoPath = path.join(DEMOS_DIR, `${item.name}-demo.tsx`)
     const radixDemoPath = path.join(DEMOS_DIR, `${item.name}-demo-radix.tsx`)
+    const herouiDemoPath = path.join(DEMOS_DIR, `${item.name}-demo-heroui.tsx`)
     const demoCode = await readFileIfExists(demoPath)
     const radixDemoCode = await readFileIfExists(radixDemoPath)
+    const herouiDemoCode = await readFileIfExists(herouiDemoPath)
     const examples = demoCode
       ? item.meta?.examples ?? []
       : mergeExamples(item.meta?.examples ?? [], fallback)
@@ -639,6 +692,7 @@ async function main() {
       item,
       demoCode,
       radixDemoCode,
+      herouiDemoCode,
       examples
     )
     importCode[item.name] = docsCode.imports

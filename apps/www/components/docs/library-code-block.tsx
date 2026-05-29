@@ -1,4 +1,5 @@
 import { HighlightedCode } from "@/components/docs/highlighted-code"
+import { UiLibraryContent } from "@/components/docs/ui-library-content"
 import { decodeDocsCode } from "@/lib/docs-code"
 import { docsImportCode } from "@/lib/docs-example-code"
 import { cn } from "@/lib/utils"
@@ -30,12 +31,10 @@ export async function LibraryCodeBlock({
         className
       )}
     >
-      <div className="ui-base-only">
-        <HighlightedCode code={resolvedBase} language={language} />
-      </div>
-      <div className="ui-radix-only">
-        <HighlightedCode code={resolvedRadix} language={language} />
-      </div>
+      <UiLibraryContent
+        base={<HighlightedCode code={resolvedBase} language={language} />}
+        radix={<HighlightedCode code={resolvedRadix} language={language} />}
+      />
     </div>
   )
 }

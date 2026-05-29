@@ -269,6 +269,7 @@ export function generateProjectCss(config: ElormConfig): string {
     baseColor: config.tailwind.baseColor,
     accent: config.theme.accent,
     radius: config.theme.radius,
+    uiLibrary: config.uiLibrary,
   })
 }
 

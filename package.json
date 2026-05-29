@@ -14,7 +14,7 @@
     "publish:cli:dry-run": "bun run --filter '@elorm/schema' build && bun run --filter '@elorm/themes' build && bun run --filter 'elorm' build && cd packages/cli && npm pack --dry-run",
     "publish:release": "bun scripts/create-github-release.ts",
     "publish:cli:all": "bun run publish:cli && bun run publish:release",
-    "www:sync": "cp packages/registry/lib/ui-styles.ts apps/www/lib/ui-styles.ts && cp packages/registry/ui/*.tsx apps/www/components/ui/ && cp packages/registry/blocks/*.tsx apps/www/components/blocks/ && cp packages/registry-radix/ui/*.tsx apps/www/components/ui-radix/",
+    "www:sync": "cp packages/registry/lib/ui-styles.ts apps/www/lib/ui-styles.ts && cp packages/registry/ui/*.tsx apps/www/components/ui/ && cp packages/registry/blocks/*.tsx apps/www/components/blocks/ && cp packages/registry-radix/ui/*.tsx apps/www/components/ui-radix/ && cp packages/registry-heroui/ui/*.tsx apps/www/components/ui-heroui/",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {

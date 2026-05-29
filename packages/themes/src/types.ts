@@ -22,4 +22,5 @@ export interface GenerateCssOptions {
   baseColor?: BaseColor
   accent?: AccentColor
   radius?: RadiusPreset | string
+  uiLibrary?: "base-ui" | "radix" | "heroui"
 }

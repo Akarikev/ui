@@ -22,7 +22,7 @@ Initialize elorm/ui in a project. Creates `elorm.json`, `cn()` util, and themed 
 | `-y, --yes` | Skip prompts, use defaults |
 | `-t, --template <next\|vite>` | Framework template |
 | `--css <path>` | Global CSS file path |
-| `--ui-library <base-ui\|radix>` | Headless primitive library |
+| `--ui-library <base-ui\|radix\|heroui>` | Headless primitive library |
 | `--base-color <color>` | neutral, zinc, slate, stone, gray |
 | `--accent <accent>` | default, mono, blue, violet, green, orange, rose, amber, cyan |
 | `--radius <default\|compact\|round>` | Border radius preset |
@@ -37,7 +37,7 @@ Add components or blocks from the registry.
 | --- | --- |
 | `-o, --overwrite` | Overwrite existing files |
 | `--dry-run` | Preview changes without writing |
-| `-l, --library <base-ui\|radix>` | Override `uiLibrary` for this add |
+| `-l, --library <base-ui\|radix\|heroui>` | Override `uiLibrary` for this add |
 | `-i, --interactive` | Choose UI library interactively |
 
 **Side effects on add:**
@@ -76,7 +76,7 @@ Compare local files in `aliases.ui` against registry version (basename match).
 | --- | --- |
 | `-o, --output <dir>` | Output directory (default: `public/r`) |
 | `-r, --registry <path>` | Registry index path (default: `registry.json`) |
-| `-l, --library <base-ui\|radix\|all>` | Library variant to build |
+| `-l, --library <base-ui\|radix\|heroui\|all>` | Library variant to build |
 
 ## Registry URL resolution
 
