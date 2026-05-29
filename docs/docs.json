@@ -72,6 +72,12 @@
               "components/stat-card",
               "components/page-header"
             ]
+          },
+          {
+            "group": "Changelog",
+            "pages": [
+              "changelog"
+            ]
           }
         ]
       }

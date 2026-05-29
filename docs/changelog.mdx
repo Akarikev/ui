@@ -1,0 +1,32 @@
+---
+title: Changelog
+description: "Product updates and improvements to elorm/ui."
+---
+
+<Update label="May 29, 2026" tags={["v0.2.1"]}>
+
+## New
+
+- **HeroUI registry** — pick **Base UI**, **Radix UI**, or **HeroUI** as your primitive at `elorm init` (`--ui-library heroui`). Browse the full library from the [Components](/components/button) section.
+- **New components** — `command`, `icon-nav-link`, `mode-toggle`, `page-footer`, `sonner`, and `theme-provider` are now available via `elorm add`.
+- **Dark mode setup guide** — drop-in `ThemeProvider` + `ModeToggle` instructions. See [Theming](/get-started/theming).
+- **Automatic Vite / non-RSC support** — `"use client"` directives are stripped at install time when you pick `framework=vite` or `rsc=false` during `elorm init`. No manual cleanup. See the [CLI reference](/get-started/cli).
+- **Agent skills** — install the elorm skill for AI agents (Cursor, Claude, etc.) so they can scaffold and edit elorm/ui projects with full context.
+- **`elorm info --json`** — print your project config, aliases, installed components, and resolved paths as JSON. Built for AI agents and CI scripts.
+
+## Improved
+
+- **Library switcher in docs** — switch between Base UI, Radix UI, and HeroUI previews and code with a single click. Your selection is remembered across pages.
+- **Site-wide theming** — mode toggles in the docs now update the full page via `next-themes`, including all preview panels.
+- **Mobile layout** — cleaner library tabs and preview badges on small screens.
+- **Marketing homepage** — redesigned as a demo-first split layout with a three-way primitive compare (Base UI / Radix UI / HeroUI).
+
+## Fixed
+
+- Sonner success toast preview now renders correctly.
+- HeroUI "Preview" badge contrast in both light and dark mode.
+- HeroUI dialog and select previews no longer duplicate.
+- `ThemePicker` hydration mismatch for the mode label.
+- React 19 `next-themes` script warning on the docs site.
+
+</Update>
