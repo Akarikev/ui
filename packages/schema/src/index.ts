@@ -24,6 +24,7 @@ export const registryFileSchema = z.object({
 })
 
 export const registryItemMetaSchema = z.object({
+  addedAt: z.string().optional(),
   usage: z.string().optional(),
   composition: z.array(z.string()).optional(),
   antiPatterns: z.array(z.string()).optional(),

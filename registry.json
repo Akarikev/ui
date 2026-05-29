@@ -631,7 +631,7 @@
         }
       ],
       "meta": {
-        "addedAt": "2026-05-22",
+        "addedAt": "2026-05-29",
         "usage": "Wrap your app root. Works with Next.js and Vite. Pair with mode-toggle for UI switching.",
         "examples": [
           {
@@ -651,7 +651,7 @@
       "dependencies": ["next-themes", "lucide-react"],
       "files": [{ "path": "packages/registry/ui/mode-toggle.tsx", "type": "registry:ui" }],
       "meta": {
-        "addedAt": "2026-05-22"
+        "addedAt": "2026-05-29"
       }
     },
     {
@@ -664,7 +664,7 @@
       "dependencies": ["lucide-react"],
       "files": [{ "path": "packages/registry/ui/icon-nav-link.tsx", "type": "registry:ui" }],
       "meta": {
-        "addedAt": "2026-05-22",
+        "addedAt": "2026-05-29",
         "usage": "Use for compact icon rows in footers, headers, or toolbars. Pass href, label, and a Lucide icon.",
         "examples": [
           {
@@ -684,7 +684,7 @@
       "dependencies": ["lucide-react"],
       "files": [{ "path": "packages/registry/blocks/page-footer.tsx", "type": "registry:block" }],
       "meta": {
-        "addedAt": "2026-05-22",
+        "addedAt": "2026-05-29",
         "usage": "Pass a links array and optional attribution React node.",
         "composition": ["IconNavLink"]
       }
@@ -699,7 +699,7 @@
       "dependencies": ["sonner"],
       "files": [{ "path": "packages/registry/ui/sonner.tsx", "type": "registry:ui" }],
       "meta": {
-        "addedAt": "2026-05-22",
+        "addedAt": "2026-05-29",
         "usage": "Mount `<Toaster />` once in your root layout. Call `toast()` from anywhere.",
         "examples": [
           {
@@ -719,7 +719,7 @@
       "dependencies": ["cmdk", "lucide-react"],
       "files": [{ "path": "packages/registry/ui/command.tsx", "type": "registry:ui" }],
       "meta": {
-        "addedAt": "2026-05-22",
+        "addedAt": "2026-05-29",
         "usage": "Use CommandDialog for a palette overlay or Command + CommandSurface for inline search.",
         "composition": ["Dialog", "CommandInput", "CommandList", "CommandItem"]
       }
