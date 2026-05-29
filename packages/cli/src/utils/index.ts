@@ -123,6 +123,23 @@ export function transformImports(
     .replace(/@\/hooks/g, config.aliases.hooks ?? "@/hooks")
 }
 
+function stripClientDirective(content: string): string {
+  return content
+    .replace(/^\s*"use client";?\s*(?:\r?\n)?/, "")
+    .replace(/^\s*'use client';?\s*(?:\r?\n)?/, "")
+    .replace(/^\s*\/\*\s*"use client"\s*\*\/\s*(?:\r?\n)?/, "")
+    .replace(/^\s*\/\*\s*'use client'\s*\*\/\s*(?:\r?\n)?/, "")
+}
+
+export function transformContent(content: string, config: ElormConfig): string {
+  let result = content
+  if (!config.rsc) {
+    result = stripClientDirective(result)
+  }
+  result = transformImports(result, config)
+  return result
+}
+
 export async function fetchRegistryItem(url: string): Promise<RegistryItem> {
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     const filePath = url.startsWith("file://") ? url.slice(7) : url

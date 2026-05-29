@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+### Added
+
+- **Automatic Vite / non-RSC support** — `"use client"` directives are stripped at install time when `framework=vite` or `rsc=false` (selected at `elorm init`). No manual cleanup required.
+
 ## 0.2.0
 
 ### Added

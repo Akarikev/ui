@@ -12,7 +12,7 @@ import {
   mergeCssVars,
   resolveRegistryUrl,
   topologicalSort,
-  transformImports,
+  transformContent,
 } from "../utils/index.js"
 
 interface AddOptions {
@@ -154,7 +154,7 @@ export async function addCommand(
       continue
     }
 
-    const content = transformImports(file.content, projectConfig)
+    const content = transformContent(file.content, projectConfig)
 
     if (options.dryRun) {
       p.log.info(`Would write ${pc.cyan(target)}`)
@@ -164,6 +164,10 @@ export async function addCommand(
     await fs.ensureDir(path.dirname(fullPath))
     await fs.writeFile(fullPath, content)
     written.push(target)
+  }
+
+  if (!options.dryRun && !projectConfig.rsc && written.length > 0) {
+    p.log.info('Stripped "use client" directives for Vite (non-RSC)')
   }
 
   if (!options.dryRun) {
