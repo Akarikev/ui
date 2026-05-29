@@ -6,6 +6,8 @@ import { InputDemo } from "@/components/demos/input-demo"
 import { CardDemo } from "@/components/demos/card-demo"
 import { DialogDemo } from "@/components/demos/dialog-demo"
 import { CopyCommand } from "@/components/marketing/copy-command"
+import { ElormLogoMark } from "@/components/marketing/logo"
+import { softRadius, softShadow } from "@/lib/ui-styles"
 import { cn } from "@/lib/utils"
 
 const previews = [
@@ -41,83 +43,95 @@ const previews = [
 
 type PreviewId = (typeof previews)[number]["id"]
 
-export function DocsPreview() {
+export function DocsPreview({ embedded = false }: { embedded?: boolean }) {
   const [active, setActive] = useState<PreviewId>("button")
   const current = previews.find((p) => p.id === active) ?? previews[0]
   const Demo = current.Demo
 
-  return (
-    <section className="relative z-20 mx-auto -mt-40 max-w-5xl px-6 pb-24 md:-mt-48">
-      <div className="overflow-hidden rounded-xl border border-border bg-card/95 shadow-2xl shadow-black/10 backdrop-blur-xl">
-        <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-          <div className="size-3 rounded-full bg-red-500/80" />
-          <div className="size-3 rounded-full bg-yellow-500/80" />
-          <div className="size-3 rounded-full bg-green-500/80" />
-          <span className="ml-2 font-mono text-xs text-muted-foreground">
-            ui.elorm.xyz/docs
-          </span>
-        </div>
+  const card = (
+    <div
+      className={cn(
+        "overflow-hidden border border-border/60 bg-card/95 backdrop-blur-xl",
+        softRadius,
+        softShadow
+      )}
+    >
+      <div className="flex items-center gap-2 border-b border-border/60 px-4 py-3">
+        <ElormLogoMark className="size-4 text-muted-foreground" />
+        <span className="font-mono text-xs text-muted-foreground">
+          ui.elorm.xyz/docs
+        </span>
+      </div>
 
-        <div className="flex min-h-[320px]">
-          <aside className="hidden w-48 shrink-0 border-r border-border p-4 sm:block">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Components
-            </p>
-            <ul className="flex flex-col gap-1 text-sm">
-              {previews.map((item) => (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => setActive(item.id)}
-                    className={cn(
-                      "w-full rounded-md px-2 py-1.5 text-left transition-colors",
-                      active === item.id
-                        ? "bg-primary/15 text-primary"
-                        : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                    )}
-                  >
-                    {item.title}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </aside>
-
-          <div className="flex-1 p-6 sm:p-8">
-            <div className="mb-3 flex gap-2 overflow-x-auto sm:hidden">
-              {previews.map((item) => (
+      <div className={cn("flex", embedded ? "min-h-[280px]" : "min-h-[320px]")}>
+        <aside className="hidden w-40 shrink-0 border-r border-border/60 p-3 lg:block xl:w-44">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            Components
+          </p>
+          <ul className="flex flex-col gap-1 text-sm">
+            {previews.map((item) => (
+              <li key={item.id}>
                 <button
-                  key={item.id}
                   type="button"
                   onClick={() => setActive(item.id)}
                   className={cn(
-                    "shrink-0 rounded-full px-3 py-1 text-xs transition-colors",
+                    "w-full rounded-md px-2 py-1.5 text-left transition-colors",
                     active === item.id
                       ? "bg-primary/15 text-primary"
-                      : "border border-border text-muted-foreground"
+                      : "text-muted-foreground hover:bg-accent hover:text-foreground"
                   )}
                 >
                   {item.title}
                 </button>
-              ))}
-            </div>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
-            <div className="mb-1 text-xs text-primary/80">Components</div>
-            <h3 className="mb-2 text-xl font-semibold text-foreground">
-              {current.title}
-            </h3>
-            <p className="mb-6 text-sm text-muted-foreground">
-              {current.description}
-            </p>
-            <div className="rounded-lg border border-border bg-background p-6 text-foreground">
-              <Demo />
-            </div>
-            <div className="mt-4">
-              <CopyCommand command={current.command} />
-            </div>
+        <div className={cn("flex-1", embedded ? "p-4 sm:p-5" : "p-6 sm:p-8")}>
+          <div className="mb-3 flex gap-2 overflow-x-auto lg:hidden">
+            {previews.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActive(item.id)}
+                className={cn(
+                  "shrink-0 rounded-full px-3 py-1 text-xs transition-colors",
+                  active === item.id
+                    ? "bg-primary/15 text-primary"
+                    : "border border-border text-muted-foreground"
+                )}
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
+
+          <div className="mb-1 text-xs text-primary/80">Components</div>
+          <h3 className="mb-1 text-lg font-semibold text-foreground sm:text-xl">
+            {current.title}
+          </h3>
+          <p className="mb-4 text-sm text-muted-foreground">
+            {current.description}
+          </p>
+          <div className="rounded-lg border border-border/60 bg-background p-4 text-foreground sm:p-5">
+            <Demo />
+          </div>
+          <div className="mt-3">
+            <CopyCommand command={current.command} align="start" />
           </div>
         </div>
       </div>
+    </div>
+  )
+
+  if (embedded) {
+    return card
+  }
+
+  return (
+    <section className="relative z-20 mx-auto max-w-5xl px-6 pb-16">
+      {card}
     </section>
   )
 }

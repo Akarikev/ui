@@ -37,7 +37,9 @@ export function SiteHeader({
     <header
       className={cn(
         "z-30",
-        overlay ? "absolute inset-x-0 top-0" : "relative"
+        overlay
+          ? "absolute inset-x-0 top-0"
+          : "sticky top-0 border-b border-border/40 bg-background/85 backdrop-blur-md supports-backdrop-filter:bg-background/70"
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-6 py-4">

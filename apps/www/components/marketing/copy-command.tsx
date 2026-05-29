@@ -14,9 +14,11 @@ const MANAGERS = [
 export function CopyCommand({
   command,
   variant = "default",
+  align = "center",
 }: {
   command: string
   variant?: "default" | "hero"
+  align?: "center" | "start"
 }) {
   const isHero = variant === "hero"
   const [copied, setCopied] = useState(false)
@@ -33,7 +35,12 @@ export function CopyCommand({
 
   return (
     <div className="w-full max-w-md">
-      <div className="mb-2 flex justify-center gap-1">
+      <div
+        className={cn(
+          "mb-2 flex gap-1",
+          align === "start" ? "justify-start" : "justify-center"
+        )}
+      >
         {MANAGERS.map((m) => (
           <button
             key={m.id}

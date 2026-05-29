@@ -10,20 +10,18 @@ import {
   type UiLibrary,
 } from "@/lib/ui-library"
 import { cn } from "@/lib/utils"
+import { softRadius, softShadow, surfaceSoft } from "@/lib/ui-styles"
 
 export function LibraryCompare() {
   const [library, setLibrary] = useState<UiLibrary>("base-ui")
   const [component, setComponent] = useState<PrimitiveId>("button")
 
-  const current = PRIMITIVE_COMPONENTS.find((item) => item.id === component)!
   const libraryMeta = UI_LIBRARIES.find((item) => item.id === library)!
-  const packageName =
-    library === "radix" ? current.radixPackage : current.basePackage
 
   return (
-    <section className="border-t border-border px-6 py-24">
+    <section className="px-6 py-16 sm:py-20">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-10 text-center">
+        <div className="mb-8 text-center">
           <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
             Primitives
           </p>
@@ -61,8 +59,14 @@ export function LibraryCompare() {
           {libraryMeta.description}
         </p>
 
-        <div className="overflow-hidden rounded-xl border border-border bg-card shadow-lg">
-          <div className="flex flex-wrap gap-2 border-b border-border p-4">
+        <div
+          className={cn(
+            "overflow-hidden border border-border/60 bg-card",
+            softRadius,
+            softShadow
+          )}
+        >
+          <div className="flex flex-wrap gap-2 border-b border-border/60 p-4">
             {PRIMITIVE_COMPONENTS.map((item) => (
               <button
                 key={item.id}
@@ -80,40 +84,12 @@ export function LibraryCompare() {
             ))}
           </div>
 
-          <div className="grid gap-0 lg:grid-cols-[1fr_280px]">
-            <div className="flex min-h-[220px] items-center justify-center border-b border-border p-8 lg:border-b-0 lg:border-r">
-              <PrimitiveDemo component={component} library={library} />
-            </div>
-
-            <div className="flex flex-col justify-center gap-4 p-6">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Under the hood
-                </p>
-                <p className="mt-1 font-mono text-sm text-foreground">
-                  {packageName}
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Init with
-                </p>
-                <p className="mt-1 font-mono text-xs text-muted-foreground">
-                  uiLibrary: &quot;{library}&quot;
-                </p>
-              </div>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Styling and API stay the same — only the headless primitive
-                changes. Non-primitive components like Input and Card are
-                shared.
-              </p>
-            </div>
+          <div className="flex min-h-[220px] items-center justify-center p-8">
+            <PrimitiveDemo component={component} library={library} />
           </div>
 
-          <div className="border-t border-border bg-background/50 p-4">
-            <CopyCommand
-              command={`elorm init --ui-library ${library}`}
-            />
+          <div className={cn("border-t border-border/60 p-4", surfaceSoft)}>
+            <CopyCommand command={`elorm init --ui-library ${library}`} />
           </div>
         </div>
       </div>
