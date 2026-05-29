@@ -139,7 +139,7 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
     case "select": {
       if (library === "heroui") {
         return (
-          <HeroSelect defaultValue="apple">
+          <HeroSelect defaultValue="apple" aria-label="Select a fruit">
             <HeroSelectTrigger className="w-[180px]">
               <HeroSelectValue />
             </HeroSelectTrigger>
@@ -162,7 +162,7 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
       const SelectItem =
         library === "radix" ? RadixSelectItem : BaseSelectItem
       return (
-        <Select defaultValue="apple">
+        <Select defaultValue="apple" aria-label="Select a fruit">
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a fruit" />
           </SelectTrigger>
@@ -271,7 +271,7 @@ export function PrimitiveDemo({ component, library }: PrimitiveDemoProps) {
               <Button variant="outline">Hover me</Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Built with {LIBRARY_LABEL[library]}</p>
+              <p>hi mom!</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

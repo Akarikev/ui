@@ -15,20 +15,31 @@ import {
 
 function SelectRoot({
   className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: React.ComponentProps<typeof Select.Root>) {
   return (
     <Select.Root
       data-slot="select"
       className={cn("w-full", className)}
+      aria-label={ariaLabel ?? (ariaLabelledBy ? undefined : "Select an option")}
+      aria-labelledby={ariaLabelledBy}
       {...props}
     />
   )
 }
 
-function SelectGroup({ className, ...props }: React.ComponentProps<"div">) {
+function SelectGroup({
+  className,
+  ...props
+}: React.ComponentProps<typeof ListBox.Section>) {
   return (
-    <div data-slot="select-group" className={cn("p-1", className)} {...props} />
+    <ListBox.Section
+      data-slot="select-group"
+      className={cn(className)}
+      {...props}
+    />
   )
 }
 
@@ -36,7 +47,10 @@ function SelectLabel({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="select-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )

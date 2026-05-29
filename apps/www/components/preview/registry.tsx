@@ -1,5 +1,8 @@
 import type { ReactNode } from "react"
+import { createPrimitivePreviewDemos } from "@/components/demos/primitive-preview-demos"
 import { ButtonDemo } from "@/components/demos/button-demo"
+import { ButtonDemoRadix } from "@/components/demos/button-demo-radix"
+import { ButtonDemoHeroUi } from "@/components/demos/button-demo-heroui"
 import { InputDemo } from "@/components/demos/input-demo"
 import { TextareaDemo } from "@/components/demos/textarea-demo"
 import { LabelDemo } from "@/components/demos/label-demo"
@@ -10,13 +13,16 @@ import { RadioGroupDemo } from "@/components/demos/radio-group-demo"
 import { ToggleGroupDemo } from "@/components/demos/toggle-group-demo"
 import { CardDemo } from "@/components/demos/card-demo"
 import { DialogDemo } from "@/components/demos/dialog-demo"
+import { DialogDemoRadix } from "@/components/demos/dialog-demo-radix"
+import { DialogDemoHeroUi } from "@/components/demos/dialog-demo-heroui"
 import { AlertDialogDemo } from "@/components/demos/alert-dialog-demo"
 import { SheetDemo } from "@/components/demos/sheet-demo"
+import { SheetDemoRadix } from "@/components/demos/sheet-demo-radix"
+import { SheetDemoHeroUi } from "@/components/demos/sheet-demo-heroui"
 import { PopoverDemo } from "@/components/demos/popover-demo"
-import { CheckboxDemo } from "@/components/demos/checkbox-demo"
-import { SwitchDemo } from "@/components/demos/switch-demo"
 import { SelectDemo } from "@/components/demos/select-demo"
 import { SelectDemoRadix } from "@/components/demos/select-demo-radix"
+import { SelectDemoHeroUi } from "@/components/demos/select-demo-heroui"
 import { TabsDemo } from "@/components/demos/tabs-demo"
 import { AccordionDemo } from "@/components/demos/accordion-demo"
 import { CollapsibleDemo } from "@/components/demos/collapsible-demo"
@@ -25,7 +31,6 @@ import { AlertDemo } from "@/components/demos/alert-demo"
 import { AvatarDemo } from "@/components/demos/avatar-demo"
 import { NaviiAvatarDemo } from "@/components/demos/navii-avatar-demo"
 import { ProgressDemo } from "@/components/demos/progress-demo"
-import { TooltipDemo } from "@/components/demos/tooltip-demo"
 import { SkeletonDemo } from "@/components/demos/skeleton-demo"
 import { TableDemo } from "@/components/demos/table-demo"
 import { PaginationDemo } from "@/components/demos/pagination-demo"
@@ -33,6 +38,8 @@ import { BreadcrumbDemo } from "@/components/demos/breadcrumb-demo"
 import { EmptyStateDemo } from "@/components/demos/empty-state-demo"
 import { SeparatorDemo } from "@/components/demos/separator-demo"
 import { DropdownMenuDemo } from "@/components/demos/dropdown-menu-demo"
+import { DropdownMenuDemoRadix } from "@/components/demos/dropdown-menu-demo-radix"
+import { DropdownMenuDemoHeroUi } from "@/components/demos/dropdown-menu-demo-heroui"
 import { StatCardDemo } from "@/components/demos/stat-card-demo"
 import { PageHeaderDemo } from "@/components/demos/page-header-demo"
 import { LoginFormDemo } from "@/components/demos/login-form-demo"
@@ -53,7 +60,7 @@ const demos: Record<
     heroui?: () => ReactNode
   }
 > = {
-  button: { base: ButtonDemo },
+  button: { base: ButtonDemo, radix: ButtonDemoRadix, heroui: ButtonDemoHeroUi },
   input: { base: InputDemo },
   textarea: { base: TextareaDemo },
   label: { base: LabelDemo },
@@ -62,12 +69,24 @@ const demos: Record<
   spinner: { base: SpinnerDemo },
   "radio-group": { base: RadioGroupDemo },
   "toggle-group": { base: ToggleGroupDemo },
-  checkbox: { base: CheckboxDemo },
-  switch: { base: SwitchDemo },
-  select: { base: SelectDemo, radix: SelectDemoRadix },
-  dialog: { base: DialogDemo },
+  checkbox: createPrimitivePreviewDemos("checkbox"),
+  switch: createPrimitivePreviewDemos("switch"),
+  select: {
+    base: SelectDemo,
+    radix: SelectDemoRadix,
+    heroui: SelectDemoHeroUi,
+  },
+  dialog: {
+    base: DialogDemo,
+    radix: DialogDemoRadix,
+    heroui: DialogDemoHeroUi,
+  },
   "alert-dialog": { base: AlertDialogDemo },
-  sheet: { base: SheetDemo },
+  sheet: {
+    base: SheetDemo,
+    radix: SheetDemoRadix,
+    heroui: SheetDemoHeroUi,
+  },
   popover: { base: PopoverDemo },
   tabs: { base: TabsDemo },
   accordion: { base: AccordionDemo },
@@ -80,12 +99,16 @@ const demos: Record<
   "navii-avatar": { base: NaviiAvatarDemo },
   progress: { base: ProgressDemo },
   separator: { base: SeparatorDemo },
-  tooltip: { base: TooltipDemo },
+  tooltip: createPrimitivePreviewDemos("tooltip"),
   skeleton: { base: SkeletonDemo },
   table: { base: TableDemo },
   pagination: { base: PaginationDemo },
   breadcrumb: { base: BreadcrumbDemo },
-  "dropdown-menu": { base: DropdownMenuDemo },
+  "dropdown-menu": {
+    base: DropdownMenuDemo,
+    radix: DropdownMenuDemoRadix,
+    heroui: DropdownMenuDemoHeroUi,
+  },
   "empty-state": { base: EmptyStateDemo },
   "stat-card": { base: StatCardDemo },
   "page-header": { base: PageHeaderDemo },

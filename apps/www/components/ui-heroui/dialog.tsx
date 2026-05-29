@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Modal } from "@heroui/react"
+import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { focusRing, overlayBackdrop, softRadius, softShadow } from "@/lib/ui-styles"
@@ -14,8 +15,35 @@ function DialogTrigger({ ...props }: React.ComponentProps<typeof Modal.Trigger>)
   return <Modal.Trigger data-slot="dialog-trigger" {...props} />
 }
 
-function DialogClose({ ...props }: React.ComponentProps<typeof Modal.CloseTrigger>) {
-  return <Modal.CloseTrigger data-slot="dialog-close" {...props} />
+function DialogClose({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof Modal.CloseTrigger>) {
+  return (
+    <Modal.CloseTrigger
+      data-slot="dialog-close"
+      className={cn(
+        children
+          ? "inline-flex"
+          : cn(
+              softRadius,
+              "absolute right-4 top-4 p-1 opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100",
+              focusRing
+            ),
+        className
+      )}
+      aria-label={children ? undefined : "Close"}
+      {...props}
+    >
+      {children ?? (
+        <>
+          <XIcon className="size-4" />
+          <span className="sr-only">Close</span>
+        </>
+      )}
+    </Modal.CloseTrigger>
+  )
 }
 
 function DialogPortal({ children }: { children?: React.ReactNode }) {
@@ -53,13 +81,7 @@ function DialogContent({
           {...props}
         >
           {children as React.ReactNode}
-          <Modal.CloseTrigger
-            className={cn(
-              softRadius,
-              "absolute right-4 top-4 text-foreground opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100",
-              focusRing
-            )}
-          />
+          <DialogClose />
         </Modal.Dialog>
       </Modal.Container>
     </Modal.Backdrop>

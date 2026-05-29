@@ -12,7 +12,7 @@ import {
 
 export function SelectDemo() {
   return (
-    <Select defaultValue="apple">
+    <Select defaultValue="apple" aria-label="Select a fruit">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a fruit" />
       </SelectTrigger>

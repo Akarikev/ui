@@ -3,25 +3,29 @@
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui-radix/select"
 
 export function SelectDemoRadix() {
   return (
-    <div className="flex flex-col gap-2">
-      <p className="text-xs text-muted-foreground">Radix preset example</p>
-      <Select defaultValue="light">
-        <SelectTrigger className="w-[220px]">
-          <SelectValue placeholder="Theme (Radix)" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">Light</SelectItem>
-          <SelectItem value="dark">Dark</SelectItem>
-          <SelectItem value="system">System</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
+    <Select defaultValue="apple" aria-label="Select a fruit">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="blueberry">Blueberry</SelectItem>
+          <SelectItem value="grapes">Grapes</SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   )
 }

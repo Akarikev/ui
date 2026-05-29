@@ -1,7 +1,9 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { Button } from "@/components/ui/button"
+import { Button as BaseButton } from "@/components/ui/button"
+import { Button as RadixButton } from "@/components/ui-radix/button"
+import { Button as HeroButton } from "@/components/ui-heroui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import {
@@ -11,12 +13,26 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  Dialog as BaseDialog,
+  DialogContent as BaseDialogContent,
+  DialogHeader as BaseDialogHeader,
+  DialogTitle as BaseDialogTitle,
+  DialogTrigger as BaseDialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Dialog as RadixDialog,
+  DialogContent as RadixDialogContent,
+  DialogHeader as RadixDialogHeader,
+  DialogTitle as RadixDialogTitle,
+  DialogTrigger as RadixDialogTrigger,
+} from "@/components/ui-radix/dialog"
+import {
+  Dialog as HeroDialog,
+  DialogContent as HeroDialogContent,
+  DialogHeader as HeroDialogHeader,
+  DialogTitle as HeroDialogTitle,
+  DialogTrigger as HeroDialogTrigger,
+} from "@/components/ui-heroui/dialog"
 import { SocialLinks } from "@/components/ui/social-links"
 import { NaviiAvatar } from "@/components/ui/navii-avatar"
 import {
@@ -29,40 +45,98 @@ import { UiLibraryContent } from "@/components/docs/ui-library-content"
 
 type ExamplePreviewComponent = () => ReactNode
 
-const examplePreviews: Record<string, Record<string, ExamplePreviewComponent>> =
-  {
-    button: {
-      default: () => <Button>Default</Button>,
-      secondary: () => <Button variant="secondary">Secondary</Button>,
-      outline: () => <Button variant="outline">Outline</Button>,
-      ghost: () => <Button variant="ghost">Ghost</Button>,
-      destructive: () => (
-        <Button variant="destructive">Destructive</Button>
+type LibraryExamplePreview = {
+  base: ExamplePreviewComponent
+  radix?: ExamplePreviewComponent
+  heroui?: ExamplePreviewComponent
+}
+
+const examplePreviews: Record<string, Record<string, LibraryExamplePreview>> = {
+  button: {
+    default: {
+      base: () => <BaseButton>Default</BaseButton>,
+      radix: () => <RadixButton>Default</RadixButton>,
+      heroui: () => <HeroButton>Default</HeroButton>,
+    },
+    secondary: {
+      base: () => <BaseButton variant="secondary">Secondary</BaseButton>,
+      radix: () => <RadixButton variant="secondary">Secondary</RadixButton>,
+      heroui: () => <HeroButton variant="secondary">Secondary</HeroButton>,
+    },
+    outline: {
+      base: () => <BaseButton variant="outline">Outline</BaseButton>,
+      radix: () => <RadixButton variant="outline">Outline</RadixButton>,
+      heroui: () => <HeroButton variant="outline">Outline</HeroButton>,
+    },
+    ghost: {
+      base: () => <BaseButton variant="ghost">Ghost</BaseButton>,
+      radix: () => <RadixButton variant="ghost">Ghost</RadixButton>,
+      heroui: () => <HeroButton variant="ghost">Ghost</HeroButton>,
+    },
+    destructive: {
+      base: () => <BaseButton variant="destructive">Destructive</BaseButton>,
+      radix: () => (
+        <RadixButton variant="destructive">Destructive</RadixButton>
       ),
-      link: () => <Button variant="link">Link</Button>,
-      soft: () => (
-        <Button variant="soft" size="soft">
+      heroui: () => (
+        <HeroButton variant="destructive">Destructive</HeroButton>
+      ),
+    },
+    link: {
+      base: () => <BaseButton variant="link">Link</BaseButton>,
+      radix: () => <RadixButton variant="link">Link</RadixButton>,
+      heroui: () => <HeroButton variant="link">Link</HeroButton>,
+    },
+    soft: {
+      base: () => (
+        <BaseButton variant="soft" size="soft">
           Request a demo
-        </Button>
+        </BaseButton>
       ),
-      "soft-outline": () => (
-        <Button variant="soft-outline" size="soft">
+      radix: () => (
+        <RadixButton variant="soft" size="soft">
+          Request a demo
+        </RadixButton>
+      ),
+      heroui: () => (
+        <HeroButton variant="soft" size="soft">
+          Request a demo
+        </HeroButton>
+      ),
+    },
+    "soft-outline": {
+      base: () => (
+        <BaseButton variant="soft-outline" size="soft">
           Join waitlist
-        </Button>
+        </BaseButton>
+      ),
+      radix: () => (
+        <RadixButton variant="soft-outline" size="soft">
+          Join waitlist
+        </RadixButton>
+      ),
+      heroui: () => (
+        <HeroButton variant="soft-outline" size="soft">
+          Join waitlist
+        </HeroButton>
       ),
     },
-    badge: {
-      default: () => <Badge>Default</Badge>,
-      secondary: () => <Badge variant="secondary">Secondary</Badge>,
-      outline: () => <Badge variant="outline">Outline</Badge>,
-      soft: () => <Badge variant="soft">Soft</Badge>,
-      destructive: () => <Badge variant="destructive">Destructive</Badge>,
+  },
+  badge: {
+    default: { base: () => <Badge>Default</Badge> },
+    secondary: { base: () => <Badge variant="secondary">Secondary</Badge> },
+    outline: { base: () => <Badge variant="outline">Outline</Badge> },
+    soft: { base: () => <Badge variant="soft">Soft</Badge> },
+    destructive: {
+      base: () => <Badge variant="destructive">Destructive</Badge>,
     },
-    input: {
-      default: () => <Input type="email" placeholder="Email" />,
-    },
-    card: {
-      basic: () => (
+  },
+  input: {
+    default: { base: () => <Input type="email" placeholder="Email" /> },
+  },
+  card: {
+    basic: {
+      base: () => (
         <Card className="w-full max-w-sm">
           <CardHeader>
             <CardTitle>Title</CardTitle>
@@ -71,30 +145,62 @@ const examplePreviews: Record<string, Record<string, ExamplePreviewComponent>> =
         </Card>
       ),
     },
-    dialog: {
-      basic: () => (
-        <Dialog>
-          <DialogTrigger render={<Button>Open</Button>} />
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Title</DialogTitle>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+  },
+  dialog: {
+    basic: {
+      base: () => (
+        <BaseDialog>
+          <BaseDialogTrigger render={<BaseButton>Open</BaseButton>} />
+          <BaseDialogContent>
+            <BaseDialogHeader>
+              <BaseDialogTitle>Title</BaseDialogTitle>
+            </BaseDialogHeader>
+          </BaseDialogContent>
+        </BaseDialog>
+      ),
+      radix: () => (
+        <RadixDialog>
+          <RadixDialogTrigger asChild>
+            <RadixButton>Open</RadixButton>
+          </RadixDialogTrigger>
+          <RadixDialogContent>
+            <RadixDialogHeader>
+              <RadixDialogTitle>Title</RadixDialogTitle>
+            </RadixDialogHeader>
+          </RadixDialogContent>
+        </RadixDialog>
+      ),
+      heroui: () => (
+        <HeroDialog>
+          <HeroDialogTrigger>
+            <HeroButton>Open</HeroButton>
+          </HeroDialogTrigger>
+          <HeroDialogContent>
+            <HeroDialogHeader>
+              <HeroDialogTitle>Title</HeroDialogTitle>
+            </HeroDialogHeader>
+          </HeroDialogContent>
+        </HeroDialog>
       ),
     },
-    "social-links": {
-      default: () => (
+  },
+  "social-links": {
+    default: {
+      base: () => (
         <SocialLinks
           links={[{ platform: "github", href: "https://github.com/you" }]}
         />
       ),
     },
-    "navii-avatar": {
-      default: () => (
+  },
+  "navii-avatar": {
+    default: {
+      base: () => (
         <NaviiAvatar seed="alice@example.com" animated title="Alice" />
       ),
-      "photo-fallback": () => (
+    },
+    "photo-fallback": {
+      base: () => (
         <Avatar>
           <AvatarImage src="/does-not-exist.png" alt="User" />
           <AvatarFallback className="p-0">
@@ -103,26 +209,59 @@ const examplePreviews: Record<string, Record<string, ExamplePreviewComponent>> =
         </Avatar>
       ),
     },
-    sonner: {
-      "success-toast": () => (
+  },
+  sonner: {
+    "success-toast": {
+      base: () => (
         <>
           <Toaster />
-          <Button
+          <BaseButton
             variant="outline"
             onClick={() => toast.success("Saved successfully")}
           >
             Show success toast
-          </Button>
+          </BaseButton>
+        </>
+      ),
+      radix: () => (
+        <>
+          <Toaster />
+          <RadixButton
+            variant="outline"
+            onClick={() => toast.success("Saved successfully")}
+          >
+            Show success toast
+          </RadixButton>
+        </>
+      ),
+      heroui: () => (
+        <>
+          <Toaster />
+          <HeroButton
+            variant="outline"
+            onClick={() => toast.success("Saved successfully")}
+          >
+            Show success toast
+          </HeroButton>
         </>
       ),
     },
-  }
+  },
+}
 
 function getExamplePreview(
   component: string,
   example: string
-): ExamplePreviewComponent | null {
+): LibraryExamplePreview | null {
   return examplePreviews[component]?.[example] ?? null
+}
+
+function PreviewFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex min-h-[180px] items-center justify-center overflow-visible bg-background/60 p-8">
+      {children}
+    </div>
+  )
 }
 
 export function ExamplePreviewSection({
@@ -132,27 +271,31 @@ export function ExamplePreviewSection({
   component: string
   example: string
 }) {
-  const Preview = getExamplePreview(component, example)
-  if (!Preview) {
+  const preview = getExamplePreview(component, example)
+  if (!preview) {
     return null
   }
+
+  const BasePreview = preview.base
+  const RadixPreview = preview.radix ?? preview.base
+  const HeroUiPreview = preview.heroui ?? preview.base
 
   return (
     <UiLibraryContent
       base={
-        <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-          <Preview />
-        </div>
+        <PreviewFrame>
+          <BasePreview />
+        </PreviewFrame>
       }
       radix={
-        <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-          <Preview />
-        </div>
+        <PreviewFrame>
+          <RadixPreview />
+        </PreviewFrame>
       }
       heroui={
-        <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
-          <Preview />
-        </div>
+        <PreviewFrame>
+          <HeroUiPreview />
+        </PreviewFrame>
       }
     />
   )

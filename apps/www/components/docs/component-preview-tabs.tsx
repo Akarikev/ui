@@ -93,7 +93,7 @@ export async function ComponentPreviewTabs({
   return (
     <div
       className={cn(
-        "not-prose my-6 overflow-hidden rounded-lg border border-border bg-card",
+        "not-prose my-6 rounded-lg border border-border bg-card",
         className
       )}
     >
@@ -113,17 +113,17 @@ export async function ComponentPreviewTabs({
       {showFullDemo ? (
         <UiLibraryContent
           base={
-            <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+            <div className="flex min-h-[180px] items-center justify-center overflow-visible bg-background/60 p-8">
               <Demo />
             </div>
           }
           radix={
-            <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+            <div className="flex min-h-[180px] items-center justify-center overflow-visible bg-background/60 p-8">
               <RadixDemo />
             </div>
           }
           heroui={
-            <div className="flex min-h-[180px] items-center justify-center bg-background/60 p-8">
+            <div className="flex min-h-[180px] items-center justify-center overflow-visible bg-background/60 p-8">
               <HeroUiDemo />
             </div>
           }
