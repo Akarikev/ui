@@ -25,6 +25,7 @@
         "@radix-ui/react-switch": "^1.2.5",
         "@radix-ui/react-tooltip": "^1.2.7",
         "@usenavii/react": "^0.5.0",
+        "@vercel/analytics": "^2.0.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "cmdk": "^1.1.1",
@@ -53,7 +54,7 @@
     },
     "packages/cli": {
       "name": "elorm",
-      "version": "0.1.3",
+      "version": "0.2.1",
       "bin": {
         "elorm": "dist/index.js",
       },
@@ -553,6 +554,8 @@
     "@usenavii/core": ["@usenavii/core@0.5.0", "", {}, "sha512-6PcNKtmcSKD7uWW79IPaZE1iPzAV+HE7anWbkxR9jYTZtDu/WHM3mFWBdncEIyRc2EFUfA2i2zSA8CPeE7fwTg=="],
 
     "@usenavii/react": ["@usenavii/react@0.5.0", "", { "dependencies": { "@usenavii/core": "^0.5.0" }, "peerDependencies": { "react": ">=17" } }, "sha512-hEKWrh8ij03k8D1lfvNN32MqmBvJsFVbxpz7EWt7oa9ZvyesTcxdkF+MTx1nXydDQM3O59Al+DRfzoLgsJx6ng=="],
+
+    "@vercel/analytics": ["@vercel/analytics@2.0.1", "", { "peerDependencies": { "@remix-run/react": "^2", "@sveltejs/kit": "^1 || ^2", "next": ">= 13", "nuxt": ">= 3", "react": "^18 || ^19 || ^19.0.0-rc", "svelte": ">= 4", "vue": "^3", "vue-router": "^4" }, "optionalPeers": ["@remix-run/react", "@sveltejs/kit", "next", "nuxt", "react", "svelte", "vue", "vue-router"] }, "sha512-MTQG6V9qQrt1tsDeF+2Uoo5aPjqbVPys1xvnIftXSJYG2SrwXRHnqEvVoYID7BTruDz4lCd2Z7rM1BdkUehk2g=="],
 
     "@vitest/expect": ["@vitest/expect@3.2.4", "", { "dependencies": { "@types/chai": "^5.2.2", "@vitest/spy": "3.2.4", "@vitest/utils": "3.2.4", "chai": "^5.2.0", "tinyrainbow": "^2.0.0" } }, "sha512-Io0yyORnB6sikFlt8QW5K7slY4OjqNX9jmJQ02QDda8lyM6B5oNgVWoSoKPac8/kgnCUzuHQKrSLtu/uOqqrig=="],
 
