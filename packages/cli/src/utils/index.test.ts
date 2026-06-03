@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest"
 import {
   isSafeTarget,
+  generateProjectCss,
+  mergeProjectCss,
   transformImports,
   transformContent,
   topologicalSort,
@@ -62,6 +64,84 @@ describe("resolveRegistryUrl", () => {
       uiLibrary: "radix",
     })
     expect(url).toBe("https://ui.elorm.xyz/r/radix/button.json")
+  })
+})
+
+describe("mergeProjectCss", () => {
+  it("adds selected green accent tokens to an existing globals stylesheet", () => {
+    const projectCss = generateProjectCss({
+      ...DEFAULT_ELORM_CONFIG,
+      theme: { ...DEFAULT_ELORM_CONFIG.theme, accent: "green" },
+    })
+    const result = mergeProjectCss(
+      `@import "tailwindcss";
+
+body {
+  margin: 0;
+}
+`,
+      projectCss
+    )
+
+    expect(result).toContain("--primary: oklch(0.45 0.18 145);")
+    expect(result).toContain("--ring: oklch(0.55 0.15 145);")
+    expect(result).toContain("--chart-2: oklch(0.6 0.15 175);")
+    expect(result).toContain("--radius: 0.5rem;")
+    expect(result).toContain("@theme inline {")
+    expect(result).toContain(".dark {")
+    expect(result).toContain("body {\n  margin: 0;\n}")
+  })
+
+  it("overwrites duplicate variables only inside their matching blocks", () => {
+    const projectCss = generateProjectCss({
+      ...DEFAULT_ELORM_CONFIG,
+      theme: { ...DEFAULT_ELORM_CONFIG.theme, accent: "green" },
+    })
+    const result = mergeProjectCss(
+      `:root {
+  --primary: red;
+  --primary: orange;
+  --user-token: 1rem;
+}
+
+.dark {
+  --primary: black;
+}
+
+.brand {
+  --primary: purple;
+}
+`,
+      projectCss
+    )
+    const rootBlock = result.match(/:root \{[\s\S]*?\n\}/)?.[0] ?? ""
+    const darkBlock = result.match(/\.dark \{[\s\S]*?\n\}/)?.[0] ?? ""
+
+    expect(rootBlock.match(/--primary:/g)).toHaveLength(1)
+    expect(rootBlock).toContain("--primary: oklch(0.45 0.18 145);")
+    expect(rootBlock).toContain("--user-token: 1rem;")
+    expect(darkBlock.match(/--primary:/g)).toHaveLength(1)
+    expect(darkBlock).toContain("--primary: oklch(0.65 0.18 145);")
+    expect(result).toContain(".brand {\n  --primary: purple;\n}")
+  })
+
+  it("appends missing elorm sections without deleting custom css", () => {
+    const projectCss = generateProjectCss({
+      ...DEFAULT_ELORM_CONFIG,
+      uiLibrary: "heroui",
+      theme: { ...DEFAULT_ELORM_CONFIG.theme, radius: "round" },
+    })
+    const result = mergeProjectCss(".card {\n  color: red;\n}\n", projectCss)
+
+    expect(result).toContain('@import "tailwindcss";')
+    expect(result).toContain('@import "@heroui/styles";')
+    expect(result).toContain("@custom-variant dark (&:is(.dark *));")
+    expect(result).toContain("@theme inline {")
+    expect(result).toContain(":root {")
+    expect(result).toContain(".dark {")
+    expect(result).toContain("@layer base {")
+    expect(result).toContain(".card {\n  color: red;\n}")
+    expect(result).toContain("--radius: 0.75rem;")
   })
 })
 

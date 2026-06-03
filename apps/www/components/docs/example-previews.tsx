@@ -35,6 +35,8 @@ import {
 } from "@/components/ui-heroui/dialog"
 import { SocialLinks } from "@/components/ui/social-links"
 import { NaviiAvatar } from "@/components/ui/navii-avatar"
+import { BenchmarkGrid } from "@/components/blocks/benchmark-grid"
+import { PromptComposer } from "@/components/blocks/prompt-composer"
 import {
   Avatar,
   AvatarFallback,
@@ -42,6 +44,7 @@ import {
 } from "@/components/ui/avatar"
 import { toast, Toaster } from "@/components/ui/sonner"
 import { UiLibraryContent } from "@/components/docs/ui-library-content"
+import { supportsHeroUi } from "@/lib/ui-library-availability"
 
 type ExamplePreviewComponent = () => ReactNode
 
@@ -143,6 +146,46 @@ const examplePreviews: Record<string, Record<string, LibraryExamplePreview>> = {
           </CardHeader>
           <CardContent>Content</CardContent>
         </Card>
+      ),
+    },
+  },
+  "benchmark-grid": {
+    "custom-benchmark": {
+      base: () => (
+        <BenchmarkGrid
+          benchmarks={[
+            {
+              title: "#1 on Support Bench",
+              entries: [
+                {
+                  label: "elorm",
+                  value: 92,
+                  displayValue: "92%",
+                  highlighted: true,
+                },
+                { label: "Baseline", value: 76, displayValue: "76%" },
+              ],
+              domain: [0, 100],
+            },
+          ]}
+        />
+      ),
+    },
+  },
+  "prompt-composer": {
+    "follow-up-composer": {
+      base: () => (
+        <PromptComposer variant="follow-up" placeholder="Send follow-up" />
+      ),
+    },
+    "custom-suggestions": {
+      base: () => (
+        <PromptComposer
+          suggestions={[
+            { label: "Landing page", prompt: "Build a landing page for " },
+            { label: "Dashboard", prompt: "Create a dashboard that tracks " },
+          ]}
+        />
       ),
     },
   },
@@ -278,7 +321,8 @@ export function ExamplePreviewSection({
 
   const BasePreview = preview.base
   const RadixPreview = preview.radix ?? preview.base
-  const HeroUiPreview = preview.heroui ?? preview.base
+  const showHeroUi = supportsHeroUi(component)
+  const HeroUiPreview = showHeroUi ? preview.heroui : undefined
 
   return (
     <UiLibraryContent
@@ -293,9 +337,11 @@ export function ExamplePreviewSection({
         </PreviewFrame>
       }
       heroui={
-        <PreviewFrame>
-          <HeroUiPreview />
-        </PreviewFrame>
+        HeroUiPreview ? (
+          <PreviewFrame>
+            <HeroUiPreview />
+          </PreviewFrame>
+        ) : undefined
       }
     />
   )

@@ -15,6 +15,7 @@ import {
 import {
   CN_UTIL_TEMPLATE,
   generateProjectCss,
+  mergeProjectCss,
   writeConfig,
 } from "../utils/index.js"
 
@@ -154,13 +155,14 @@ export async function initCommand(options: InitOptions = {}) {
 
   const cssFullPath = path.join(cwd, config.tailwind.css)
   await fs.ensureDir(path.dirname(cssFullPath))
+  const projectCss = generateProjectCss(config)
   if (!(await fs.pathExists(cssFullPath))) {
-    await fs.writeFile(cssFullPath, generateProjectCss(config))
+    await fs.writeFile(cssFullPath, projectCss)
     p.log.success(`Created ${pc.cyan(config.tailwind.css)}`)
   } else {
-    p.log.warn(
-      `${pc.cyan(config.tailwind.css)} already exists — merge CSS variables manually.`
-    )
+    const existingCss = await fs.readFile(cssFullPath, "utf-8")
+    await fs.writeFile(cssFullPath, mergeProjectCss(existingCss, projectCss))
+    p.log.success(`Updated ${pc.cyan(config.tailwind.css)} with elorm theme tokens`)
   }
 
   p.outro(

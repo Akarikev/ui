@@ -42,6 +42,8 @@
     "---Blocks---",
     "empty-state",
     "stat-card",
+    "benchmark-grid",
+    "prompt-composer",
     "page-header",
     "page-footer",
     "login-form",

@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import type { UiLibrary } from "@/lib/ui-library"
 import { UiPreviewBadge } from "@/components/docs/ui-preview-badge"
+import { getAvailableUiLibraries } from "@/lib/ui-library-availability"
 import { cn } from "@/lib/utils"
 
 const LIBRARIES = [
@@ -13,18 +14,33 @@ const LIBRARIES = [
 
 const STORAGE_KEY = "elorm-docs-ui-library"
 
-export function DocsLibrarySwitcher({ className }: { className?: string }) {
+export function DocsLibrarySwitcher({
+  className,
+  component,
+}: {
+  className?: string
+  component?: string
+}) {
+  const availableLibraries = useMemo(
+    () => getAvailableUiLibraries(component),
+    [component]
+  )
   const [selected, setSelected] = useState<UiLibrary>("base-ui")
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    if (stored === "base-ui" || stored === "radix" || stored === "heroui") {
+    if (
+      (stored === "base-ui" || stored === "radix" || stored === "heroui") &&
+      availableLibraries.includes(stored)
+    ) {
       setSelected(stored)
       document.documentElement.dataset.uiLibrary = stored
       return
     }
+
     document.documentElement.dataset.uiLibrary = "base-ui"
-  }, [])
+    setSelected("base-ui")
+  }, [availableLibraries])
 
   function handleSelect(next: UiLibrary) {
     setSelected(next)
@@ -40,7 +56,7 @@ export function DocsLibrarySwitcher({ className }: { className?: string }) {
       )}
     >
       <div className="flex w-full gap-1 sm:w-auto">
-        {LIBRARIES.map((lib) => (
+        {LIBRARIES.filter((lib) => availableLibraries.includes(lib.id)).map((lib) => (
           <button
             type="button"
             key={lib.id}

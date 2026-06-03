@@ -2,6 +2,7 @@ import { HighlightedCode } from "@/components/docs/highlighted-code"
 import { UiLibraryContent } from "@/components/docs/ui-library-content"
 import { decodeDocsCode } from "@/lib/docs-code"
 import { docsImportCode } from "@/lib/docs-example-code"
+import { supportsHeroUi } from "@/lib/ui-library-availability"
 import { cn } from "@/lib/utils"
 
 export async function LibraryCodeBlock({
@@ -23,6 +24,8 @@ export async function LibraryCodeBlock({
   const resolvedRadix =
     imports?.radix ??
     (radixCode ? decodeDocsCode(radixCode) : resolvedBase)
+  const resolvedHeroUi = imports?.heroui ?? resolvedBase
+  const showHeroUi = component ? supportsHeroUi(component) : false
 
   return (
     <div
@@ -34,6 +37,11 @@ export async function LibraryCodeBlock({
       <UiLibraryContent
         base={<HighlightedCode code={resolvedBase} language={language} />}
         radix={<HighlightedCode code={resolvedRadix} language={language} />}
+        heroui={
+          showHeroUi ? (
+            <HighlightedCode code={resolvedHeroUi} language={language} />
+          ) : undefined
+        }
       />
     </div>
   )

@@ -78,7 +78,9 @@ export default async function DocsPage({ params }: PageProps) {
               {renderInlineLinks(page.data.description)}
             </p>
           ) : null}
-          {isComponentPage ? <DocsLibrarySwitcher /> : null}
+          {isComponentPage ? (
+            <DocsLibrarySwitcher component={slug?.[1]} />
+          ) : null}
         </div>
         <div className="docs-prose">
           <MDX components={getMDXComponents()} />

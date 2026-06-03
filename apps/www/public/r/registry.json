@@ -196,6 +196,28 @@
       ]
     },
     {
+      "name": "benchmark-grid",
+      "type": "registry:block",
+      "title": "Benchmark Grid",
+      "description": "A responsive benchmark leaderboard grid for product and AI eval results.",
+      "categories": [
+        "blocks",
+        "dashboard",
+        "marketing"
+      ]
+    },
+    {
+      "name": "prompt-composer",
+      "type": "registry:block",
+      "title": "Prompt Composer",
+      "description": "An AI prompt input block with action shortcuts, attachment control, and suggestion chips.",
+      "categories": [
+        "blocks",
+        "ai",
+        "forms"
+      ]
+    },
+    {
       "name": "page-header",
       "type": "registry:block",
       "title": "Page Header",

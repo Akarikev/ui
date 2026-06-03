@@ -88,6 +88,8 @@ const DOC_COMPONENTS = new Set([
   "collapsible",
   "empty-state",
   "stat-card",
+  "benchmark-grid",
+  "prompt-composer",
   "page-header",
   "login-form",
   "settings-section",

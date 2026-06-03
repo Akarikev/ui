@@ -41,6 +41,8 @@ import { DropdownMenuDemo } from "@/components/demos/dropdown-menu-demo"
 import { DropdownMenuDemoRadix } from "@/components/demos/dropdown-menu-demo-radix"
 import { DropdownMenuDemoHeroUi } from "@/components/demos/dropdown-menu-demo-heroui"
 import { StatCardDemo } from "@/components/demos/stat-card-demo"
+import { BenchmarkGridDemo } from "@/components/demos/benchmark-grid-demo"
+import { PromptComposerDemo } from "@/components/demos/prompt-composer-demo"
 import { PageHeaderDemo } from "@/components/demos/page-header-demo"
 import { LoginFormDemo } from "@/components/demos/login-form-demo"
 import { SettingsSectionDemo } from "@/components/demos/settings-section-demo"
@@ -111,6 +113,8 @@ const demos: Record<
   },
   "empty-state": { base: EmptyStateDemo },
   "stat-card": { base: StatCardDemo },
+  "benchmark-grid": { base: BenchmarkGridDemo },
+  "prompt-composer": { base: PromptComposerDemo },
   "page-header": { base: PageHeaderDemo },
   "login-form": { base: LoginFormDemo },
   "settings-section": { base: SettingsSectionDemo },

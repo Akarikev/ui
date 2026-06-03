@@ -97,6 +97,16 @@ export const docsImportCode: Record<string, DocsCodeEntry> = {
     radix: "import { StatCard } from \"@/components/blocks/stat-card\"",
     heroui: "import { StatCard } from \"@/components/blocks/stat-card\"",
   },
+  "benchmark-grid": {
+    base: "import { BenchmarkGrid } from \"@/components/blocks/benchmark-grid\"",
+    radix: "import { BenchmarkGrid } from \"@/components/blocks/benchmark-grid\"",
+    heroui: "import { BenchmarkGrid } from \"@/components/blocks/benchmark-grid\"",
+  },
+  "prompt-composer": {
+    base: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"",
+    radix: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"",
+    heroui: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"",
+  },
   "page-header": {
     base: "import { PageHeader } from \"@/components/blocks/page-header\"",
     radix: "import { PageHeader } from \"@/components/blocks/page-header\"",
@@ -297,6 +307,25 @@ export const docsExampleCode: Record<string, Record<string, DocsCodeEntry>> = {
     base: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
     radix: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
     heroui: "import { SocialLinks } from \"@/components/ui/social-links\"\n\nexport function SocialLinksDemo() {\n  return (\n    <SocialLinks links={[{ platform: \"github\", href: \"https://github.com/you\" }]} />\n  )\n}",
+  }
+  },
+  "benchmark-grid": {
+  "custom-benchmark": {
+    base: "import { BenchmarkGrid } from \"@/components/blocks/benchmark-grid\"\n\nexport function BenchmarkGridDemo() {\n  return (\n    <BenchmarkGrid benchmarks={[{ title: \"#1 on Support Bench\", entries: [{ label: \"Acme AI\", value: 92, displayValue: \"92%\", highlighted: true }, { label: \"Baseline\", value: 76, displayValue: \"76%\" }], domain: [0, 100], ticks: [\"0%\", \"50%\", \"100%\"] }]} />\n  )\n}",
+    radix: "import { BenchmarkGrid } from \"@/components/blocks/benchmark-grid\"\n\nexport function BenchmarkGridDemo() {\n  return (\n    <BenchmarkGrid benchmarks={[{ title: \"#1 on Support Bench\", entries: [{ label: \"Acme AI\", value: 92, displayValue: \"92%\", highlighted: true }, { label: \"Baseline\", value: 76, displayValue: \"76%\" }], domain: [0, 100], ticks: [\"0%\", \"50%\", \"100%\"] }]} />\n  )\n}",
+    heroui: "import { BenchmarkGrid } from \"@/components/blocks/benchmark-grid\"\n\nexport function BenchmarkGridDemo() {\n  return (\n    <BenchmarkGrid benchmarks={[{ title: \"#1 on Support Bench\", entries: [{ label: \"Acme AI\", value: 92, displayValue: \"92%\", highlighted: true }, { label: \"Baseline\", value: 76, displayValue: \"76%\" }], domain: [0, 100], ticks: [\"0%\", \"50%\", \"100%\"] }]} />\n  )\n}",
+  }
+  },
+  "prompt-composer": {
+  "follow-up-composer": {
+    base: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"\n\nexport function PromptComposerDemo() {\n  return (\n    <PromptComposer variant=\"follow-up\" placeholder=\"Send follow-up\" />\n  )\n}",
+    radix: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"\n\nexport function PromptComposerDemo() {\n  return (\n    <PromptComposer variant=\"follow-up\" placeholder=\"Send follow-up\" />\n  )\n}",
+    heroui: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"\n\nexport function PromptComposerDemo() {\n  return (\n    <PromptComposer variant=\"follow-up\" placeholder=\"Send follow-up\" />\n  )\n}",
+  },
+  "custom-suggestions": {
+    base: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"\n\nexport function PromptComposerDemo() {\n  return (\n    <PromptComposer suggestions={[{ label: \"Landing page\", prompt: \"Build a landing page for \" }, { label: \"Dashboard\", prompt: \"Create a dashboard that tracks \" }]} />\n  )\n}",
+    radix: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"\n\nexport function PromptComposerDemo() {\n  return (\n    <PromptComposer suggestions={[{ label: \"Landing page\", prompt: \"Build a landing page for \" }, { label: \"Dashboard\", prompt: \"Create a dashboard that tracks \" }]} />\n  )\n}",
+    heroui: "import { PromptComposer } from \"@/components/blocks/prompt-composer\"\n\nexport function PromptComposerDemo() {\n  return (\n    <PromptComposer suggestions={[{ label: \"Landing page\", prompt: \"Build a landing page for \" }, { label: \"Dashboard\", prompt: \"Create a dashboard that tracks \" }]} />\n  )\n}",
   }
   },
   "navii-avatar": {

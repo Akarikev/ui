@@ -387,6 +387,62 @@
       ]
     },
     {
+      "name": "benchmark-grid",
+      "type": "registry:block",
+      "title": "Benchmark Grid",
+      "description": "A responsive benchmark leaderboard grid for product and AI eval results.",
+      "categories": ["blocks", "dashboard", "marketing"],
+      "registryDependencies": ["utils", "ui-styles", "card"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/blocks/benchmark-grid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "addedAt": "2026-06-03",
+        "usage": "Use for benchmark leaderboards, model comparisons, launch claims, or scorecards. Pass custom benchmarks to replace the default App Bench and UI Bench data.",
+        "composition": ["BenchmarkGrid", "BenchmarkCard"],
+        "examples": [
+          {
+            "title": "Custom benchmark",
+            "code": "<BenchmarkGrid benchmarks={[{ title: \"#1 on Support Bench\", entries: [{ label: \"Acme AI\", value: 92, displayValue: \"92%\", highlighted: true }, { label: \"Baseline\", value: 76, displayValue: \"76%\" }], domain: [0, 100], ticks: [\"0%\", \"50%\", \"100%\"] }]} />"
+          }
+        ]
+      }
+    },
+    {
+      "name": "prompt-composer",
+      "type": "registry:block",
+      "title": "Prompt Composer",
+      "description": "An AI prompt input block with action shortcuts, attachment control, and suggestion chips.",
+      "categories": ["blocks", "ai", "forms"],
+      "registryDependencies": ["utils", "ui-styles", "button", "field"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/blocks/prompt-composer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "addedAt": "2026-06-03",
+        "usage": "Use as a hero prompt box, agent command bar, or AI app launcher. Connect onPromptSubmit to your chat, agent, or workflow endpoint.",
+        "composition": ["FieldGroup", "Field", "Button"],
+        "examples": [
+          {
+            "title": "Follow-up composer",
+            "code": "<PromptComposer variant=\"follow-up\" placeholder=\"Send follow-up\" />"
+          },
+          {
+            "title": "Custom suggestions",
+            "code": "<PromptComposer suggestions={[{ label: \"Landing page\", prompt: \"Build a landing page for \" }, { label: \"Dashboard\", prompt: \"Create a dashboard that tracks \" }]} />"
+          }
+        ]
+      }
+    },
+    {
       "name": "page-header",
       "type": "registry:block",
       "title": "Page Header",
