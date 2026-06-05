@@ -3,6 +3,21 @@ title: Changelog
 description: "Product updates and improvements to elorm/ui."
 ---
 
+<Update label="June 5, 2026" tags={["v0.2.2"]}>
+
+## New
+
+- **`benchmark-grid` block** — a responsive leaderboard grid for product and AI eval scorecards. Drop in the defaults or pass your own benchmarks for model comparisons and launch claims. Install with `elorm add benchmark-grid`.
+- **`prompt-composer` block** — an AI prompt input with action shortcuts, attachment control, and suggestion chips. Use it as a hero prompt box, agent command bar, or chat launcher and wire `onPromptSubmit` to your endpoint. Install with `elorm add prompt-composer`.
+- **Blocks showcase on the homepage** — the marketing site now previews the new blocks alongside the primitive compare, so you can see what ships before running `elorm init`.
+
+## Improved
+
+- **`elorm init` merges your existing CSS** — if your Tailwind CSS file already exists, `init` now merges elorm's theme tokens in place instead of warning you to do it by hand. New projects still get a fresh file. See the [CLI reference](/get-started/cli).
+- **Marketing analytics** — Vercel Analytics and Speed Insights are now enabled on the marketing site for better visibility into usage and performance.
+
+</Update>
+
 <Update label="May 29, 2026" tags={["v0.2.1"]}>
 
 ## New
