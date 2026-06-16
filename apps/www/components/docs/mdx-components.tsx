@@ -13,6 +13,7 @@ import { DarkModePreview } from "@/components/docs/dark-mode-preview"
 import { CopyButton } from "@/components/docs/copy-button"
 import { InstallCommand } from "@/components/docs/install-command"
 import { LibraryCodeBlock } from "@/components/docs/library-code-block"
+import { NagomiPreview } from "@/components/docs/nagomi-preview"
 
 function getNodeText(node: React.ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node)
@@ -242,6 +243,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     FrameworkSetup,
     FrameworkDarkModeSetup,
     DarkModePreview,
+    NagomiPreview,
     LibraryCodeBlock,
     InstallCommand,
     CodeBlockCommand,

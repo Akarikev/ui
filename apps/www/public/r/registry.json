@@ -36,6 +36,16 @@
       ]
     },
     {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "Displays a one-time passcode input with accessible slots.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
@@ -70,6 +80,16 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A control for selecting a value from a continuous range.",
       "categories": [
         "ui",
         "forms"
@@ -605,6 +625,7 @@
       ]
     }
   ],
+  "style": "elorm",
   "libraries": [
     "base-ui",
     "radix",

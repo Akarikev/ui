@@ -1,0 +1,42 @@
+---
+title: "Input OTP"
+description: "Displays a one-time passcode input with accessible slots."
+---
+
+<ComponentPreviewTabs component="input-otp" />
+
+## Installation
+
+<InstallCommand command="elorm add input-otp" />
+
+## Usage
+
+<LibraryCodeBlock component="input-otp" />
+
+Displays a one-time passcode input with accessible slots.
+
+Use for verification codes, MFA challenges, and short PIN-style passcodes.
+
+## Composition
+
+```text
+Input OTP
+├── InputOTP
+├── InputOTPGroup
+├── InputOTPSlot
+├── InputOTPSeparator
+```
+
+## Examples
+
+### Default
+
+<ComponentPreviewTabs component="input-otp" example="default" />
+
+### Separated
+
+<ComponentPreviewTabs component="input-otp" example="separated" />
+
+## Avoid
+
+- Do not use without a visible label or aria-label

@@ -72,6 +72,22 @@ Init radius presets:
 | compact | `0.375rem` |
 | round | `0.75rem` |
 
+## Style presets
+
+The default style is `elorm`. The beta style is `nagomi`, a calmer preset with larger default radii, softer borders, and smoother elevated surfaces.
+
+```json
+{
+  "style": "nagomi"
+}
+```
+
+Start a Nagomi project with:
+
+<InstallCommand command="elorm init --style nagomi" />
+
+Nagomi keeps the same base color and accent system, but tunes the generated CSS tokens around rounded cards, softer form borders, smoother overlays, and calmer feedback components. Selected registry output also receives Nagomi source styling for buttons, inputs, textareas, select, dialog, sheet, popover, dropdown menu, badge, alert, empty state, stat card, progress, and slider.
+
 ## Base colors
 
 Available base colors: **neutral**, **zinc**, **slate**, **stone**, **gray**.

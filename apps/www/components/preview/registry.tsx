@@ -4,6 +4,7 @@ import { ButtonDemo } from "@/components/demos/button-demo"
 import { ButtonDemoRadix } from "@/components/demos/button-demo-radix"
 import { ButtonDemoHeroUi } from "@/components/demos/button-demo-heroui"
 import { InputDemo } from "@/components/demos/input-demo"
+import { InputOTPDemo } from "@/components/demos/input-otp-demo"
 import { TextareaDemo } from "@/components/demos/textarea-demo"
 import { LabelDemo } from "@/components/demos/label-demo"
 import { FieldDemo } from "@/components/demos/field-demo"
@@ -11,6 +12,9 @@ import { InputGroupDemo } from "@/components/demos/input-group-demo"
 import { SpinnerDemo } from "@/components/demos/spinner-demo"
 import { RadioGroupDemo } from "@/components/demos/radio-group-demo"
 import { ToggleGroupDemo } from "@/components/demos/toggle-group-demo"
+import { SliderDemo } from "@/components/demos/slider-demo"
+import { SliderDemoRadix } from "@/components/demos/slider-demo-radix"
+import { SliderDemoHeroUi } from "@/components/demos/slider-demo-heroui"
 import { CardDemo } from "@/components/demos/card-demo"
 import { DialogDemo } from "@/components/demos/dialog-demo"
 import { DialogDemoRadix } from "@/components/demos/dialog-demo-radix"
@@ -64,6 +68,7 @@ const demos: Record<
 > = {
   button: { base: ButtonDemo, radix: ButtonDemoRadix, heroui: ButtonDemoHeroUi },
   input: { base: InputDemo },
+  "input-otp": { base: InputOTPDemo },
   textarea: { base: TextareaDemo },
   label: { base: LabelDemo },
   field: { base: FieldDemo },
@@ -71,6 +76,7 @@ const demos: Record<
   spinner: { base: SpinnerDemo },
   "radio-group": { base: RadioGroupDemo },
   "toggle-group": { base: ToggleGroupDemo },
+  slider: { base: SliderDemo, radix: SliderDemoRadix, heroui: SliderDemoHeroUi },
   checkbox: createPrimitivePreviewDemos("checkbox"),
   switch: createPrimitivePreviewDemos("switch"),
   select: {

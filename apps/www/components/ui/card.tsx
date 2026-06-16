@@ -1,14 +1,14 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { softShadow, surfaceSoft, transitionBase } from "@/lib/ui-styles"
+import { softShadow, transitionBase } from "@/lib/ui-styles"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "rounded-2xl bg-card text-card-foreground ring-1 ring-border/30",
+        "relative overflow-hidden rounded-2xl border border-border/45 bg-card text-card-foreground ring-1 ring-foreground/[0.03] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:shadow-[inset_0_1px_0_oklch(1_0_0_/_0.55)] dark:before:shadow-[inset_0_1px_0_oklch(1_0_0_/_0.08)]",
         softShadow,
         transitionBase,
         className

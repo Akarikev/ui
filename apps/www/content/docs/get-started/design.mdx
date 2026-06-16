@@ -5,7 +5,7 @@ description: Elorm visual language, tokens, spacing, and composition patterns.
 
 # Design
 
-elorm/ui uses a refined minimal aesthetic — calm surfaces, precise typography, and subtle motion. Components are built on Base UI or Radix primitives with a shared **Elorm** style layer.
+elorm/ui uses a refined minimal aesthetic — calm surfaces, precise typography, and subtle motion. Components are built on Base UI, Radix, or HeroUI primitives with a shared **Elorm** style layer.
 
 ## Principles
 
@@ -80,4 +80,27 @@ Use `FieldGroup` + `Field` instead of raw divs:
 
 ## Style config
 
-Set `"style": "elorm"` in `elorm.json` (default). Future presets (`elorm-compact`, `elorm-soft`) will extend this field.
+Set `"style": "elorm"` in `elorm.json` for the stable style.
+
+## Nagomi beta
+
+Nagomi means calm harmony. It is the beta elorm/ui style for rounder surfaces, smoother borders, and softer component elevation.
+
+<NagomiPreview />
+
+Use it during init:
+
+<InstallCommand command="elorm init --style nagomi" />
+
+Nagomi still uses `elorm.json`; it writes `style: "nagomi"` and points the registry at the beta style path:
+
+```json
+{
+  "style": "nagomi",
+  "registries": {
+    "@elorm": "https://ui.elorm.xyz/r/{style}/{library}/{name}.json"
+  }
+}
+```
+
+Nagomi changes theme tokens and selected component source styles. The beta pass covers buttons, form controls, sliders, overlays, badges, alerts, empty states, stat cards, cards, and progress so the rounded surface language carries through common app screens.

@@ -55,10 +55,12 @@ interface Registry {
 const DOC_COMPONENTS = new Set([
   "button",
   "input",
+  "input-otp",
   "textarea",
   "label",
   "checkbox",
   "switch",
+  "slider",
   "select",
   "dialog",
   "sheet",
@@ -115,6 +117,7 @@ function getImportName(name: string): string {
     "stat-card": "StatCard",
     "page-header": "PageHeader",
     "input-group": "InputGroup",
+    "input-otp": "InputOTP",
     "radio-group": "RadioGroup",
     "toggle-group": "ToggleGroup",
     "alert-dialog": "AlertDialog",
@@ -248,6 +251,12 @@ function defaultImportCode(name: string, importPath: string, importName: string)
   TooltipContent,
   TooltipTrigger,
 } from "${importPath}"`,
+    "input-otp": `import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "${importPath}"`,
   }
 
   return map[name] ?? `import { ${importName} } from "${importPath}"`
@@ -347,7 +356,12 @@ function completeExampleCode(
   importCode: string,
   exampleCode: string
 ): string {
-  if (exampleCode.trimStart().startsWith("import ")) {
+  const trimmedExample = exampleCode.trimStart()
+  if (
+    trimmedExample.startsWith("import ") ||
+    trimmedExample.startsWith('"use client"') ||
+    trimmedExample.startsWith("'use client'")
+  ) {
     return exampleCode
   }
 

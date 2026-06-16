@@ -85,7 +85,8 @@ export const themeConfigSchema = z.object({
   radius: z.string().default("0.5"),
 })
 
-export const styleSchema = z.enum(["elorm"]).default("elorm")
+export const styleSchema = z.enum(["elorm", "nagomi"]).default("elorm")
+export type ElormStyle = z.infer<typeof styleSchema>
 
 export const elormConfigSchema = z.object({
   $schema: z.string().optional(),

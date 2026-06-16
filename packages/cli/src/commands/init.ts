@@ -5,6 +5,7 @@ import pc from "picocolors"
 import {
   DEFAULT_ELORM_CONFIG,
   type ElormConfig,
+  type ElormStyle,
   type UiLibrary,
 } from "@elorm/schema"
 import {
@@ -24,10 +25,19 @@ interface InitOptions {
   yes?: boolean
   template?: "next" | "vite"
   css?: string
+  style?: ElormStyle
   uiLibrary?: UiLibrary
   baseColor?: ElormConfig["tailwind"]["baseColor"]
   accent?: ElormConfig["theme"]["accent"]
   radius?: ElormConfig["theme"]["radius"]
+}
+
+const STABLE_ELORM_REGISTRY = "https://ui.elorm.xyz/r/{library}/{name}.json"
+const STYLE_ELORM_REGISTRY = "https://ui.elorm.xyz/r/{style}/{library}/{name}.json"
+
+function applyStyleRegistry(config: ElormConfig) {
+  config.registries["@elorm"] =
+    config.style === "nagomi" ? STYLE_ELORM_REGISTRY : STABLE_ELORM_REGISTRY
 }
 
 export async function initCommand(options: InitOptions = {}) {
@@ -35,7 +45,7 @@ export async function initCommand(options: InitOptions = {}) {
 
   p.intro(`${pc.bold("elorm/ui")} init`)
 
-  let config: ElormConfig = { ...DEFAULT_ELORM_CONFIG }
+  let config: ElormConfig = structuredClone(DEFAULT_ELORM_CONFIG)
 
   if (!options.yes) {
     const framework = await p.select({
@@ -71,6 +81,25 @@ export async function initCommand(options: InitOptions = {}) {
     }
 
     config.uiLibrary = uiLibrary as UiLibrary
+
+    const style = await p.select({
+      message: "Which elorm style do you want?",
+      options: [
+        { value: "elorm", label: "elorm (stable)" },
+        {
+          value: "nagomi",
+          label: "Nagomi (beta, calm rounded surfaces)",
+        },
+      ],
+    })
+
+    if (p.isCancel(style)) {
+      p.cancel("Operation cancelled.")
+      process.exit(0)
+    }
+
+    config.style = style as ElormStyle
+    applyStyleRegistry(config)
 
     const baseColor = await p.select({
       message: "Which base color do you want?",
@@ -131,6 +160,8 @@ export async function initCommand(options: InitOptions = {}) {
     config.tailwind.css = cssPath as string
   } else {
     config.framework = options.template ?? "next"
+    config.style = options.style ?? "elorm"
+    applyStyleRegistry(config)
     config.uiLibrary = options.uiLibrary ?? "base-ui"
     if (options.baseColor) config.tailwind.baseColor = options.baseColor
     if (options.accent) config.theme.accent = options.accent

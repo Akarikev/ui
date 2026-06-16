@@ -1,6 +1,7 @@
 import type {
   AccentColor,
   BaseColor,
+  ElormStyle,
   GenerateCssOptions,
   RadiusPreset,
   ThemePreset,
@@ -16,13 +17,23 @@ const RADIUS_VALUES: Record<RadiusPreset, string> = {
   round: "0.75rem",
 }
 
+const NAGOMI_RADIUS_VALUES: Record<RadiusPreset, string> = {
+  default: "0.875rem",
+  compact: "0.625rem",
+  round: "1rem",
+}
+
 export const RADIUS_PRESETS = Object.keys(RADIUS_VALUES) as RadiusPreset[]
 
-function resolveRadius(radius?: RadiusPreset | string): string {
-  if (!radius) return RADIUS_VALUES.default
+function resolveRadius(
+  radius?: RadiusPreset | string,
+  style: ElormStyle = "elorm"
+): string {
+  const values = style === "nagomi" ? NAGOMI_RADIUS_VALUES : RADIUS_VALUES
+  if (!radius) return values.default
 
-  if (radius in RADIUS_VALUES) {
-    return RADIUS_VALUES[radius as RadiusPreset]
+  if (radius in values) {
+    return values[radius as RadiusPreset]
   }
 
   if (/^\d+(\.\d+)?$/.test(radius)) {
@@ -32,18 +43,49 @@ function resolveRadius(radius?: RadiusPreset | string): string {
   return radius
 }
 
+function applyNagomiTokens(tokens: ThemeTokens, mode: "light" | "dark"): ThemeTokens {
+  if (mode === "light") {
+    return {
+      ...tokens,
+      card: "oklch(0.995 0 0)",
+      popover: "oklch(0.995 0 0)",
+      border: "oklch(0.86 0 0 / 70%)",
+      input: "oklch(0.9 0 0 / 75%)",
+      ring: "oklch(0.64 0 0 / 80%)",
+      "surface-1": "oklch(0.985 0 0)",
+      "surface-2": "oklch(0.995 0 0)",
+      "surface-3": "oklch(1 0 0)",
+    }
+  }
+
+  return {
+    ...tokens,
+    card: "oklch(0.205 0 0 / 88%)",
+    popover: "oklch(0.235 0 0 / 92%)",
+    border: "oklch(1 0 0 / 12%)",
+    input: "oklch(1 0 0 / 16%)",
+    ring: "oklch(0.78 0 0 / 70%)",
+    "surface-1": "oklch(0.16 0 0)",
+    "surface-2": "oklch(0.205 0 0 / 88%)",
+    "surface-3": "oklch(0.235 0 0 / 92%)",
+  }
+}
+
 export function getThemeTokens(options: GenerateCssOptions = {}): ThemePreset & {
   radius: string
 } {
+  const style = options.style ?? "elorm"
   const baseColor = options.baseColor ?? "neutral"
   const accent = options.accent ?? "default"
-  const radius = resolveRadius(options.radius)
+  const radius = resolveRadius(options.radius, style)
 
   const base = getBasePalette(baseColor)
+  const light = mergeExtendedTokens(applyAccent(base.light, accent, "light"), "light")
+  const dark = mergeExtendedTokens(applyAccent(base.dark, accent, "dark"), "dark")
 
   return {
-    light: applyAccent(base.light, accent, "light"),
-    dark: applyAccent(base.dark, accent, "dark"),
+    light: style === "nagomi" ? applyNagomiTokens(light, "light") : light,
+    dark: style === "nagomi" ? applyNagomiTokens(dark, "dark") : dark,
     radius,
   }
 }

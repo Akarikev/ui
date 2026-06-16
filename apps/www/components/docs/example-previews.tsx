@@ -1,11 +1,22 @@
 "use client"
 
+import * as React from "react"
 import type { ReactNode } from "react"
 import { Button as BaseButton } from "@/components/ui/button"
 import { Button as RadixButton } from "@/components/ui-radix/button"
 import { Button as HeroButton } from "@/components/ui-heroui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+import { Slider as BaseSlider } from "@/components/ui/slider"
+import { Slider as RadixSlider } from "@/components/ui-radix/slider"
+import { Slider as HeroSlider } from "@/components/ui-heroui/slider"
+import { Progress } from "@/components/ui/progress"
 import {
   Card,
   CardContent,
@@ -52,6 +63,20 @@ type LibraryExamplePreview = {
   base: ExamplePreviewComponent
   radix?: ExamplePreviewComponent
   heroui?: ExamplePreviewComponent
+}
+
+function AnimatedProgressPreview() {
+  const [value, setValue] = React.useState(18)
+
+  React.useEffect(() => {
+    const timer = window.setInterval(() => {
+      setValue((current) => (current >= 92 ? 18 : current + 8))
+    }, 700)
+
+    return () => window.clearInterval(timer)
+  }, [])
+
+  return <Progress variant="animated" value={value} className="w-full max-w-sm" />
 }
 
 const examplePreviews: Record<string, Record<string, LibraryExamplePreview>> = {
@@ -137,6 +162,53 @@ const examplePreviews: Record<string, Record<string, LibraryExamplePreview>> = {
   input: {
     default: { base: () => <Input type="email" placeholder="Email" /> },
   },
+  "input-otp": {
+    default: {
+      base: () => (
+        <InputOTP maxLength={6} defaultValue="123456">
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+      ),
+    },
+    separated: {
+      base: () => (
+        <InputOTP maxLength={6} defaultValue="123456">
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+      ),
+    },
+  },
+  slider: {
+    horizontal: {
+      base: () => <BaseSlider defaultValue={42} className="w-full max-w-sm" />,
+      radix: () => (
+        <RadixSlider defaultValue={[42]} className="w-full max-w-sm" />
+      ),
+      heroui: () => <HeroSlider defaultValue={42} className="w-full max-w-sm" />,
+    },
+    vertical: {
+      base: () => <BaseSlider orientation="vertical" defaultValue={62} />,
+      radix: () => <RadixSlider orientation="vertical" defaultValue={[62]} />,
+      heroui: () => <HeroSlider orientation="vertical" defaultValue={62} />,
+    },
+  },
   card: {
     basic: {
       base: () => (
@@ -148,6 +220,29 @@ const examplePreviews: Record<string, Record<string, LibraryExamplePreview>> = {
         </Card>
       ),
     },
+  },
+  progress: {
+    determinate: {
+      base: () => (
+        <Progress variant="determinate" value={66} className="w-full max-w-sm" />
+      ),
+    },
+    compact: {
+      base: () => (
+        <Progress variant="compact" value={38} className="w-full max-w-sm" />
+      ),
+    },
+    labeled: {
+      base: () => (
+        <Progress
+          variant="labeled"
+          label="Uploading"
+          value={72}
+          className="w-full max-w-sm"
+        />
+      ),
+    },
+    animated: { base: AnimatedProgressPreview },
   },
   "benchmark-grid": {
     "custom-benchmark": {

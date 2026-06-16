@@ -24,6 +24,7 @@ program
   .option("-y, --yes", "Skip prompts and use defaults")
   .option("-t, --template <template>", "Framework template (next, vite)")
   .option("--css <path>", "Path to global CSS file")
+  .option("--style <style>", "elorm style (elorm, nagomi)")
   .option("--ui-library <library>", "Headless library (base-ui, radix, heroui)")
   .option("--base-color <color>", "Base color (neutral, zinc, slate, stone, gray)")
   .option(
@@ -57,6 +58,7 @@ program
     "Library variant to build (base-ui, radix, heroui, all)",
     "all"
   )
+  .option("--style <style>", "Style variant to build (elorm, nagomi, all)", "all")
   .action(async (options) => {
     await buildCommand(options)
   })

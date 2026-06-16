@@ -10,6 +10,7 @@ export type AccentColor =
   | "amber"
   | "cyan"
 export type RadiusPreset = "default" | "compact" | "round"
+export type ElormStyle = "elorm" | "nagomi"
 
 export type ThemeTokens = Record<string, string>
 
@@ -19,6 +20,7 @@ export interface ThemePreset {
 }
 
 export interface GenerateCssOptions {
+  style?: ElormStyle
   baseColor?: BaseColor
   accent?: AccentColor
   radius?: RadiusPreset | string

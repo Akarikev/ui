@@ -17,6 +17,11 @@ export const docsImportCode: Record<string, DocsCodeEntry> = {
     radix: "import { Input } from \"@/components/ui/input\"",
     heroui: "import { Input } from \"@/components/ui/input\"",
   },
+  "input-otp": {
+    base: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"",
+    radix: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"",
+    heroui: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"",
+  },
   "textarea": {
     base: "import { Textarea } from \"@/components/ui/textarea\"",
     radix: "import { Textarea } from \"@/components/ui/textarea\"",
@@ -36,6 +41,11 @@ export const docsImportCode: Record<string, DocsCodeEntry> = {
     base: "import { Switch } from \"@/components/ui/switch\"",
     radix: "import { Switch } from \"@/components/ui/switch\"",
     heroui: "import { Switch } from \"@/components/ui/switch\"",
+  },
+  "slider": {
+    base: "import { Slider } from \"@/components/ui/slider\"",
+    radix: "import { Slider } from \"@/components/ui/slider\"",
+    heroui: "import { Slider } from \"@/components/ui/slider\"",
   },
   "select": {
     base: "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\"",
@@ -288,6 +298,30 @@ export const docsExampleCode: Record<string, Record<string, DocsCodeEntry>> = {
     heroui: "import { Input } from \"@/components/ui/input\"\n\nexport function InputDemo() {\n  return (\n    <Input type=\"email\" placeholder=\"Email\" />\n  )\n}",
   }
   },
+  "input-otp": {
+  "default": {
+    base: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"\n\nexport function InputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}",
+    radix: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"\n\nexport function InputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}",
+    heroui: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"\n\nexport function InputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}",
+  },
+  "separated": {
+    base: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"\n\nexport function InputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}",
+    radix: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"\n\nexport function InputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}",
+    heroui: "import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from \"@/components/ui/input-otp\"\n\nexport function InputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}",
+  }
+  },
+  "slider": {
+  "horizontal": {
+    base: "import { Slider } from \"@/components/ui/slider\"\n\nexport function SliderDemo() {\n  return (\n    <Slider defaultValue={42} className=\"w-full max-w-sm\" />\n  )\n}",
+    radix: "import { Slider } from \"@/components/ui/slider\"\n\nexport function SliderDemo() {\n  return (\n    <Slider defaultValue={42} className=\"w-full max-w-sm\" />\n  )\n}",
+    heroui: "import { Slider } from \"@/components/ui/slider\"\n\nexport function SliderDemo() {\n  return (\n    <Slider defaultValue={42} className=\"w-full max-w-sm\" />\n  )\n}",
+  },
+  "vertical": {
+    base: "import { Slider } from \"@/components/ui/slider\"\n\nexport function SliderDemo() {\n  return (\n    <Slider orientation=\"vertical\" defaultValue={62} />\n  )\n}",
+    radix: "import { Slider } from \"@/components/ui/slider\"\n\nexport function SliderDemo() {\n  return (\n    <Slider orientation=\"vertical\" defaultValue={62} />\n  )\n}",
+    heroui: "import { Slider } from \"@/components/ui/slider\"\n\nexport function SliderDemo() {\n  return (\n    <Slider orientation=\"vertical\" defaultValue={62} />\n  )\n}",
+  }
+  },
   "dialog": {
   "basic": {
     base: "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\n\nexport function DialogDemo() {\n  return (\n    <Dialog>\n      <DialogTrigger>Open</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Title</DialogTitle>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  )\n}",
@@ -338,6 +372,28 @@ export const docsExampleCode: Record<string, Record<string, DocsCodeEntry>> = {
     base: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
     radix: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
     heroui: "import { NaviiAvatar } from \"@/components/ui/navii-avatar\"\n\nexport function NaviiAvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src={user.photoUrl} alt={user.name} />\n      <AvatarFallback className=\"p-0\">\n        <NaviiAvatar seed={user.id} size={36} />\n      </AvatarFallback>\n    </Avatar>\n  )\n}",
+  }
+  },
+  "progress": {
+  "determinate": {
+    base: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"determinate\" value={66} className=\"w-full max-w-sm\" />\n  )\n}",
+    radix: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"determinate\" value={66} className=\"w-full max-w-sm\" />\n  )\n}",
+    heroui: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"determinate\" value={66} className=\"w-full max-w-sm\" />\n  )\n}",
+  },
+  "compact": {
+    base: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"compact\" value={38} className=\"w-full max-w-sm\" />\n  )\n}",
+    radix: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"compact\" value={38} className=\"w-full max-w-sm\" />\n  )\n}",
+    heroui: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"compact\" value={38} className=\"w-full max-w-sm\" />\n  )\n}",
+  },
+  "labeled": {
+    base: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"labeled\" label=\"Uploading\" value={72} className=\"w-full max-w-sm\" />\n  )\n}",
+    radix: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"labeled\" label=\"Uploading\" value={72} className=\"w-full max-w-sm\" />\n  )\n}",
+    heroui: "import { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  return (\n    <Progress variant=\"labeled\" label=\"Uploading\" value={72} className=\"w-full max-w-sm\" />\n  )\n}",
+  },
+  "animated": {
+    base: "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  const [value, setValue] = React.useState(12)\n\n  React.useEffect(() => {\n    const timer = window.setInterval(() => {\n      setValue((current) => (current >= 92 ? 18 : current + 8))\n    }, 700)\n\n    return () => window.clearInterval(timer)\n  }, [])\n\n  return <Progress variant=\"animated\" value={value} className=\"w-full max-w-sm\" />\n}",
+    radix: "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  const [value, setValue] = React.useState(12)\n\n  React.useEffect(() => {\n    const timer = window.setInterval(() => {\n      setValue((current) => (current >= 92 ? 18 : current + 8))\n    }, 700)\n\n    return () => window.clearInterval(timer)\n  }, [])\n\n  return <Progress variant=\"animated\" value={value} className=\"w-full max-w-sm\" />\n}",
+    heroui: "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  const [value, setValue] = React.useState(12)\n\n  React.useEffect(() => {\n    const timer = window.setInterval(() => {\n      setValue((current) => (current >= 92 ? 18 : current + 8))\n    }, 700)\n\n    return () => window.clearInterval(timer)\n  }, [])\n\n  return <Progress variant=\"animated\" value={value} className=\"w-full max-w-sm\" />\n}",
   }
   },
   "icon-nav-link": {

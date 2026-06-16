@@ -1,0 +1,634 @@
+{
+  "$schema": "https://ui.elorm.xyz/schema/registry.json",
+  "name": "elorm/ui",
+  "homepage": "https://ui.elorm.xyz",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Utility functions for elorm/ui components."
+    },
+    {
+      "name": "ui-styles",
+      "type": "registry:lib",
+      "title": "UI Styles",
+      "description": "Shared Elorm style utilities for consistent component styling."
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Displays a form input field.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "Displays a one-time passcode input with accessible slots.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Displays a form textarea.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A control for selecting a value from a continuous range.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A window overlaid on either the primary window or another dialog window.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Extends the Dialog component to display content that complements the main content.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user triggered by a button.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "social-links",
+      "type": "registry:ui",
+      "title": "Social Links",
+      "description": "A row of monochrome social media icon links.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty State",
+      "description": "A block for displaying empty or no-results states.",
+      "categories": [
+        "blocks",
+        "feedback"
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:block",
+      "title": "Stat Card",
+      "description": "A dashboard stat card with optional trend indicator.",
+      "categories": [
+        "blocks",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "benchmark-grid",
+      "type": "registry:block",
+      "title": "Benchmark Grid",
+      "description": "A responsive benchmark leaderboard grid for product and AI eval results.",
+      "categories": [
+        "blocks",
+        "dashboard",
+        "marketing"
+      ]
+    },
+    {
+      "name": "prompt-composer",
+      "type": "registry:block",
+      "title": "Prompt Composer",
+      "description": "An AI prompt input block with action shortcuts, attachment control, and suggestion chips.",
+      "categories": [
+        "blocks",
+        "ai",
+        "forms"
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page Header",
+      "description": "A page header block with title, description, actions, and breadcrumbs.",
+      "categories": [
+        "blocks",
+        "layout"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Composable form field layout with label, description, and error.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Group inputs with addons for search bars and compound fields.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Loading indicator for buttons and async states.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A set of checkable buttons where only one can be checked.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A set of two-state buttons that can be toggled on or off.",
+      "categories": [
+        "ui",
+        "forms"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A set of layered sections of content displayed one at a time.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Displays a callout for user attention.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "navii-avatar",
+      "type": "registry:ui",
+      "title": "Navii Avatar",
+      "description": "Deterministic mascot avatar powered by Navii.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A modal dialog that interrupts the user with important content.",
+      "categories": [
+        "ui",
+        "overlay"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A responsive table component.",
+      "categories": [
+        "ui",
+        "data-display"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Pagination with page navigation, next and previous links.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "A vertically stacked set of interactive headings.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "An interactive component which expands/collapses a panel.",
+      "categories": [
+        "ui",
+        "layout"
+      ]
+    },
+    {
+      "name": "login-form",
+      "type": "registry:block",
+      "title": "Login Form",
+      "description": "A sign-in form block with email and password fields.",
+      "categories": [
+        "blocks",
+        "authentication"
+      ]
+    },
+    {
+      "name": "settings-section",
+      "type": "registry:block",
+      "title": "Settings Section",
+      "description": "A settings page block with tabs and toggle switches.",
+      "categories": [
+        "blocks",
+        "settings"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "A searchable data table with pagination.",
+      "categories": [
+        "blocks",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:lib",
+      "title": "Theme Provider",
+      "description": "next-themes provider for class-based light and dark mode.",
+      "categories": [
+        "lib",
+        "theming"
+      ]
+    },
+    {
+      "name": "mode-toggle",
+      "type": "registry:ui",
+      "title": "Mode Toggle",
+      "description": "A dropdown to switch between light, dark, and system themes.",
+      "categories": [
+        "ui",
+        "theming"
+      ]
+    },
+    {
+      "name": "icon-nav-link",
+      "type": "registry:ui",
+      "title": "Icon Nav Link",
+      "description": "Icon-only navigation link that expands its label on hover.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "page-footer",
+      "type": "registry:block",
+      "title": "Page Footer",
+      "description": "Marketing-style footer with icon nav links and optional attribution.",
+      "categories": [
+        "blocks",
+        "layout"
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "Toast notifications powered by Sonner.",
+      "categories": [
+        "ui",
+        "feedback"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Command palette and searchable list built on cmdk.",
+      "categories": [
+        "ui",
+        "navigation"
+      ]
+    },
+    {
+      "name": "theme-neutral",
+      "type": "registry:theme",
+      "title": "Neutral Theme",
+      "description": "Apply the neutral base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-zinc",
+      "type": "registry:theme",
+      "title": "Zinc Theme",
+      "description": "Apply the zinc base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-slate",
+      "type": "registry:theme",
+      "title": "Slate Theme",
+      "description": "Apply the slate base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-stone",
+      "type": "registry:theme",
+      "title": "Stone Theme",
+      "description": "Apply the stone base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-gray",
+      "type": "registry:theme",
+      "title": "Gray Theme",
+      "description": "Apply the gray base color palette to your project.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-mono",
+      "type": "registry:theme",
+      "title": "Mono Accent",
+      "description": "Apply mono accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-blue",
+      "type": "registry:theme",
+      "title": "Blue Accent",
+      "description": "Apply blue accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-violet",
+      "type": "registry:theme",
+      "title": "Violet Accent",
+      "description": "Apply violet accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-green",
+      "type": "registry:theme",
+      "title": "Green Accent",
+      "description": "Apply green accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-orange",
+      "type": "registry:theme",
+      "title": "Orange Accent",
+      "description": "Apply orange accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-rose",
+      "type": "registry:theme",
+      "title": "Rose Accent",
+      "description": "Apply rose accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-amber",
+      "type": "registry:theme",
+      "title": "Amber Accent",
+      "description": "Apply amber accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    },
+    {
+      "name": "theme-accent-cyan",
+      "type": "registry:theme",
+      "title": "Cyan Accent",
+      "description": "Apply cyan accent colors to primary, ring, and chart tokens.",
+      "categories": [
+        "themes"
+      ]
+    }
+  ],
+  "style": "nagomi",
+  "libraries": [
+    "base-ui",
+    "radix",
+    "heroui"
+  ]
+}

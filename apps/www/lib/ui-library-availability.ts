@@ -7,6 +7,7 @@ const HEROUI_COMPONENTS = new Set([
   "dropdown-menu",
   "select",
   "sheet",
+  "slider",
   "switch",
   "tooltip",
 ])

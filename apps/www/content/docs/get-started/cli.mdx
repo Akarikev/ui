@@ -23,7 +23,8 @@ description: "All elorm CLI commands."
 | `-y, --yes` | Skip prompts, use defaults |
 | `-t, --template <next\|vite>` | Framework template |
 | `--css <path>` | Global CSS file path |
-| `--ui-library <base-ui\|radix>` | Headless primitive library |
+| `--style <elorm\|nagomi>` | Style preset; `nagomi` is the rounded beta style |
+| `--ui-library <base-ui\|radix\|heroui>` | Headless primitive library |
 | `--base-color <color>` | Base color preset |
 | `--accent <accent>` | Accent color |
 | `--radius <default\|compact\|round>` | Border radius |
@@ -33,6 +34,8 @@ description: "All elorm CLI commands."
 <InstallCommand command="elorm init -y" />
 
 <InstallCommand command="elorm init -y --ui-library radix --base-color zinc --accent blue" />
+
+<InstallCommand command="elorm init --style nagomi" />
 
 <InstallCommand command="elorm add button card dialog" />
 
@@ -56,6 +59,7 @@ The `elorm.json` file controls aliases, framework, UI library, theme, and regist
 
 ```json
 {
+  "style": "elorm",
   "uiLibrary": "base-ui",
   "tailwind": {
     "css": "app/globals.css",
@@ -74,6 +78,17 @@ The `elorm.json` file controls aliases, framework, UI library, theme, and regist
   },
   "registries": {
     "@elorm": "https://ui.elorm.xyz/r/{library}/{name}.json"
+  }
+}
+```
+
+For Nagomi beta projects, keep the same config filename and set `style`:
+
+```json
+{
+  "style": "nagomi",
+  "registries": {
+    "@elorm": "https://ui.elorm.xyz/r/{style}/{library}/{name}.json"
   }
 }
 ```

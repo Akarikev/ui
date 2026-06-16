@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { Hero } from "@/components/marketing/hero"
+import { NagomiShowcase } from "@/components/marketing/nagomi-showcase"
 import { LibraryCompare } from "@/components/marketing/library-compare"
 import { BlocksShowcase } from "@/components/marketing/blocks-showcase"
 import { TrustStrip } from "@/components/marketing/trust-strip"
@@ -16,6 +17,7 @@ export default function HomePage() {
       <HomeJsonLd />
       <SiteHeader />
       <Hero />
+      <NagomiShowcase />
       <LibraryCompare />
       <BlocksShowcase />
       <TrustStrip />

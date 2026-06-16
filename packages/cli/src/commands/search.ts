@@ -1,6 +1,10 @@
 import * as p from "@clack/prompts"
 import pc from "picocolors"
-import { getConfig, fetchRegistryIndex } from "../utils/index.js"
+import {
+  fetchRegistryIndex,
+  getConfig,
+  resolveRegistryIndexUrl,
+} from "../utils/index.js"
 
 interface SearchOptions {
   query?: string
@@ -9,11 +13,7 @@ interface SearchOptions {
 
 export async function searchCommand(options: SearchOptions = {}) {
   const config = await getConfig(options.cwd)
-  const registryUrl =
-    config?.registries["@elorm"]
-      ?.replace("{library}/", "")
-      .replace("{name}.json", "registry.json") ??
-    "https://ui.elorm.xyz/r/registry.json"
+  const registryUrl = resolveRegistryIndexUrl(config)
 
   try {
     const registry = await fetchRegistryIndex(registryUrl)

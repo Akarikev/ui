@@ -106,6 +106,41 @@
       }
     },
     {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "Displays a one-time passcode input with accessible slots.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["input-otp", "lucide-react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for verification codes, MFA challenges, and short PIN-style passcodes.",
+        "composition": [
+          "InputOTP",
+          "InputOTPGroup",
+          "InputOTPSlot",
+          "InputOTPSeparator"
+        ],
+        "antiPatterns": ["Do not use without a visible label or aria-label"],
+        "examples": [
+          {
+            "title": "Default",
+            "code": "<InputOTP maxLength={6} defaultValue=\"123456\">\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    <InputOTPSlot index={1} />\n    <InputOTPSlot index={2} />\n    <InputOTPSlot index={3} />\n    <InputOTPSlot index={4} />\n    <InputOTPSlot index={5} />\n  </InputOTPGroup>\n</InputOTP>"
+          },
+          {
+            "title": "Separated",
+            "code": "<InputOTP maxLength={6} defaultValue=\"123456\">\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    <InputOTPSlot index={1} />\n    <InputOTPSlot index={2} />\n  </InputOTPGroup>\n  <InputOTPSeparator />\n  <InputOTPGroup>\n    <InputOTPSlot index={3} />\n    <InputOTPSlot index={4} />\n    <InputOTPSlot index={5} />\n  </InputOTPGroup>\n</InputOTP>"
+          }
+        ]
+      }
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
@@ -162,6 +197,35 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A control for selecting a value from a continuous range.",
+      "categories": ["ui", "forms"],
+      "registryDependencies": ["utils", "ui-styles"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "packages/registry/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for continuous values like volume, opacity, progress thresholds, or ranges.",
+        "antiPatterns": ["Do not use for a small fixed set of choices"],
+        "examples": [
+          {
+            "title": "Horizontal",
+            "code": "<Slider defaultValue={42} className=\"w-full max-w-sm\" />"
+          },
+          {
+            "title": "Vertical",
+            "code": "<Slider orientation=\"vertical\" defaultValue={62} />"
+          }
+        ]
+      }
     },
     {
       "name": "select",
@@ -593,7 +657,28 @@
       "categories": ["ui", "feedback"],
       "registryDependencies": ["utils", "ui-styles"],
       "dependencies": ["@base-ui/react"],
-      "files": [{ "path": "packages/registry/ui/progress.tsx", "type": "registry:ui" }]
+      "files": [{ "path": "packages/registry/ui/progress.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Use for determinate loading states and task completion feedback.",
+        "examples": [
+          {
+            "title": "Determinate",
+            "code": "<Progress variant=\"determinate\" value={66} className=\"w-full max-w-sm\" />"
+          },
+          {
+            "title": "Compact",
+            "code": "<Progress variant=\"compact\" value={38} className=\"w-full max-w-sm\" />"
+          },
+          {
+            "title": "Labeled",
+            "code": "<Progress variant=\"labeled\" label=\"Uploading\" value={72} className=\"w-full max-w-sm\" />"
+          },
+          {
+            "title": "Animated",
+            "code": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Progress } from \"@/components/ui/progress\"\n\nexport function ProgressDemo() {\n  const [value, setValue] = React.useState(12)\n\n  React.useEffect(() => {\n    const timer = window.setInterval(() => {\n      setValue((current) => (current >= 92 ? 18 : current + 8))\n    }, 700)\n\n    return () => window.clearInterval(timer)\n  }, [])\n\n  return <Progress variant=\"animated\" value={value} className=\"w-full max-w-sm\" />\n}"
+          }
+        ]
+      }
     },
     {
       "name": "table",

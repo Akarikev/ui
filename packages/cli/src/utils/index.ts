@@ -10,6 +10,8 @@ import {
 } from "@elorm/schema"
 
 const CONFIG_NAME = "elorm"
+const STABLE_ELORM_REGISTRY = "https://ui.elorm.xyz/r/{library}/{name}.json"
+const STYLE_ELORM_REGISTRY = "https://ui.elorm.xyz/r/{style}/{library}/{name}.json"
 
 export async function getConfig(cwd = process.cwd()): Promise<ElormConfig | null> {
   const explorer = cosmiconfig(CONFIG_NAME, {
@@ -44,6 +46,18 @@ export function resolveRegistryUrl(
   itemName: string,
   config: ElormConfig
 ): string {
+  const resolveTemplate = (template?: string) => {
+    if (!template) {
+      return config.style === "elorm" ? STABLE_ELORM_REGISTRY : STYLE_ELORM_REGISTRY
+    }
+
+    if (config.style !== "elorm" && template === STABLE_ELORM_REGISTRY) {
+      return STYLE_ELORM_REGISTRY
+    }
+
+    return template
+  }
+
   const applyTemplate = (template: string, name: string) =>
     template
       .replace("{name}", name)
@@ -57,17 +71,31 @@ export function resolveRegistryUrl(
   if (itemName.includes("/")) {
     const [namespace, name] = itemName.split("/")
     const registryKey = `@${namespace.replace(/^@/, "")}`
-    const template = config.registries[registryKey]
-    if (!template) {
+    const configuredTemplate = config.registries[registryKey]
+    if (!configuredTemplate) {
       throw new Error(`Unknown registry namespace: ${registryKey}`)
     }
+    const template = resolveTemplate(configuredTemplate)
     return applyTemplate(template, name)
   }
 
-  const template =
-    config.registries["@elorm"] ??
-    "https://ui.elorm.xyz/r/{library}/{name}.json"
+  const template = resolveTemplate(config.registries["@elorm"])
   return applyTemplate(template, itemName)
+}
+
+export function resolveRegistryIndexUrl(config?: ElormConfig | null): string {
+  const configuredTemplate = config?.registries["@elorm"]
+  const template =
+    config?.style &&
+    config.style !== "elorm" &&
+    (!configuredTemplate || configuredTemplate === STABLE_ELORM_REGISTRY)
+      ? STYLE_ELORM_REGISTRY
+      : (configuredTemplate ?? STABLE_ELORM_REGISTRY)
+
+  return template
+    .replace("{style}", config?.style ?? "elorm")
+    .replace("{library}/", "")
+    .replace("{name}.json", "registry.json")
 }
 
 export function isSafeTarget(target: string): boolean {
@@ -424,6 +452,7 @@ export function mergeCssVars(
 
 export function generateProjectCss(config: ElormConfig): string {
   return generateCssTemplate({
+    style: config.style,
     baseColor: config.tailwind.baseColor,
     accent: config.theme.accent,
     radius: config.theme.radius,

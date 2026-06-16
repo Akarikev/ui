@@ -1,6 +1,6 @@
 import Link from "next/link"
+import { Flower2Icon } from "lucide-react"
 import { DocsPreview } from "@/components/marketing/docs-preview"
-import { UiPreviewBadge } from "@/components/docs/ui-preview-badge"
 import { CopyCommand } from "./copy-command"
 import { cn } from "@/lib/utils"
 
@@ -25,11 +25,11 @@ export function Hero() {
               Agent skills for Cursor, Claude & Codex
             </Link>
             <Link
-              href="/#library-compare"
+              href="/docs/get-started/design#nagomi-beta"
               className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-[11px] font-medium text-foreground/90 transition-colors hover:border-border hover:bg-muted/60"
             >
-              <UiPreviewBadge size="sm" />
-              HeroUI at init
+              <Flower2Icon className="size-3.5 text-primary" />
+              Nagomi beta style
             </Link>
           </div>
 
