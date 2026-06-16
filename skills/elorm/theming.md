@@ -11,8 +11,32 @@ Set at `elorm init` (or in `elorm.json`):
 | Base color | neutral, zinc, slate, stone, gray |
 | Accent | default, mono, blue, violet, green, orange, rose, amber, cyan |
 | Radius | default (0.625rem), compact, round |
+| Style | elorm (stable), nagomi (beta) |
 
 Marketing defaults: **neutral** base + **mono** accent.
+
+## Style presets
+
+`"style": "elorm"` is the stable default. `"style": "nagomi"` is the beta rounded style for calmer surfaces, larger default radii, softer borders, and smoother feedback.
+
+```bash
+npx elorm init --style nagomi
+```
+
+Nagomi keeps the config filename as `elorm.json`:
+
+```json
+{
+  "style": "nagomi",
+  "registries": {
+    "@elorm": "https://ui.elorm.xyz/r/{style}/{library}/{name}.json"
+  }
+}
+```
+
+Nagomi CSS defaults use a larger radius (`0.875rem` for `default`) and softer `card`, `popover`, `border`, `input`, `ring`, and `surface-*` tokens.
+
+Nagomi registry output also source-styles common app primitives: `button`, `input`, `textarea`, `select`, `dialog`, `sheet`, `popover`, `dropdown-menu`, `badge`, `alert`, `empty-state`, `stat-card`, `card`, `progress`, and `slider`.
 
 ## CSS structure
 
@@ -58,4 +82,4 @@ Use `applyThemeToElement()` from `@elorm/themes` for live theme switching in dem
 - Use **semantic tokens** in components: `bg-background`, `text-muted-foreground`, `border-border`
 - Never raw palette classes (`bg-blue-500`, `text-emerald-600`)
 - No manual `dark:` color overrides — tokens handle light/dark
-- `"style": "elorm"` in config (default) — future presets will extend this field
+- Use `"style": "nagomi"` for the rounded beta style; do not create `nagomi.json`

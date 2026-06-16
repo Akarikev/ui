@@ -1,9 +1,9 @@
 ---
-
-## name: elorm
+name: elorm
 description: Manages elorm/ui components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with elorm/ui, component registries, or any project with an elorm.json file.
 user-invocable: false
 allowed-tools: Bash(npx elorm *), Bash(bunx elorm *), Bash(pnpm dlx elorm *)
+---
 
 # elorm/ui
 
@@ -25,6 +25,7 @@ Use `npx elorm docs <component> --json` for per-component metadata, usage, compo
 2. **Compose, don't reinvent.** Settings page = Tabs + Card + form controls.
 3. **Use built-in variants before custom styles.** `variant="outline"`, `size="sm"`, etc.
 4. **Use semantic colors.** `bg-primary`, `text-muted-foreground` — never raw values like `bg-blue-500`.
+5. **Respect the selected style.** `style: "nagomi"` means rounded beta surfaces from the Nagomi registry path, still inside `elorm.json`.
 
 ## Critical Rules
 
@@ -32,17 +33,17 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 
 ### Styling & Tailwind → [rules/styling.md](./rules/styling.md)
 
-- `**className` for layout, not styling.** Never override component colors or typography.
-- **No `space-x-`* or `space-y-*`.** Use `flex` with `gap-`*.
-- **Use `size-`* when width and height are equal.**
+- **`className` for layout, not styling.** Never override component colors or typography.
+- **No `space-x-*` or `space-y-*`.** Use `flex` with `gap-*`.
+- **Use `size-*` when width and height are equal.**
 - **No manual `dark:` color overrides.** Use semantic tokens.
 - **Use `cn()` for conditional classes.**
 - **Shared styles from `@/lib/ui-styles`.** Use `softRadius`, `softShadow`, `surfaceSoft`, `pressable` — not ad-hoc classes.
 
 ### Forms & Inputs → [rules/forms.md](./rules/forms.md)
 
-- **Forms use `FieldGroup` + `Field`.** Never raw `div` with `space-y-`* for form layout.
-- `**InputGroup` uses `InputGroupInput`/`InputGroupTextarea`.** Never raw `Input`/`Textarea` inside `InputGroup`.
+- **Forms use `FieldGroup` + `Field`.** Never raw `div` with `space-y-*` for form layout.
+- **`InputGroup` uses `InputGroupInput`/`InputGroupTextarea`.** Never raw `Input`/`Textarea` inside `InputGroup`.
 - **Field validation uses `data-invalid` + `aria-invalid`.** `data-invalid` on `Field`, `aria-invalid` on the control.
 
 ### Component Structure → [rules/composition.md](./rules/composition.md)
@@ -61,7 +62,7 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 ### Base UI vs Radix vs HeroUI → [rules/base-vs-radix.md](./rules/base-vs-radix.md)
 
 - Check `uiLibrary` from project context (`base-ui`, `radix`, or `heroui`).
-- Only **8 primitives** differ between libraries: button, checkbox, switch, select, dialog, sheet, dropdown-menu, tooltip.
+- Only **9 primitives** differ between libraries: button, checkbox, switch, slider, select, dialog, sheet, dropdown-menu, tooltip.
 - Base UI triggers use `render={<Button>…</Button>}`; Radix uses `asChild`.
 
 ## Key Patterns
@@ -98,8 +99,9 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 | Need          | Use                                                                       |
 | ------------- | ------------------------------------------------------------------------- |
 | Button/action | `Button` with appropriate variant (`soft`, `soft-outline`, `size="soft"`) |
-| Form inputs   | `Input`, `Select`, `Switch`, `Checkbox`, `Textarea`, `Label`, `Field`     |
+| Form inputs   | `Input`, `InputOTP`, `Slider`, `Select`, `Switch`, `Checkbox`, `Textarea`, `Label`, `Field` |
 | Data display  | `Card`, `Badge`, `Skeleton`, `StatCard`                                   |
+| Feedback      | `Progress` with `variant="determinate"`, `"compact"`, `"labeled"`, or `"animated"` |
 | Overlays      | `Dialog`, `Sheet`, `DropdownMenu`, `Tooltip`, `AlertDialog`               |
 | Layout        | `Card`, `Separator`, `PageHeader`                                         |
 | Empty states  | `EmptyState` block (`elorm add empty-state`)                              |
@@ -114,18 +116,20 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 - **Lib files** → `utils`, `ui-styles` via `registryDependencies`
 - **Themes** → `elorm add theme-neutral` etc.
 - Registry JSON: `https://ui.elorm.xyz/r/{library}/{name}.json`
+- Nagomi registry JSON: `https://ui.elorm.xyz/r/nagomi/{library}/{name}.json`
 
 ## Key Fields
 
 From project context (`npx elorm info --json`):
 
-- `**aliases`** → use the actual alias prefix for imports (e.g. `@/`, `~/`) — never hardcode defaults
-- `**rsc**` → when `true`, client components need `"use client"`
-- **`uiLibrary`** → `base-ui`, `radix`, or `heroui` — affects trigger APIs on 8 primitives
-- `**tailwind.css**` → global CSS file where tokens are defined — edit this file, never create a new one
-- `**iconLibrary**` → determines icon import package
-- `**installedComponents**` → check before running `add`; don't import uninstalled components
-- `**registries**` → URL templates for fetching components
+- **`style`** → `elorm` or `nagomi`; Nagomi uses beta rounded source/tokens via `{style}` registry templates
+- **`aliases`** → use the actual alias prefix for imports (e.g. `@/`, `~/`) — never hardcode defaults
+- **`rsc`** → when `true`, client components need `"use client"`
+- **`uiLibrary`** → `base-ui`, `radix`, or `heroui` — affects trigger APIs on 9 primitives
+- **`tailwind.css`** → global CSS file where tokens are defined — edit this file, never create a new one
+- **`iconLibrary`** → determines icon import package
+- **`installedComponents`** → check before running `add`; don't import uninstalled components
+- **`registries`** → URL templates for fetching components
 
 ## Workflow
 
@@ -144,9 +148,11 @@ From project context (`npx elorm info --json`):
 npx elorm init
 npx elorm init -y --template next --ui-library base-ui --base-color neutral --accent mono
 npx elorm init -y --template next --ui-library heroui --base-color neutral --accent mono
+npx elorm init -y --template next --style nagomi --ui-library radix --base-color neutral --accent mono
 
 # Add components and blocks
 npx elorm add button card dialog
+npx elorm add input-otp slider progress
 npx elorm add empty-state login-form
 npx elorm add -l radix button   # override library for this add
 

@@ -13,7 +13,9 @@ For contributors working in the [Akarikev/ui](https://github.com/Akarikev/ui) mo
 | Path | Purpose |
 | --- | --- |
 | `packages/registry/` | Base UI component source (shared styled components) |
-| `packages/registry-radix/` | Radix overrides for 8 primitives only |
+| `packages/registry-radix/` | Radix overrides for 9 primitives only |
+| `packages/registry-heroui/` | HeroUI overrides for supported primitives |
+| `packages/registry-nagomi/` | Explicit Nagomi source overrides (currently card/progress) |
 | `packages/cli/` | `elorm` npm package |
 | `packages/schema/` | Zod schemas for `elorm.json` and registry |
 | `packages/themes/` | Theme presets and CSS generation |
@@ -21,12 +23,14 @@ For contributors working in the [Akarikev/ui](https://github.com/Akarikev/ui) mo
 | `registry.json` | Root registry index |
 | `scripts/generate-docs.ts` | Generates component MDX and demo code maps |
 
-**Dual registries:** styled components are shared; only headless primitives differ. When changing a primitive-backed component, update both registries if applicable.
+**Multi-library registries:** styled components are shared; only headless primitives differ. When changing a primitive-backed component, update Base UI plus Radix/HeroUI overrides if applicable.
+
+**Nagomi beta:** `style: "nagomi"` builds to `apps/www/public/r/nagomi/{library}/{name}.json`. It uses explicit overrides in `packages/registry-nagomi/` and build-time source transforms in `packages/cli/src/commands/build.ts` for rounded beta styling. Keep stable output at `apps/www/public/r/{library}/{name}.json`.
 
 ## Registry workflow
 
 ```
-1. Edit packages/registry/ (+ registry-radix/ if primitive)
+1. Edit packages/registry/ (+ registry-radix/ and registry-heroui/ if primitive)
 2. Update registry.json (title, description, registryDependencies, meta)
 3. bun run registry:build        → apps/www/public/r/
 4. bun run docs:generate         → MDX + docs-example-code.ts
@@ -37,6 +41,15 @@ For contributors working in the [Akarikev/ui](https://github.com/Akarikev/ui) mo
 ```
 
 Verify preview and code tabs on `/docs/components/<name>`.
+
+For Nagomi-specific source styling, verify generated JSON under both stable and Nagomi paths:
+
+```bash
+apps/www/public/r/base-ui/{name}.json
+apps/www/public/r/nagomi/base-ui/{name}.json
+apps/www/public/r/nagomi/radix/{name}.json
+apps/www/public/r/nagomi/heroui/{name}.json
+```
 
 ## registry.json meta fields
 
@@ -68,6 +81,7 @@ These feed `elorm docs <name> --json` and the agent skill.
 - Semantic color tokens only
 - Shared styles from `@/lib/ui-styles`
 - Elorm soft identity: rounded surfaces, soft shadows
+- Nagomi beta: rounder source styles for button, input, textarea, select, dialog, sheet, popover, dropdown-menu, badge, alert, empty-state, stat-card, card, progress, and slider
 - Dialog/Sheet/AlertDialog demos start **closed** with explicit open trigger
 
 ## Local dev
@@ -86,6 +100,7 @@ When changing CLI commands/flags, registry meta fields, or elorm-specific style 
 
 - `skills/elorm/SKILL.md` and linked reference files
 - `skills/elorm/cli.md` for new CLI flags
+- `skills/elorm/theming.md` for style/token changes
 - Docs page at `/docs/get-started/agent-skills`
 
 Install command for users: `npx skills add Akarikev/ui --skill elorm`

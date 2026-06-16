@@ -22,6 +22,7 @@ Initialize elorm/ui in a project. Creates `elorm.json`, `cn()` util, and themed 
 | `-y, --yes` | Skip prompts, use defaults |
 | `-t, --template <next\|vite>` | Framework template |
 | `--css <path>` | Global CSS file path |
+| `--style <elorm\|nagomi>` | Style preset; `nagomi` is the rounded beta style |
 | `--ui-library <base-ui\|radix\|heroui>` | Headless primitive library |
 | `--base-color <color>` | neutral, zinc, slate, stone, gray |
 | `--accent <accent>` | default, mono, blue, violet, green, orange, rose, amber, cyan |
@@ -77,13 +78,25 @@ Compare local files in `aliases.ui` against registry version (basename match).
 | `-o, --output <dir>` | Output directory (default: `public/r`) |
 | `-r, --registry <path>` | Registry index path (default: `registry.json`) |
 | `-l, --library <base-ui\|radix\|heroui\|all>` | Library variant to build |
+| `--style <elorm\|nagomi\|all>` | Style variant to build |
 
 ## Registry URL resolution
 
 - Bare name: `button` → `https://ui.elorm.xyz/r/{library}/button.json`
 - Namespace: `@elorm/button` → uses `registries["@elorm"]` template
 - Full URL: passed through unchanged
-- `{library}` replaced with `uiLibrary`; `{name}` with item name
+- `{library}` replaced with `uiLibrary`; `{name}` with item name; `{style}` with `style`
+- Stable `elorm` style uses `https://ui.elorm.xyz/r/{library}/{name}.json`
+- Nagomi beta uses `https://ui.elorm.xyz/r/nagomi/{library}/{name}.json`
+- `elorm init --style nagomi` keeps the config file named `elorm.json` and writes `style: "nagomi"`
+
+## Nagomi quick test
+
+```bash
+npx elorm init --style nagomi --ui-library radix
+npx elorm add button input select progress slider
+npx elorm docs progress --json
+```
 
 ## Agent skill install
 

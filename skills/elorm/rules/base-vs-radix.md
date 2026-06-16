@@ -4,11 +4,12 @@ Check `uiLibrary` from `npx elorm info --json`.
 
 ## Which components differ
 
-Only **8 primitives** have library-specific source:
+Only **9 primitives** have library-specific source:
 
 - button
 - checkbox
 - switch
+- slider
 - select
 - dialog
 - sheet
@@ -82,5 +83,6 @@ npx elorm add -l heroui dialog
 - Base UI: `https://ui.elorm.xyz/r/base-ui/{name}.json`
 - Radix: `https://ui.elorm.xyz/r/radix/{name}.json`
 - HeroUI: `https://ui.elorm.xyz/r/heroui/{name}.json`
+- Nagomi beta: `https://ui.elorm.xyz/r/nagomi/{library}/{name}.json`
 
-The `{library}` placeholder in registry templates matches `uiLibrary` from config.
+The `{library}` placeholder in registry templates matches `uiLibrary` from config. The `{style}` placeholder matches `style` from `elorm.json`; use `style: "nagomi"` for the rounded beta style.

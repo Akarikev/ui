@@ -66,7 +66,7 @@ Import from `@/lib/ui-styles` (added via `registryDependencies`):
 | `surfaceSoftHover` | Hover state on soft surfaces |
 | `pressable` | Button press scale animation |
 | `focusRing` | Consistent focus rings |
-| `transitionBase` | 150ms color/border transitions |
+| `transitionBase` | Color/border/transform transitions |
 | `overlayBackdrop` | Dialog/sheet backdrop |
 | `popoverSurface` | Popover/dropdown surfaces |
 | `menuItemBase` | Menu item styling |
@@ -75,6 +75,18 @@ Import from `@/lib/ui-styles` (added via `registryDependencies`):
 ## Elorm soft identity
 
 Components use rounded surfaces and soft shadows — not stock Radix/Base UI defaults. Prefer component variants (`soft`, `soft-outline`, `size="soft"`) over custom styling.
+
+## Nagomi beta
+
+When `elorm.json` has `"style": "nagomi"`, installed registry output uses rounder surfaces, calmer borders/focus states, and softer shared `ui-styles`.
+
+Do not create `nagomi.json`; Nagomi is selected with:
+
+```json
+{
+  "style": "nagomi"
+}
+```
 
 ## Dark mode
 

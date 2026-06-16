@@ -32,7 +32,9 @@ npx skills add Akarikev/ui --all -g -y
 - Live project context via `npx elorm info --json`
 - Per-component docs via `npx elorm docs <name> --json`
 - Elorm-specific styling (Field/FieldGroup, data-icon, ui-styles, soft identity)
-- Base UI vs Radix primitive differences
+- Base UI vs Radix vs HeroUI primitive differences
+- Nagomi beta style (`elorm init --style nagomi`) and rounded registry output
+- New components and variants: `input-otp`, `slider`, and Progress variants
 - Full CLI reference (init, add, search, diff)
 - Composition rules and component selection
 
