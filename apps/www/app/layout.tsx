@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+// import { Analytics } from "@vercel/analytics/next"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { SiteProviders } from "@/components/marketing/site-providers"
 import { createRootMetadata } from "@/lib/seo"
@@ -36,8 +36,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
       >
         <SiteProviders>{children}</SiteProviders>
-        <Analytics />
-        <SpeedInsights />
+        {/* <Analytics /> */}
+        {/* <SpeedInsights /> */}
       </body>
     </html>
   )
